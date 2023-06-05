@@ -1,0 +1,46 @@
+@import url("./assets/css/globalStyle.css"); 
+
+.filter-things, .categories-panel{
+    margin-top: 10px;
+}
+
+.background-modal{
+    display: none;  
+    z-index: 0;
+}
+
+
+div.background-modal .container{          
+    flex-direction: row;
+    justify-content: center;     
+}
+
+#search-modal{
+    margin-top: 40px;
+    display: flex;    
+    flex-direction: column;    
+}
+.search-bar-modal{    
+    background-color: rgb(255, 255, 255);  
+    width: 280px;   
+     
+}
+
+header .container {        
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#search-button{
+    margin: 0;
+}
+
+#search-button:hover{
+    cursor: pointer;
+}
+
+input#search-item{     
+    width: 80%;
+    height: 30px;
+    border: none;
+}

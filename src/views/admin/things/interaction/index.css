@@ -1,0 +1,36 @@
+@import url("../../../../../assets/css/globalStyle.css");
+
+#image-address-update{
+    display: none;
+}
+
+label[for="image-address-update"]:hover{
+    cursor: pointer;
+}
+
+#camera{
+    display: none;
+}
+  
+div.background-modal{
+  display: none;
+  left: 0px;  
+  top: 0px;
+}
+
+div.background-modal .container{
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+div#img-register-modal{
+    background-color: rgb(255, 255, 255);
+    width: 320px;  
+    height: 200px;
+    margin-bottom: 10px;
+  }
+
+  div.background-modal div.container {    
+    align-items: flex-end;  
+  }
+

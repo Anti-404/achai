@@ -1,0 +1,13 @@
+@import url("../../../../../assets/css/globalStyle.css");
+
+#send-email-modal{
+    display:none;           
+}
+
+#qrcode-modal{
+    display:none;           
+}
+
+#qrcode-modal{
+width: 256px;
+}

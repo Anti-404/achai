@@ -1,0 +1,15 @@
+@import url("../../../../assets/css/globalStyle.css");
+
+header .container{
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+.sandwich-menu-body{
+    position: absolute;
+    right: 20px;
+}
+
+.sandwich-menu-body{
+    z-index: 1;
+}

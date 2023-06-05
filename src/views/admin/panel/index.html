@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head class = "restricted-admin">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css" />   
+    
+    <title>Painel de Controle</title>
+</head>
+
+<body class="body">    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href=""><img src="../../../../assets/imgs/logo.png" alt="Achaí"/></a></br>            
+            </div>  
+
+            <div class="search-bar">              
+                 <img id="search-button" src="../../../../assets/imgs/lupa.png" alt="Pesquisar botão">
+                 
+                <div class="search-bar-modal">
+                    <input type="text" id='search-item' placeholder="Ex: garrafa amarela"/>                    
+                </div>
+            </div>
+                
+            <div class="">
+                <div class="sandwich-menu-button">
+                    <img src="../../../../assets/imgs/menu.png" alt="Menu botão">
+                </div>
+                <div class="sandwich-menu-body" style="display: none;">
+                    <!--
+                    <div class="close-modal"> 
+                        <img src="../../../../assets/imgs/fechar.png" alt="Fechar menu">
+                    </div>
+                    -->                    
+                    <div class="body-modal">
+                        <div> <img src="" alt=""></div>
+                        <div> 
+                            <h3>Administrador</h3> 
+                            <h4>example@gmail.com </h4>
+                            <button class="profile-button"> Gerenciar perfil </button>                            
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-task">
+                        <ul>
+                            <li> <img src="" alt=""> <a class="returned-things-button">Devolvidos</a></li>
+                            <li> <img src="" alt=""> <a class="discard-things-button"> Descarte</a> </li>
+                            <li> <img src="" alt=""> <a class="category-manager-button">Editar categorias</a></li>                             
+                            <br>
+                            <li id="exit-button">Sair</li>
+                        </ul>
+                    </div>
+                </div>                
+            </div>
+
+        </div>
+    </header>
+    
+    <main>        
+        <div class="container">
+            <section>  
+                   <h2>Objetos</h2><br>                  
+                    <ul>                        
+                        <li>
+                            <a class="register-thing-button">
+                                
+                                Adicionar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="returned-thing-button">
+                               
+                                Retirada
+                            </a>
+                        </li>
+                        <li>
+                            <a class="manage-things-button">
+                               
+                                Gerenciamento
+                            </a>
+                        </li>
+                    </ul><br>                  
+                               
+            </section>
+
+            <section>   
+                <h2>Reservados</h2>     
+                <div class="reserved">                    
+                </div>            
+            </section>            
+                
+        </div>    
+        
+    </main>
+
+    <footer>
+        <div class="container"></div>
+    </footer>
+
+    <script type="module" src="index.js" ></script>
+    <script type="module" src="../../../../assets/js/utilities.js"></script>
+</body>
+</html>

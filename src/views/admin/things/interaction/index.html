@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head class = "restricted-admin">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+    <link rel="stylesheet" href="index.css">
+
+    <title></title>
+</head>
+<body class="body">  
+    <header>
+        <div class="container">
+            <div class="logo">              
+                <a href=""><img src="../../../../../assets/imgs/logo.png"  alt="Achaí"/>  </a>             
+            </div>
+            <div class="breadcrumb">Breadscrum</div><br><br>
+        </div>
+        
+    </header>
+
+    <main>
+        <div class="container">    
+            <div id="camera">
+                <div class="take-picture">
+                    <video autoplay></video><br>
+                    <canvas></canvas>                               
+                </div>                 
+            </div> 
+
+            <form id="form">
+                        
+                <input type="hidden" name="id" id="data-id"> 
+                <img id="img-picture"/> 
+                <input type = "file" name="image_address_update" id="image-address-update">  
+                <input type = "hidden" name="image_address" id="image-address">  <br>                              
+
+                <label for="list-categories">Categorias</label><br>
+                <select name="category_id" id="list-categories"></select>
+                <button id="register-categories-button">+</button>
+                <br><br>
+                
+                <label for="local">Local</label><br>
+                <input type="text" name="local" id="local">
+                <br><br>                    
+
+                <label for="description">Descrição</label><br>
+                <textarea name="description" cols="30" rows="10" id="description"></textarea>
+                <br><br>                
+                                
+                <input type="hidden" name="returned_status" id="returned-status" >
+                <input type="hidden" name="reserved_status" id="reserved-status" >  
+                
+                <button id="return-button" >Retirar</button>
+                <button id="update-button" disabled >Atualizar</button>
+                <br><br>
+                
+            </form>            
+        </div>
+    </main>
+
+    <div class="background-modal">        
+        <div class="container">
+            <div id="img-register-modal">
+                <span id="exit-modal-button">
+                    <img src="" alt="">
+                    X
+                </span><br>
+                <span>
+                    <img src="" alt="">
+                    <span id="take-picture-button">Tirar foto</span>
+                </span><br>
+
+                <label class="picture" for="image-address-update">
+                    <img src="" alt="">                    
+                    <span id="choose-picture-button">Escolher existente</span>            
+                </label> 
+            </div>
+        </div>
+        
+    </div>
+        
+    <script type = "module" src="index.js" ></script>
+    <script type = "module" src="../../../../../assets/js/utilities.js"></script>
+</body>
+</html>

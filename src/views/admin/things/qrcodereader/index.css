@@ -1,0 +1,21 @@
+@import url('../../../../../assets/css/globalStyle.css');
+
+header div.container{
+    display: flex;
+    flex-direction: row;   
+    justify-content: space-between;            
+}
+header div.container h2{
+    width: 193px;
+}
+
+video#preview{
+    margin-top: 80px;
+    width: var(--width-containers);  
+    cursor: none;
+}
+
+main .container{
+    background-color: rgba(81, 74, 65, 0.5);
+    min-height: 760px;
+}

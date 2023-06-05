@@ -1,0 +1,97 @@
+@import url("./variables.css");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;   
+    list-style: none;     
+    
+    color: black;  
+    font-size: 16px;  
+}
+
+header, main, footer{
+    display: flex;  
+    justify-content: center;
+}
+header{
+  padding-top: 20px;
+}
+
+.container {
+    display: flex;    
+    flex-direction: column;
+    min-width: var(--width-containers);  
+}
+
+.logo img {
+    width: 60px;
+}
+
+#search-button {
+    width: 24px;
+    margin-left: 200px;
+}
+#search-icon{
+  width: 24px;
+}
+
+.sandwich-menu-button img {
+    width: 26px;
+}
+
+/* related to modal screens */
+
+div.background-modal{    
+  position: absolute;  
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  
+  background-color: rgba(0, 0, 0, .3);
+}
+
+div.background-modal div.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+video:hover{
+  cursor: pointer;
+}
+  
+#exit-modal-button:hover{
+  cursor: pointer;
+  background-color: rgb(153, 148, 148);
+}
+
+canvas{
+  display: none;
+}
+
+#take-picture-button:hover{
+  cursor: pointer;
+  background-color: rgb(153, 148, 148);
+}
+
+#choose-picture-button:hover{
+  cursor: pointer;
+  background-color: rgb(153, 148, 148);
+}
+
+#img-picture{
+  display: block;
+}
+
+#img-picture:hover{
+  cursor: pointer;
+}
+
+label.picture:hover{
+  cursor: pointer;
+}
+
+input#image-address{
+  display: none;
+}  

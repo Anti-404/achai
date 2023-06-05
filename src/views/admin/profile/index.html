@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head class = "restricted-admin">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css" />   
+    
+    <title>Perfil</title>
+</head>
+
+<body class="body">    
+    <header>
+        <div class="container">
+            <div class="logo">              
+                <a href=""><img src="../../../../assets/imgs/logo.png"  alt="Achaí"/>  </a>             
+            </div>
+            <div class="breadcrumb">Breadscrum</div><br><br>
+        </div>            
+        </div>
+    </header>
+    
+    <main>        
+        <div class="container">
+            <form method="post" id="profile-form">
+                <caption>Administrador</caption><br><br>              
+                <input type="text" name="user" id="user" placeholder="Alterar Usuário" required> <br><br>                              
+                <input type="password" name="password" id="password" placeholder="Alterar Senha" required><br><br>
+                <input type="text" name="email" id="email" placeholder="Alterar Email" required><br><br>                              
+
+                <button id="update-button" disabled >Alterar</button>
+            </form>  
+        </div>         
+        
+    </main>
+
+    <footer>
+        <div class="container"></div>
+    </footer>
+        
+    <script type="module" src="index.js" ></script>
+    <script type="module" src="../../../../assets/js/utilities.js"></script>
+</body>
+</html>
