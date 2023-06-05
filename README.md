@@ -1,8 +1,9 @@
 
 # Achaí
   
-## O Projeto  
-  
+## O Projeto 
+ 
+Este projeto tem por objetivo digitalizar o serviço de Achados e perdidos do Bloco UFC Virtual,trazendo mais praticidade tanto para o utilizador final quanto para a secretaria do bloco que administra o serviço  
   
 ## Instalação e Manutenção    
 
