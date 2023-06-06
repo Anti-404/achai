@@ -1,5 +1,9 @@
 @import url("../../../../assets/css/globalStyle.css");
 
+:root {
+    --width-icon: 80px;
+  }
+  
 header .container{
     flex-direction:row;
     justify-content: space-between;
@@ -12,4 +16,28 @@ header .container{
 
 .sandwich-menu-body{
     z-index: 1;
+}
+
+.panel-buttons ul li img {
+    width: var(--width-icon);
+    border-radius: 50%;
+}
+
+.panel-buttons ul  {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+}
+
+.panel-buttons ul li a {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  
+}
+
+.panel-buttons ul li a :hover {
+    cursor: pointer;
+
 }
