@@ -14,7 +14,7 @@ Para rodar o projeto é necessário ter em sua maquina um servidor web (o php in
 2. Clonar o projeto do Github (pode ser feito através do Github Desktop ou do comando `git clone [url]`) ou baixando o zip
 3. Recorte a pasta 'achai' e cole dentro do diretório htdocs do xammp (C:\xampp\htdocs)
 4. Inicie o xampp e ative o servidor Apache e o banco MySQL.
-5. No servidor Apache click no botão 'config' -> PHP (php.in). Nesse arquivo habilite as extensões gd (extension=gd) e zip (extension=zip)
+5. No servidor Apache click no botão 'config' -> PHP (php.in). Nesse arquivo habilite as extensões gd (extension=gd) e zip (extension=zip) | IMPORTANTE: reinicie o servidor apache apos essas alteração. 
 6. Com um terminal na pasta 'achai/api/' do projeto que foi clonado, instalar as dependências através do comando:
 ```  
 composer install  
