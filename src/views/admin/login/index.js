@@ -9,6 +9,7 @@ import config from '../../../../config.js';
     }
 
     login() {
+        
         let confirmButton = document.querySelector("#confirm-button");
 
         confirmButton.addEventListener('click', async (e) => {            
@@ -43,7 +44,8 @@ import config from '../../../../config.js';
         }         
     }
     
-    recoverPassword(){
+    recoverPassword(){       
+        
         document.querySelector('#recover-password-button').addEventListener('click', (e)=>{
             
             alert("A senha foi enviada para seu email!");

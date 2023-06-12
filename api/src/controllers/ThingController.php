@@ -53,8 +53,8 @@ class ThingController extends Controller {
         
     }
 
-    public function get($id){    
-        
+    public function get($id){  
+                        
         if($id) {            
             
             $things = Things::select()
@@ -86,7 +86,7 @@ class ThingController extends Controller {
                 }
             
             } else {
-                $this->array['error'] = 'ID não enviado';
+                $this->array['error'] = 'ID não encontrado';
             } 
         
         }
@@ -510,7 +510,88 @@ class ThingController extends Controller {
 
 
 
-    }    
+    } 
+    
+    public function reserve(){ 
+        
+        $id = filter_input(INPUT_POST, 'id');
+        $pathImageAddressDB = filter_input(INPUT_POST, 'image_address');
+        $description = filter_input(INPUT_POST, 'description')??null;
+        $local = filter_input(INPUT_POST, 'local')??null;
+        $returnedStatus = filter_input(INPUT_POST, 'returned_status');        
+        $reservedStatus = filter_input(INPUT_POST, 'reserved_status');        
+        $categoryId = filter_input(INPUT_POST, 'category_id');        
+        
+       if(isset($_FILES['image_address_update']) && !empty($_FILES['image_address_update'])){
+
+        if($_FILES['image_address_update']['size']){
+                $file = $_FILES['image_address_update'];        
+                $extensionUploadedImage = explode('/',$_FILES['image_address_update']['type'])[1];            
+                    
+                if(isset($file['tmp_name']) && !empty($file['tmp_name'])){
+                    $nameImg = md5(time().rand(0,99));
+                    $pathImageAddressDB = 'api/assets/imgs/'.$nameImg.'.'.$extensionUploadedImage;        
+                    $localPathImageAddres = '../assets/imgs/'.$nameImg.'.'.$extensionUploadedImage;        
+                    move_uploaded_file($file['tmp_name'], $localPathImageAddres);   
+
+                    $this->compressImage($localPathImageAddres, 300,-1, $localPathImageAddres, 50);
+                }   
+                    
+            }
+        }       
+
+        $data = [
+            'id' => $id,
+            'image_address' => $pathImageAddressDB,
+            'description' => $description,
+            'local' => $local,
+            'returned_status' => $returnedStatus,
+            'reserved_status' => $reservedStatus,
+            'category_id' => $categoryId            
+        ];
+
+        
+        if($data['id'] && $data['image_address'] && $data['category_id']) {   
+            $things = Things::select()->where('id', $data['id'])->execute();            
+
+            if(count($things) > 0){
+
+                Things::update()->set(
+                    [
+                        'image_address' => $data['image_address'],
+                        'description' => $data['description'], 
+                        'local'=>$data['local'],
+                        'returned_status'=>$data['returned_status'],
+                        'reserved_status'=>$data['reserved_status'],
+                        'category_id'=>$data['category_id'],
+                    ]
+                    )->where('id', $data['id'])->execute();
+                
+                $this->array['result'] = [
+                        'image_address' => $data['image_address'],
+                        'description' => $data['description'], 
+                        'local'=>$data['local'],
+                        'returned_status'=>$data['returned_status'],
+                        'reserved_status'=>$data['reserved_status'],
+                        'category_id'=>$data['category_id'],
+                ];
+
+            }else{
+                $this->array['error'] = 'ID inexistente';
+            }                 
+            
+
+        } else {
+            $this->array['error'] = 'Dados não enviados';
+        } 
+     
+       echo json_encode($this->array);
+       exit;
+
+
+
+
+    }
 
     public function sendEmail(){        
         $toMail = filter_input(INPUT_POST, 'to');        

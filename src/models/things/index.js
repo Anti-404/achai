@@ -124,6 +124,34 @@ export default class ModelThings extends Model{
       }   
   }
 
+  async reserve(addressRedirecting, formData, message='Reservado'){       
+    const endpoint = `${this.path}${this.nameController}/reserve`;                  
+      
+      try {
+        let response = await fetch(endpoint, {
+          method: "POST",            
+          body:  formData
+          
+        });  
+        
+        response = await response.json();
+        
+        if(response.error == ''){
+          alert(message+' com Sucesso'); 
+          
+          if(!(addressRedirecting == '')){                
+            window.location.href = addressRedirecting;      
+          }
+
+        }else{
+          alert(response.error);                 
+        }
+        
+      } catch (error) {
+        console.log('Erro no codigo do sistema: '+error);
+      }   
+  }
+
  async sendEmail(formData){
     const endpoint = `${this.path}${this.nameController}/sendemail`;                  
       

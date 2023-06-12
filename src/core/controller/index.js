@@ -1,7 +1,5 @@
 export default class Controller{
 
-    constructor(){}
-
     retrieveURLId(){
         let identifier = '';
         let url = this.retrieveURLCurrentPage();
@@ -33,6 +31,6 @@ export default class Controller{
         
         return prevPage;
      }
-
-
+     
+     
 }

@@ -1,1 +1,10 @@
 @import url('../../../../../assets/css/globalStyle.css');
+
+main{
+    margin-top: 15px;
+}
+
+button#save-button{
+    margin-top: 15px;
+
+}

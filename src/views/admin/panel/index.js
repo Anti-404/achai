@@ -1,12 +1,16 @@
 import ModelThings from "../../../models/things/index.js";
+import ModelCategories from '../../../models/categories/index.js';
 import Controller from "../../../core/controller/index.js";
 import config from "../../../../config.js";
+import LayoutThing from '../../components/layoutthing/index.js';
 
 class Panel extends Controller{
     constructor(){
         super();
-        this.modelThings = new ModelThings();        
+        this.modelThings = new ModelThings();  
+        this.modelCategories = new  ModelCategories();      
         this.currentPage = this.retrieveURLCurrentPage();
+        this.layoutThing = new LayoutThing(); 
     } 
 
     exit(){
@@ -21,46 +25,31 @@ class Panel extends Controller{
     async ListThingsReserved(){
 
         const allThings = await this.modelThings.getThingsReserved();                    
-        let  thingsListReserved = document.querySelector(".reserved");                
-        if(!allThings.error){ 
-                        
-            for (let i = 0; i < allThings.result.length; ++i) {
-                                
-                let figure = document.createElement("figure");
-                let img = document.createElement("img");                
-                let figCaption = document.createElement("figcaption"); 
-                let qrCode = document.createElement("img");
-                  
-                figure.setAttribute("data-id",allThings.result[i].id);                    
-                img.setAttribute("src",`${config.urlBase}/${allThings.result[i].image_address}`);                    
-                img.setAttribute("alt",allThings.result[i].description);                
-                figCaption.appendChild(document.createTextNode(allThings.result[i].description));
-                                                                                           
-                
-                figure.appendChild(img);                
-                figure.appendChild(figCaption);                                
-                thingsListReserved.appendChild(figure);
-                
-            }
-
-            
-        } 
+        let  thingsListReserved = document.querySelector(".things-list");                
+        await this.layoutThing.create(thingsListReserved, allThings, true, 'admin/things/thingreserved'); 
         
     }
     
-    toggleSandwichMenu(){
+    openSandwichMenu(){
         
         document.querySelector(".sandwich-menu-button").addEventListener("click",(e)=>{
-            let  sandwichMenu= document.querySelector(".sandwich-menu-body");
             
-            if(sandwichMenu.classList.toggle("visible")){ 
-                sandwichMenu.setAttribute("style","display:block");
-            }else{
-                sandwichMenu.setAttribute("style","display:none");
-            }
+            document.querySelector("#search-modal").style.display = 'none';
+            document.querySelector(".background-modal").style.display = 'block';           
+            document.querySelector(".sandwich-menu-body").setAttribute("style","display:block");            
             
         });
                
+    }
+
+    closeSandwichMenu(){
+        document.querySelector(".close-modal").addEventListener("click",(e)=>{
+
+            document.querySelector(".sandwich-menu-body").setAttribute("style","display:none");
+            document.querySelector(".background-modal").style.display = 'none'; 
+            
+            
+        });        
     }
 
     goToProfile(){
@@ -127,7 +116,7 @@ class Panel extends Controller{
 
     goToReservedThing(){  
         
-        let thingsList =  document.querySelectorAll(".reserved figure");              
+        let thingsList =  document.querySelectorAll(".things-list figure");              
        
         thingsList.forEach((thing)=>{
             thing.addEventListener("click", (e)=>{   
@@ -140,12 +129,54 @@ class Panel extends Controller{
        
     }
     
+    searchItem(){       
+        let searchItem = document.querySelector('#search-item');
+
+        if(searchItem == null){
+            return;
+        }
+
+        searchItem.addEventListener('keyup',()=>{
+            let input = document.querySelector('#search-item').value
+            input=input.toLowerCase();
+            let x = document.querySelectorAll('.things-list a');
+            
+            
+            for (let i = 0; i < x.length; i++) { 
+                 if (!x[i].outerText.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                }
+                else {
+                    x[i].style.display="flex";                 
+                }
+            }
+            
+        });
+    }
+
+    openSearchModal(){
+        document.querySelector('#search-button').addEventListener('click',()=>{
+            document.querySelector('.background-modal').style.display = 'block';
+            document.querySelector("#search-modal").style.display = 'block';
+            document.querySelector(".sandwich-menu-body").style.display = 'none';            
+        });
+     }
+
+    closeSearchModal(){
+        document.querySelector('#search-item').addEventListener('blur',(event)=>{    
+            document.querySelector('#search-item').value = '';        
+            document.querySelector('.background-modal').style.display = 'none';
+            
+        });        
+    }    
+    
 
 }
 
 const panel = new Panel();
 await panel.ListThingsReserved();
-panel.toggleSandwichMenu();
+panel.openSandwichMenu();
+panel.closeSandwichMenu();
 panel.goToProfile();
 panel.goToDiscardeThings();
 panel.goToReturnedThings();
@@ -154,5 +185,7 @@ panel.goToThingRegister();
 panel.goToReturnedThing();
 panel.goToManageThings();
 panel.goToReservedThing();
-
 panel.exit();
+panel.searchItem();
+panel.openSearchModal();
+panel.closeSearchModal();

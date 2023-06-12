@@ -2,6 +2,7 @@ import ModelThing from '../../../../models/things/index.js';
 import ModelZip from '../../../../models/zips/index.js';
 import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
+import LayoutThing from '../../../components/layoutthing/index.js';
 
 
 class Discard extends Controller{
@@ -10,42 +11,15 @@ class Discard extends Controller{
         this.modelThing = new ModelThing(); 
         this.modelZip = new ModelZip(); 
         this.currentPage = this.retrieveURLCurrentPage(); 
+        this.layoutThing = new LayoutThing(); 
                             
     }
-
        
     async allThingsDiscard(){
 
         const allThingsDiscard = await this.modelThing.getThingsDiscard();            
-        let  thingsDiscardContainer = document.querySelector(".things-descard-list");
-
-        if(!allThingsDiscard.error){ 
-            
-            for (let i = 0; i < allThingsDiscard.result.length; ++i) {
-                let a = document.createElement("a");
-                let figure = document.createElement("figure");
-                let img = document.createElement("img");
-                let figCaption = document.createElement("figcaption");             
-                                                              
-                a.setAttribute("id",allThingsDiscard.result[i].id);                        
-                img.setAttribute("alt",allThingsDiscard.result[i].description);                                                        
-                
-                if(!(allThingsDiscard.result[i].image_address).includes('deletado:')){                                                        
-                    img.setAttribute("src",`${config.urlBase}/${allThingsDiscard.result[i].image_address}`);
-                }
-                
-
-                figCaption.appendChild(document.createTextNode(allThingsDiscard.result[i].description));                
-                 
-                figure.appendChild(img);
-                figure.appendChild(figCaption);
-                a.appendChild(figure);
-                thingsDiscardContainer.appendChild(a);
-                
-            }
-
-            
-        } 
+        let  thingsDiscardContainer = document.querySelector(".things-list");
+        this.layoutThing.create(thingsDiscardContainer, allThingsDiscard, false);
 
     }
  

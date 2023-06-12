@@ -61,16 +61,10 @@ class QRCode extends Controller{
         });
 
     }
-
-    handlePageBack(){                
-        document.querySelector("#back").addEventListener('click', ()=>{
-            window.history.back();
-        });
-    }
+    
 
 }   
 
 const qrcode = new QRCode();
 await qrcode.getThing();
 qrcode.return();
-qrcode.handlePageBack();

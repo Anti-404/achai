@@ -1,4 +1,13 @@
 :root {
-    --width-containers: 300px;
+    --containers-width: 320px;
+    --object-box-height: 116px;
+    --object-img-width: 100px;
+    --background-color: rgb(255, 255, 255);
+    --modal-background-color: rgba(9, 9, 9, 0.2);
+    --modal-background-color: rgba(9, 9, 9, 0.2);
+    --font-color:  rgb(11, 11, 11);
+    --font-size:  16px;
+    
   }
+  
   

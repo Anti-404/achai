@@ -1,7 +1,8 @@
 @import url("./assets/css/globalStyle.css"); 
 
-.filter-things, .categories-panel{
+.categories-panel{
     margin-top: 10px;
+    width: var(--containers-width);
 }
 
 .background-modal{
@@ -9,38 +10,75 @@
     z-index: 0;
 }
 
-
 div.background-modal .container{          
     flex-direction: row;
     justify-content: center;     
 }
 
-#search-modal{
-    margin-top: 40px;
-    display: flex;    
-    flex-direction: column;    
-}
-.search-bar-modal{    
-    background-color: rgb(255, 255, 255);  
-    width: 280px;   
-     
-}
-
 header .container {        
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-between;}
+
+main .container-header{
+    display: flex;    
+    justify-content: space-between;  
+    margin-bottom: 10px;         
+    align-items: center;    
 }
 
-#search-button{
-    margin: 0;
+.things-list figure figcaption span:nth-child(2){
+    font-size: 12px;
 }
 
-#search-button:hover{
+main div.container-header div.filter-things{
+    display: flex;     
+    gap: 8px;
+    background-color: rgb(41, 38, 38);
+    padding: 3px;     
+    border-radius: 15px;  
+}
+.filter-things span{
+    padding: 0px 8px; 
+    cursor: pointer;   
+}
+
+.filter-things span[status="1"]{
+    background-color: rgb(239, 244, 244);
+    border-radius: 15px;  
+    
+}
+
+footer{
+    min-height: 10vh;        
+}
+   
+.categories-panel{    
+    background-color: rgb(226, 226, 226);  
+    border-radius: 5px;  
+    height: 10vh;     
+    position: fixed;    
+    bottom: 0px;  
+       
+}
+
+.categories-panel ul{
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.categories-panel ul li{
     cursor: pointer;
+    padding: 4.5px;
 }
 
-input#search-item{     
-    width: 80%;
-    height: 30px;
-    border: none;
+.categories-panel ul li a{
+    
+    font-weight: bold;
+}
+.categories-panel ul li a.active{
+    background-color: rgb(70, 70, 70);
+    padding: 3px;
+    color: rgb(211, 211, 211);
+    font-weight: bold;
 }

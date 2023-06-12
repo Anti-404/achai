@@ -15,6 +15,7 @@ $router->get('/thing', 'ThingController@index');
 $router->get('/thing/get/{id}', 'ThingController@get'); 
 $router->delete('/thing/delete/{id}', 'ThingController@delete'); 
 $router->post('/thing/update', 'ThingController@update');
+$router->post('/thing/reserve', 'ThingController@reserve');
 $router->post('/thing/insert', 'ThingController@insert');
 $router->post('/thing/sendemail', 'ThingController@sendEmail');
 $router->post('/thing/compressdescarded', 'ThingController@compressDescarded');

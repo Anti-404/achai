@@ -14,9 +14,9 @@ class ShowThing extends Controller{
     }   
 
     async getThing(){            
-                
-        const thing = await this.modelThings.get(this.identifier);            
+        const thing = await this.modelThings.get(this.identifier);                           
         const category = await this.modelCategories.get(thing.result[0].category_id);         
+        
         if(!thing.erro && !category.erro){            
             document.querySelector("#data-id").value = this.identifier;            
             document.querySelector("#code").appendChild(document.createTextNode(this.identifier));            
@@ -65,12 +65,7 @@ class ShowThing extends Controller{
             e.preventDefault();                 
                       
            let formData = new FormData(document.querySelector('#first-form'));
-           formData.set('reserved_status',1); 
-           
-            if(localStorage.getItem("hash")){
-                formData.append('hash',localStorage.getItem("hash"));
-            
-            }
+           formData.set('reserved_status',1);            
            
            let formEmail = document.querySelector("#send-email-modal form");                      
            if(!formEmail.to.value){
@@ -83,7 +78,7 @@ class ShowThing extends Controller{
             let response = await this.modelThings.sendEmail(formData);
 
            if(!response.erro){
-               this.modelThings.update('', formData, 'Reservado'); 
+               this.modelThings.reserve('', formData, 'Reservado'); 
                document.querySelector('#qrcode-modal').style.display = 'block';                                         
                                        
            }          

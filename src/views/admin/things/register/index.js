@@ -16,10 +16,6 @@ class ThingRegistration extends Controller{
 
     }
 
-    clearRedirProdRegLocalStorage(){        
-    localStorage.setItem("redirProdReg","");
-    }
-
     async selectCategories(){         
 
         const allCategories = await this.modelCategories.getAll();
@@ -35,21 +31,7 @@ class ThingRegistration extends Controller{
         }    
 
     }
-
-    goToCategoryRegistration(){
-    document.querySelector("#register-categories-button").addEventListener("click",(e)=>{            
-        e.preventDefault();            
-        localStorage.setItem("redirProdReg", this.currentPage); 
-        
-        
-        localStorage.setItem("imageAddress", document.getElementById("image-address").value); 
-        localStorage.setItem("local", document.getElementById("local").value); 
-        localStorage.setItem("description", document.getElementById("description").value); 
-        window.location.href = `${config.urlBase}/src/views/admin/categories/register/?prevPage=${this.currentPage}`;            
-    });
-
-
-    }
+    
 
     putDataBackForms(){        
 
@@ -68,23 +50,23 @@ class ThingRegistration extends Controller{
     }
 
     save(){        
-    document.querySelector("#save-button").addEventListener("click", (e)=>{             
-        e.preventDefault();                      
+        document.querySelector("#save-button").addEventListener("click", (e)=>{             
+            e.preventDefault();                      
 
-        let formData = new FormData(document.querySelector('form'));            
+            let formData = new FormData(document.querySelector('form'));            
 
-        if ( !(typeof this.takePictureBlob === 'string')) {   
-            formData.set('image_address', this.takePictureBlob);                
-        }                        
-        if(localStorage.getItem("hash")){
-            formData.append('hash',localStorage.getItem("hash"));
+            if ( !(typeof this.takePictureBlob === 'string')) {   
+                formData.set('image_address', this.takePictureBlob);                
+            }                        
+            if(localStorage.getItem("hash")){
+                formData.append('hash',localStorage.getItem("hash"));
+                
+            }                              
+                                    
+            this.modelThings.insert(this.prevPage, formData);     
             
-        }                              
-                                
-        this.modelThings.insert(this.prevPage, formData);     
-        
 
-    });
+        });
     }
 
 
@@ -192,9 +174,7 @@ class ThingRegistration extends Controller{
 
 const thingRegistration = new ThingRegistration();
 thingRegistration.selectCategories();
-thingRegistration.goToCategoryRegistration();
 thingRegistration.save();
-thingRegistration.clearRedirProdRegLocalStorage();
 thingRegistration.putDataBackForms();
 thingRegistration.takePicture();
 thingRegistration.inputFileImageUploadPreview();

@@ -3,3 +3,22 @@
 header div.container div#container-top{
     display: flex;        
 }
+
+ul#categories-list li a{
+    display: inline-block;
+    width: 100%;    
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
+    margin-top: 7px; 
+    border-radius: 3px;
+    padding: 3px;
+}
+
+#register-things-button{
+    margin-top: 10px;
+    width: 25px;
+    height: 25px;    
+    text-align: center;
+    line-height: 14.5px;
+    align-self: self-end;
+}

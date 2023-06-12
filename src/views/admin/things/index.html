@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="index.css" />   
     
-    <title>Objetos</title>
+    <title>Objetos por categorias</title>
 </head>
 
 <body class="body">
@@ -16,32 +16,24 @@
             <div id="container-top">
                 <div class="logo">
                     <a href="achai/src/views/admin/panel/"><img src="../../../../assets/imgs/logo.png" alt="Achaí"/></a></br>            
-                </div> 
-
-                <div class="search-bar">              
-                    <img id="search-button" src="../../../../assets/imgs/lupa.png" alt="Pesquisar botão">
-                    
-                    <div class="search-bar-modal">
-                                               
-                    </div>               
                 </div>
+
             </div>
             
-            <div class="breadcrumb">Breadscrum</div>
-            
-            <div class="categories">                
-                <select name="categories-list" id="categories-list">
-                    <option value="0">Categorias</option>
-                </select>                
-            </div>    
+            <div class="breadcrumb">Breadscrum</div>            
+               
         </div>
     </header> 
     <br>
     <main>
         <div class="container">            
-            <div class="things-list">                
-            </div>
-            
+            <div class="categories-panel">
+                <ul id="categories-list">
+                    <li>
+                        <a data-id='0'>Ver todos</a>
+                    </li>
+                </ul>
+            </div> 
             <button id="register-things-button">+</button>
         </div>
     </main>

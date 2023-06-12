@@ -1,1 +1,10 @@
 @import url('../../../../../assets/css/globalStyle.css');
+
+.things-list figure{
+    cursor: auto;
+}
+
+#files-zip-button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

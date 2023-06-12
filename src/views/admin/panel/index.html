@@ -10,33 +10,27 @@
     <title>Painel de Controle</title>
 </head>
 
-<body class="body">    
-    <header>
+<body class="body">     
+    <div class="background-modal">        
         <div class="container">
-            <div class="logo">
-                <a href=""><img src="../../../../assets/imgs/logo.png" alt="Achaí"/></a></br>            
-            </div>  
-
-            <div class="search-bar">              
-                 <img id="search-button" src="../../../../assets/imgs/lupa.png" alt="Pesquisar botão">
-                 
-               <!---- <div class="search-bar-modal">
-                    <input type="text" id='search-item' placeholder="Ex: garrafa amarela"/>                    
-                </div>-->
+            <div id="search-modal">                
+                <span>
+                    <div class="search-bar-modal">                        
+                        <input type="text" id='search-item' placeholder="Ex: garrafa amarela"/>
+                        <img id="search-icon" src="../../../../assets/imgs/lupa.png" alt="pesquisa é realizada automaticamente ao digitar">  
+                    </div>
+                </span><br> 
             </div>
-                
-            <div class="">
-                <div class="sandwich-menu-button">
-                    <img src="../../../../assets/imgs/menu.png" alt="Menu botão">
-                </div>
-                <div class="sandwich-menu-body" style="display: none;">
-                    <!--
+
+            <div class="sandwich-menu">                
+                <div class="sandwich-menu-body">
+                   
                     <div class="close-modal"> 
                         <img src="../../../../assets/imgs/fechar.png" alt="Fechar menu">
                     </div>
-                    -->                    
+                                      
                     <div class="body-modal">
-                        <div> <img src="" alt=""></div>
+                        <!-- <div> <img src="" alt=""></div> -->
                         <div> 
                             <h3>Administrador</h3> 
                             <h4>example@gmail.com </h4>
@@ -54,6 +48,25 @@
                         </ul>
                     </div>
                 </div>                
+            </div>
+
+        </div>
+        
+    </div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="achai/src/views/admin/panel/"><img src="../../../../assets/imgs/logo.png" alt="Achaí"/></a></br>            
+            </div>  
+
+            <div class="search-bar">              
+                 <img id="search-button" src="../../../../assets/imgs/lupa.png" alt="Pesquisar botão">
+                
+            </div>
+                          
+            <div class="sandwich-menu-button">
+                <img src="../../../../assets/imgs/menu.png" alt="Menu botão">
             </div>
 
         </div>
@@ -90,7 +103,7 @@
 
             <section>   
                 <h2>Objetos reservados</h2>     
-                <div class="reserved">                    
+                <div class="things-list">                    
                 </div>            
             </section>            
                 

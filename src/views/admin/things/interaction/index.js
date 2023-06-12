@@ -9,8 +9,7 @@ class ThingsInteraction extends Controller{
         super();
         this.modelCategories = new  ModelCategories();
         this.modelThings = new  ModelThings();
-        this.identifier = this.retrieveURLId();        
-        this.prevPage = this.getPrevPageURL();
+        this.identifier = this.retrieveURLId();                
         this.currentPage = this.retrieveURLCurrentPage();  
         this.takePictureBlob = "empty";      
 
@@ -92,8 +91,8 @@ class ThingsInteraction extends Controller{
                 formData.append('hash',localStorage.getItem("hash"));
                 
             }
-            
-            this.modelThings.update( this.prevPage, formData, 'Atualizado'); 
+            let prevPage = `${config.urlBase}/src/views/admin/things/manager/`            
+            this.modelThings.update( prevPage, formData, 'Atualizado'); 
         });
 
     }
@@ -109,14 +108,13 @@ class ThingsInteraction extends Controller{
                 formData.append('hash',localStorage.getItem("hash"));
                 
             }
-            
-            this.modelThings.update( this.prevPage, formData, 'Retirado'); 
+            let prevPage = `${config.urlBase}/src/views/admin/things/manager/`            
+            this.modelThings.update( prevPage, formData, 'Retirado'); 
         });
 
 
     }
    
-
     enableButton(...fields){
 
         for (let i = 0; i < fields.length; i++) {
@@ -128,21 +126,7 @@ class ThingsInteraction extends Controller{
         }       
 
     }
-
-    goToCategoryRegistration(){                                                                                                                         
-        document.querySelector("#register-categories-button").addEventListener("click",(e)=>{            
-            e.preventDefault();            
-            localStorage.setItem("redirProdReg", this.currentPage); 
-            
-            
-            localStorage.setItem("imageAddress", document.getElementById("image-address").value); 
-            localStorage.setItem("local", document.getElementById("local").value); 
-            localStorage.setItem("description", document.getElementById("description").value); 
-            
-            window.location.href = `${config.urlBase}/src/views/admin/categories/register/?prevPage=${this.currentPage}`;            
-
-        });
-    } 
+    
     
     takePicture(){
 
@@ -187,7 +171,7 @@ class ThingsInteraction extends Controller{
             });
         }       
     
-        }   
+    }   
     
     inputFileImageUploadPreview(globalThis = this){
             
@@ -251,7 +235,6 @@ thingsInteraction.getThing();
 thingsInteraction.update();
 thingsInteraction.return();
 thingsInteraction.enableButton("image-address","image-address-update", "local", "list-categories", "description");
-thingsInteraction.goToCategoryRegistration();
 thingsInteraction.inputFileImageUploadPreview();
 thingsInteraction.takePicture();
 thingsInteraction.inputFileImageUploadPreview();
