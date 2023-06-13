@@ -117,6 +117,10 @@ canvas{
   display: none;
 }
 
+.take-picture video, #img-picture{
+  width: 320px;
+}
+
 #take-picture-button:hover{
   cursor: pointer;
   background-color: rgb(153, 148, 148);
