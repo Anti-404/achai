@@ -27,7 +27,7 @@ main .container-header{
 }
 
 .things-list figure figcaption span:nth-child(2){
-    font-size: 12px;
+    display: none;
 }
 
 main div.container-header div.filter-things{

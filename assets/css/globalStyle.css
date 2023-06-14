@@ -71,7 +71,6 @@ div.background-modal div.container {
 
 /* thing list*/
 
-
 .things-list {
   display: flex;
   flex-direction: column;
@@ -83,14 +82,14 @@ div.background-modal div.container {
   cursor: pointer;
 
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
-  margin-top: 15px; 
-  border-radius: 5px;
+  margin-top: 10px; 
+  border-radius: 10px;
 
 }
 
 .things-list figure div{
   width: var( --object-img-width);    
-  margin: 8px;
+  margin: 8px 0px 8px 8px;
 }
 
 .things-list figure div img{
@@ -174,8 +173,6 @@ input#search-item{
 img#search-icon{  
   background-color: var(--background-color);
 }
-
-/*  */
 
 footer .container span{
   text-align: center;

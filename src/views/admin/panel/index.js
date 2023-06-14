@@ -158,7 +158,8 @@ class Panel extends Controller{
         document.querySelector('#search-button').addEventListener('click',()=>{
             document.querySelector('.background-modal').style.display = 'block';
             document.querySelector("#search-modal").style.display = 'block';
-            document.querySelector(".sandwich-menu-body").style.display = 'none';            
+            document.querySelector(".sandwich-menu-body").style.display = 'none';
+            document.querySelector('#search-item').focus();            
         });
      }
 

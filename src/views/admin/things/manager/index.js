@@ -117,7 +117,8 @@ class ThingsManager extends Controller{
     openSearchModal(){
         document.querySelector('#search-button').addEventListener('click',()=>{
             document.querySelector('.background-modal').style.display = 'block';
-            document.querySelector("#search-modal").style.display = 'block';                      
+            document.querySelector("#search-modal").style.display = 'block'; 
+            document.querySelector('#search-item').focus();                     
         });
      }
 

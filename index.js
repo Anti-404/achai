@@ -70,8 +70,7 @@ class Home {
         }
 
 
-    }
-    
+    }    
     
     async thingsList(){
         
@@ -90,17 +89,18 @@ class Home {
 
             thingsFilters.forEach(async(filter, index) => {
                 let status = filter.getAttribute('status');
-                let link = true;                
+                let path = '';                
                 if (status == "1") {              
                 
                     switch (index) {                        
                         case 0:                                                       
-                            allThings = await this.modelThings.getAll();                                                       
+                            allThings = await this.modelThings.getAll(); 
+                            path =  'users/things/show-object';                                                     
                             break;
 
                         case 1:                            
-                            allThings = await this.modelThings.getThingsReserved();                            
-                            link = false;
+                            allThings = await this.modelThings.getThingsReserved();  
+                            path =  'users/things/show-reserved-object';                                                      
                             break;                       
                     
                         default:
@@ -110,7 +110,7 @@ class Home {
 
                 thingsList.innerHTML = '';
 
-                this.layoutThing.create(thingsList, allThings, link, 'users/things/show-object');
+                this.layoutThing.create(thingsList, allThings, true, path);
                 
         });
             
@@ -162,7 +162,7 @@ class Home {
     openSearchModal(){
         document.querySelector('#search-button').addEventListener('click',()=>{
             document.querySelector('.background-modal').style.display = 'block';
-            window.event.stopPropagation();
+            document.querySelector('#search-item').focus();
         });
      }
 
@@ -173,6 +173,7 @@ class Home {
             
         });        
     }
+    
 
 }
 
