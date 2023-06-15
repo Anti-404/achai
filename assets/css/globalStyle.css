@@ -171,6 +171,8 @@ input#search-item{
 }
 
 img#search-icon{  
+  
+  width: 30px;
   background-color: var(--background-color);
 }
 

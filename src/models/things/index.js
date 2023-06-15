@@ -151,24 +151,6 @@ export default class ModelThings extends Model{
         console.log('Erro no codigo do sistema: '+error);
       }   
   }
-
- async sendEmail(formData){
-    const endpoint = `${this.path}${this.nameController}/sendemail`;                  
-      
-      try {
-        let response = await fetch(endpoint, {
-          method: "POST",            
-          body:  formData          
-        });  
-        
-        response = await response.json();        
-        return response;                 
-        
-      } catch (error) {
-        console.log('Erro no codigo do sistema: '+error);
-      }   
-  }
-
   
   async compressDescarded(addressRedirecting, formData, message='Zipado com Sucesso'){
         const endpoint = `${this.path}${this.nameController}/compressdescarded`;       

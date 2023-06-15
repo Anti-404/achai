@@ -9,5 +9,64 @@
 }
 
 #qrcode-modal{
-width: 256px;
+    width: 256px;
+}
+
+form#first-form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+form#first-form img{
+    border-radius: 8px;
+}
+form#first-form input, form#first-form textarea, form#first-form button, form#email-form button, form#email-form input{
+    border-radius: 8px;
+    padding: 10px 5px;    
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
+    border: none;
+}
+
+form#first-form button{
+    width: 230px;
+    height: 45px;
+    align-self: center;
+    margin-top: 8px;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+form#email-form{
+    display: flex;
+    gap: 70vh;
+    flex-direction: column;  
+
+} 
+form#email-form span{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+form#email-form button{
+    width: 230px;
+    height: 45px;
+    margin-bottom: 15px;
+    align-self: center;
+    cursor: pointer;
+}
+
+#qrcode-modal{    
+    align-self: center;    
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#qrcode-modal button{
+    border-radius: 8px;
+    padding: 10px 5px;    
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
+    border: none;
+    width: 80px;    
+    cursor: pointer;
 }
