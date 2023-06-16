@@ -36,6 +36,10 @@ form#first-form button{
     cursor: pointer;
 }
 
+form#first-form textarea{
+    resize: none;
+}
+
 form#email-form{
     display: flex;
     gap: 70vh;
@@ -57,9 +61,16 @@ form#email-form button{
 
 #qrcode-modal{    
     align-self: center;    
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column;    
     align-items: center;
+}
+
+#qrcode img{
+    display: none;
+}
+
+#new-qrcode{
+    display: block;
 }
 
 #qrcode-modal button{
@@ -69,4 +80,10 @@ form#email-form button{
     border: none;
     width: 80px;    
     cursor: pointer;
+}
+#canvas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
 }

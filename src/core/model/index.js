@@ -69,9 +69,10 @@ export default class Model{
           
           response = await response.json();
           
-          if(response.error == ''){
-            alert("Editado com Sucesso");                 
-            window.location.href = addressRedirecting;      
+          if(response.error == ''){           
+                            
+            alert('Editado com Sucesso');
+                 
 
           }else{
             alert(response.error);                 
@@ -116,7 +117,7 @@ export default class Model{
       alert(error);
     }
 
-  }
+    }
 
   
 

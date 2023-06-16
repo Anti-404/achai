@@ -7,12 +7,19 @@
     list-style: none;
     font-size: var(--font-size);      
     color: var(--font-color);
+    font-family: "Quicksand";
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url("../fonts/Quicksand.ttf");
 }
 
 header, main, footer{
     display: flex;  
     justify-content: center;
 }
+
 header{
   padding-top: 20px;
   padding-bottom: 15px;

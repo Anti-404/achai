@@ -20,3 +20,11 @@ input[value]{
 #register-categories-button{
     margin-top: 15px;
 }
+
+.success-message{
+    background-color: rgb(75, 161, 75);
+    padding: 10px;
+    color: rgb(233, 238, 241);
+    margin-top: 20px;
+    border-radius: 4px;
+}

@@ -18,14 +18,15 @@ class ShowReservedThing extends Controller{
         const category = await this.modelCategories.get(thing.result[0].category_id);         
         
         if(!thing.erro && !category.erro){            
-            document.querySelector("#data-id").value = this.identifier;            
-            document.querySelector("#code").appendChild(document.createTextNode(this.identifier));            
+            document.querySelector("#data-id").value = this.identifier;
+
+            document.querySelector("#code").textContent = `N°:${this.identifier}`;   
             
             document.querySelector("form img").setAttribute('src', `${config.urlBase}/${thing.result[0].image_address}`);            
 
             document.querySelector("#image-address").value = thing.result[0].image_address;                        
 
-            document.querySelector("#category").innerHTML = category.result.name;
+            document.querySelector("#category").value = category.result.name;
 
             document.querySelector("#category-id").value = thing.result[0].category_id;                        
             

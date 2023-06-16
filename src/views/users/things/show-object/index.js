@@ -94,6 +94,7 @@ class ShowThing extends Controller{
     }
     
     generateQrCode(){        
+        
         const qrcode = new QRCode("qrcode");
         let url = `${config.urlBase}/src/views/admin/things/thingreserved/?id=${this.identifier}`        
         if (!this.identifier) {
@@ -102,6 +103,23 @@ class ShowThing extends Controller{
         }
         
         qrcode.makeCode(url);
+    }
+    async canvas(){        
+
+        let canvas = document.querySelector('#canvas');            
+        canvas.style.display = 'block';
+        let context = canvas.getContext('2d');
+                
+        canvas.height = 320;            
+        canvas.width = 320;
+        
+        let img = document.querySelector("#qrcode img");
+
+        img.addEventListener('load', function(){
+               context.drawImage(this,33,33);
+               img.style.display = 'none';
+        });
+                
     }
 
     confirmScreenQrcodeButton(){
@@ -119,4 +137,5 @@ await showThing.getThing();
 showThing.itsMy(); 
 showThing.sendEmail(); 
 showThing.generateQrCode(); 
+showThing.canvas(); 
 showThing.confirmScreenQrcodeButton(); 

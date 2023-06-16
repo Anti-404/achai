@@ -1,7 +1,6 @@
 import ModelCategories from '../../../../models/categories/index.js';
 import ModelThings from '../../../../models/things/index.js';
 import Controller from '../../../../core/controller/index.js';
-import config from '../../../../../config.js';
 
 class ThingRegistration extends Controller{
 
@@ -72,46 +71,46 @@ class ThingRegistration extends Controller{
 
     takePicture(){
 
-    let video = document.querySelector('.take-picture video');
+        let video = document.querySelector('.take-picture video');
 
-    navigator.mediaDevices.getUserMedia({video:{width: 320}})
-    .then(stream => {
-        video.srcObject = stream;
-        video.play();
-    })
-    .catch(error => {
-        console.log(error);
-    })
+        navigator.mediaDevices.getUserMedia({video:{width: 320}})
+        .then(stream => {
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch(error => {
+            console.log(error);
+        })
 
-        
-    if(!(document.querySelector('#take-picture-button') == null)){
-        document.querySelector('#take-picture-button').addEventListener('click', async () => {                
-            document.querySelector('div.background-modal').style.display = 'none';
-            document.querySelector("#camera").style.display = "none";
-
-            let canvas = document.querySelector('canvas');            
             
-            canvas.height = video.videoHeight;            
-            canvas.width = video.videoWidth;
-            
-            let context = canvas.getContext('2d');
-            context.drawImage(video, 0, 0);                        
-            
-            let img = document.querySelector('#img-picture');
-            img.src = canvas.toDataURL('image/png');
+        if(!(document.querySelector('#take-picture-button') == null)){
+            document.querySelector('#take-picture-button').addEventListener('click', async () => {                
+                document.querySelector('div.background-modal').style.display = 'none';
+                document.querySelector("#camera").style.display = "none";
 
-            try {            
-                const response = await fetch(img.src);                           
-                let blob = await response.blob();               
+                let canvas = document.querySelector('canvas');            
                 
-                this.takePictureBlob = blob;
-                            
-            } catch(e) {
-                console.log(e);
-            }              
-            
-        });
-    }       
+                canvas.height = video.videoHeight;            
+                canvas.width = video.videoWidth;
+                
+                let context = canvas.getContext('2d');
+                context.drawImage(video, 0, 0);                        
+                
+                let img = document.querySelector('#img-picture');
+                img.src = canvas.toDataURL('image/png');                
+
+                try {            
+                    const response = await fetch(img.src);                           
+                    let blob = await response.blob();               
+                    
+                    this.takePictureBlob = blob;
+                                
+                } catch(e) {
+                    console.log(e);
+                }              
+                
+            });
+        }       
 
     }   
 

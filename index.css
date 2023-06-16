@@ -58,6 +58,8 @@ footer{
     height: 10vh;     
     position: fixed;    
     bottom: 0px;  
+
+    overflow: hidden auto;
        
 }
 

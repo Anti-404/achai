@@ -68,7 +68,10 @@ class ThingController extends Controller {
             
                 foreach($things as $item) {                
                     $diffDates = $this->checkDateDifference($item['date'], $this->numberDays); 
-                    
+                    $date = new DateTime($item['date']);
+                    $date->format('Y-m-d H:i:s');
+                    $item['date'] = $date->format('d/m/Y H:i:s'); 
+
                      if(!$diffDates){ 
                        $this->array['result'][] = [
                             'id' => $item['id'],                
@@ -253,6 +256,9 @@ class ThingController extends Controller {
             
                 foreach($things as $item) {                
                     $diffDates = $this->checkDateDifference($item['date'], $this->numberDays); 
+                    $date = new DateTime($item['date']);
+                    $date->format('Y-m-d H:i:s');
+                    $item['date'] = $date->format('d/m/Y H:i:s'); 
                     
                      if(!$diffDates){ 
                        $this->array['result'][] = [

@@ -53,10 +53,10 @@ class Categories extends Controller{
         
     }
 
-    delete(){        
+     delete(){        
         if(document.querySelector("#delete-button") === null) return;
 
-        document.querySelector("#delete-button").addEventListener("click",(e)=>{            
+        document.querySelector("#delete-button").addEventListener("click",async (e)=>{            
             e.preventDefault();
             const id = e.target.parentNode.parentNode.getAttribute('data-id');
             const categoryName = document.querySelector('.category-name').value;
@@ -69,10 +69,62 @@ class Categories extends Controller{
                 formData.append('hash',localStorage.getItem("hash"));
                 
             } 
-            
-            this.modelCategories.delete(this.currentPage, id, formData); 
-        });
+                       
 
+            let msg = await this.modelCategories.delete(this.currentPage, id, formData); 
+            
+            
+            let div = document.createElement('div');        
+            div.textContent = msg;       
+
+            div.setAttribute('class','success-message');   
+            div.style.display = 'block';             
+            document.querySelector('main .container').appendChild(div);
+
+            setInterval(() =>{            
+                if(div.parentNode !== null){            
+                    div.parentNode.removeChild(div);
+                    window.location.href = this.currentPage;
+                }
+                
+                clearInterval(this);                
+            },3000);
+            
+            
+
+            });
+            
+            
+    }
+
+    async updateAssistant(id, categoryName){
+          
+        let formData = new FormData();
+        formData.append('id',id);
+        formData.append('name',categoryName);
+        
+        if(localStorage.getItem("hash")){
+            formData.append('hash',localStorage.getItem("hash"));
+            
+        }
+        let msg = await this.modelCategories.update(this.currentPage,formData); 
+
+        let div = document.createElement('div');        
+        div.textContent = msg;       
+
+        div.setAttribute('class','success-message');   
+        div.style.display = 'block';             
+        document.querySelector('main .container').appendChild(div);
+
+        setInterval(() =>{            
+            if(div.parentNode !== null){            
+                div.parentNode.removeChild(div);
+            }
+            
+            clearInterval(this);
+        },3000);
+               
+        
         
     }
 
@@ -80,29 +132,24 @@ class Categories extends Controller{
         
         if(document.querySelector(".category-name") === null) return;
         let allCategories = document.querySelectorAll('.category-name');
+        
+        for (let i = 0; i < allCategories.length; i++) {              
 
-        for (let i = 0; i < allCategories.length; i++) {
-            allCategories[i].addEventListener("blur",(e)=>{            
-                        
-                const id = e.target.parentNode.parentNode.getAttribute('data-id');
-                const categoryName =  allCategories[i].value;
-                    
-                let formData = new FormData();
-                formData.append('id',id);
-                formData.append('name',categoryName);
-                
-                if(localStorage.getItem("hash")){
-                    formData.append('hash',localStorage.getItem("hash"));
-                    
+            allCategories[i].addEventListener("keyup",async (e)=>{                 
+                let key = e.which || e.keyCode;
+                if (key == 13) { 
+                    const id = e.target.parentNode.parentNode.getAttribute('data-id'); 
+                    this.updateAssistant(id, allCategories[i].value); 
+                    e.target.blur();                   
                 }
                 
-                this.modelCategories.update(this.currentPage,formData); 
-                
-                
-            });            
+            });
+            
+            
         }       
 
-    }
+    }   
+   
     
 }
 
