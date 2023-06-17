@@ -12,6 +12,7 @@ class Categories extends Controller{
     
     async showAll(){    
         let tableBody = document.querySelector("tbody");
+        tableBody.textContent = '';
         
         const allCategories = await this.modelCategories.getAll();
         
@@ -28,7 +29,7 @@ class Categories extends Controller{
                 input.setAttribute('class','category-name');               
                 td1.appendChild(input);                
                 button.appendChild(document.createTextNode('Delete'));                
-                button.setAttribute('id','delete-button');
+                button.setAttribute('class','delete-button');
                 td2.appendChild(button);
                 
                 
@@ -54,46 +55,46 @@ class Categories extends Controller{
     }
 
      delete(){        
-        if(document.querySelector("#delete-button") === null) return;
+        if(document.querySelector(".delete-button") === null) return;
 
-        document.querySelector("#delete-button").addEventListener("click",async (e)=>{            
-            e.preventDefault();
-            const id = e.target.parentNode.parentNode.getAttribute('data-id');
-            const categoryName = document.querySelector('.category-name').value;
+        let deleteBtns = document.querySelectorAll(".delete-button");
 
-            let formData = new FormData();
-            formData.append('id',id);
-            formData.append('name',categoryName);
-            
-            if(localStorage.getItem("hash")){
-                formData.append('hash',localStorage.getItem("hash"));
+        for (let index = 0; index < deleteBtns.length; index++) {
+            deleteBtns[index].addEventListener("click", async (e)=>{
+
+                const id = e.target.parentNode.parentNode.getAttribute('data-id');
+                const categoryName = document.querySelector('.category-name').value;
+
+                let formData = new FormData();
+                formData.append('id',id);
+                formData.append('name',categoryName);
                 
-            } 
-                       
-
-            let msg = await this.modelCategories.delete(this.currentPage, id, formData); 
-            
-            
-            let div = document.createElement('div');        
-            div.textContent = msg;       
-
-            div.setAttribute('class','success-message');   
-            div.style.display = 'block';             
-            document.querySelector('main .container').appendChild(div);
-
-            setInterval(() =>{            
-                if(div.parentNode !== null){            
-                    div.parentNode.removeChild(div);
-                    window.location.href = this.currentPage;
-                }
+                if(localStorage.getItem("hash")){
+                    formData.append('hash',localStorage.getItem("hash"));
+                    
+                }                         
                 
-                clearInterval(this);                
-            },3000);
-            
-            
+                await this.modelCategories.delete(this.currentPage, id, formData);                 
+                await this.showAll();
+                this.delete();
+                let divMessage = document.querySelector('.success-message')
+                divMessage.style.display = 'block';
+                divMessage.textContent = "Excluido com sucesso";
+                
+                setTimeout(() => {
+                    
+                    if(divMessage !== null){            
+                        divMessage.textContent = '';
+                        divMessage.style.display = 'none';                        
+                    }
+                    
+                }, 3000);
+                
 
-            });
+                });   
             
+        }
+                  
             
     }
 

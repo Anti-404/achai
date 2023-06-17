@@ -27,4 +27,5 @@ input[value]{
     color: rgb(233, 238, 241);
     margin-top: 20px;
     border-radius: 4px;
+    display: none;
 }

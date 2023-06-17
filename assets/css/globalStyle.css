@@ -8,6 +8,7 @@
     font-size: var(--font-size);      
     color: var(--font-color);
     font-family: "Quicksand";
+    font-weight: 500;
 }
 
 @font-face {
@@ -21,8 +22,19 @@ header, main, footer{
 }
 
 header{
-  padding-top: 20px;
-  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  /* padding-bottom: 15px; */
+}
+
+button{
+  cursor: pointer;
+}
+
+.breadcrumb{
+  padding-top: 15px;
+  font-size: var( --h3-breadcrumbs);
 }
 
 main{
@@ -45,6 +57,7 @@ main{
     width: 24px;
     margin-left: 200px;
 }
+
 #search-icon{
   width: 24px;
 }
@@ -71,8 +84,7 @@ div.background-modal div.container {
   height: 100%;  
 }
   
-#exit-modal-button:hover{
-  cursor: pointer;
+#exit-modal-button:hover{  
   background-color: rgb(153, 148, 148);
 }
 
@@ -84,14 +96,14 @@ div.background-modal div.container {
 }
 
 .things-list figure{
-  min-height: var(--object-box-height);
+  height: var(--object-box-height);
+
   display: flex;
   cursor: pointer;
 
-  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
   margin-top: 10px; 
-  border-radius: 10px;
-
+  border-radius: 10px;  
 }
 
 .things-list figure div{
@@ -108,11 +120,25 @@ div.background-modal div.container {
   margin: 16px;
   display: flex;
   flex-direction: column;
+  
 }
 
-.things-list figure figcaption span:nth-child(1){
-  margin-bottom: 30px;    
+.things-list figure figcaption span:nth-child(1) {
+  margin-bottom: 20px; 
+  font-weight: bold;
+  font-size: var( --h1-titles);  
 }
+
+.things-list figure figcaption span:nth-child(2) { 
+  font-size: var( --p-titles);  
+  color: rgb(55, 55, 55);
+}
+
+.things-list figure figcaption span:nth-child(3) { 
+  font-size: var( --p-titles);  
+  color: #A8A8A8;
+}
+
 
 /* modal with camera */
 video:hover{

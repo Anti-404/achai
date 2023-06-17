@@ -6,8 +6,12 @@
     --modal-background-color: rgba(9, 9, 9, 0.2);
     --modal-background-color: rgba(9, 9, 9, 0.2);
     --font-color:  rgb(11, 11, 11);
-    --font-size:  16px;
-    
+    --font-size:  16px;  
+    --h1-titles: 18px;
+    --h2-titles: 16px;
+    --h3-breadcrumbs: 12px;
+    --h4-titles: 14px;
+    --p-titles: 16px;
   }
   
   
