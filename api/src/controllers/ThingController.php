@@ -380,7 +380,7 @@ class ThingController extends Controller {
             exit;
         }
         
-        $imageAddres = filter_input(INPUT_POST, 'image_address_can');
+        $mail = filter_input(INPUT_POST, 'image_address_can');
         
         $file = $_FILES['image_address'];        
         $extensionUploadedImage = explode('/',$_FILES['image_address']['type'])[1];

@@ -32,22 +32,6 @@ class ThingRegistration extends Controller{
     }
     
 
-    putDataBackForms(){        
-
-        if(localStorage.getItem("imageAddress") || localStorage.getItem("local") || localStorage.getItem("description")){
-        document.getElementById("image-address").value = localStorage.getItem("imageAddress") && '';
-        document.getElementById("local").value = localStorage.getItem("local")  && ''; 
-        document.getElementById("description").value  = localStorage.getItem("description")  && '';
-
-        localStorage.removeItem("imageAddress");
-        localStorage.removeItem("local");
-        localStorage.removeItem("description");
-
-        }        
-
-
-    }
-
     save(){        
         document.querySelector("#save-button").addEventListener("click", (e)=>{             
             e.preventDefault();                      
@@ -174,7 +158,6 @@ class ThingRegistration extends Controller{
 const thingRegistration = new ThingRegistration();
 thingRegistration.selectCategories();
 thingRegistration.save();
-thingRegistration.putDataBackForms();
 thingRegistration.takePicture();
 thingRegistration.inputFileImageUploadPreview();
 thingRegistration.closeImageRegistrationModal();

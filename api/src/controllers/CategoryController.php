@@ -13,13 +13,14 @@ class CategoryController extends Controller {
 
     public function index() {
         
-        $categories = Categories::select()->orderBy('id','desc')->get();                
+        $categories = Categories::select()->get();                
         
         if(count($categories) > 0){
             foreach($categories as $item) {
                 $this->array['result'][] = [
                     'id' => $item['id'],
-                    'name' => $item['name']
+                    'name' => $item['name'],
+                    'image_address' => $item['image_address']
                 ];
             }
         }

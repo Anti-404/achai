@@ -1,58 +1,86 @@
 <?php
 namespace src\controllers;
 use \core\Controller;
-use Exception;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/autoload.php';
 
 class EmailController extends Controller{ 
+
     public function __construct(){
         parent::__construct();
+        
     }
-
-    public function sendEmail(){
         
-        $toMail = filter_input(INPUT_POST, 'to');        
-        $subject = filter_input(INPUT_POST, 'subject');  
-        $fromMail =    filter_input(INPUT_POST, 'from'); 
-        $body = filter_input(INPUT_POST, 'body');
-
-        $fromName = explode('@', $fromMail)[0];        
-
-        $headers = "MIME-Version: 1.0"."\r\n". 
-                   "Content-type: text/html; charset=iso-8859-1". "\r\n".
-                   'From: '.$fromName.' Reminder <'.$fromMail.'>'."\r\n".
-                   'X-Mailer: PHP/'. phpversion();       
+    public function sendemail(){
         
+            $to = 'allangeorge@virtual.ufc.br';
+            $id = filter_input(INPUT_POST, 'id');
+            $local = filter_input(INPUT_POST, 'local');
+            $description = filter_input(INPUT_POST, 'description');        
+            //$qrcodeBlob = $_FILES['qrcodeBlob'];     
+            $qrcodeBlobScreeshot = $_FILES['qrcodeBlobScreeshot'];     
+            //$qrcode = filter_input(INPUT_POST, 'qrcode');     
+    
+            
+            if($to && $id && $local && $description && isset($qrcodeBlobScreeshot) && !empty($qrcodeBlobScreeshot)){        
+                               
+    
+                try {
+                    
+                    $mail = new PHPMailer(true);
+                    $mail->SMTPSecure = 'plain';
+                    $mail->isSMTP();
+                    $mail->Host = 'sandbox.smtp.mailtrap.io';
+                    $mail->Port = 2525;
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'ab0b12cc3e68c8'; 
+                    $mail->Password = '58857076896845'; 
+                
+                    $mail->setFrom('douglas2570@gmail.com'); 
+                
+                    $mail->addAddress('equipeanti404@gmail.com'); 
+                    //$mail->addAttachment($qrcodeBlob['tmp_name'],'qrcode.jpeg');                      
+                    $mail->addAttachment($qrcodeBlobScreeshot['tmp_name'],'qrcodeBlobScreeshot.jpeg');                      
 
-        wordwrap($body, 70, "\r\n");
-        /*
-            tem que ser o email atrelado a hospedagem que voce esta usando para enviar esse arquivo. 
-            Esse "Reply-To: ".$mail que dizer que quando responder esse email a resposta sera enviada para
-             o cara que fez a pergunta e nao para do suporte
-        */    
-        try{
-            //print_r(array($toMail, $subject, $body, implode('\r\n',$headers))); exit;
-            //mail($toMail, $subject, $body, $headers);
-           $this->array['result'] = 'Email enviado com sucesso';                
-
-        }catch(Exception $e){
-            $this->array['error'] = $e->getMessage(); 
-        }
-
-
-        /*
+                    $mail->isHTML(true);
+                    $mail->CharSet = 'utf-8';
+                    $mail->FromName = 'Quests';
+                    $mail->Body = "<p>
+                                        Código:". $id." <br>
+                                        Local:".$local." <br>
+                                        Descrição:".$description."<br>
+                                </p>
+                                ";
+                    $mail->Subject = 'Objeto reservado | Achaí - SMD';
+                    $mail->AltBody = 'O objeto de código '.$id.' foi encontrado no(a) '.$local.'. Descrição: '.$description;
         
-        to - I am sending an email to the secretariat
-        subject - about it
-        body - message content
-        headers- message send headers
-        
+                    
+                    $mail->send();
+                    
+                    $this->array['result'] = 'E-mail enviado com sucesso';
+    
+                } catch (Exception $e) {
+                    $this->array['error'] = "Erro ao enviar o e-mail: {$mail->ErrorInfo}";
+                }
+                
+    
+            }else{
+                $this->array['error'] = 'Dados não enviados';
+            }
+            
+    
+    
+    
+    
+            echo json_encode($this->array);       
+            exit;
+        } 
+    
 
-        */   
-
-		echo json_encode($this->array);
-        exit; 
-    }     
 
     
 }

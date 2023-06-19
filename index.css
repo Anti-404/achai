@@ -53,12 +53,10 @@ footer{
 }
    
 .categories-panel{    
-    background-color: rgb(226, 226, 226);  
-    border-radius: 5px;  
-    height: 10vh;     
+    background-color: var(--background-color); 
+    border-radius: 5px;         
     position: fixed;    
     bottom: 0px;  
-
     overflow: hidden auto;
        
 }
@@ -66,7 +64,8 @@ footer{
 .categories-panel ul{
     display: flex;
     gap: 10px;
-    margin-top: 5px;
+    margin-top: 5px; 
+    text-align: center;   
 }
 
 .categories-panel ul li{
@@ -78,9 +77,15 @@ footer{
     
     font-weight: bold;
 }
-.categories-panel ul li a.active{
-    background-color: rgb(70, 70, 70);
+.categories-panel ul .active{
+    background-color: rgb(210, 182, 182);
     padding: 3px;
     color: rgb(211, 211, 211);
     font-weight: bold;
+}
+
+#categories-list img{
+    width: var(--md-icon-width);
+    border-radius: 50%;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
 }

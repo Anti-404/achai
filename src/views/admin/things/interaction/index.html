@@ -33,26 +33,27 @@
                 <input type="hidden" name="id" id="data-id"> 
                 <img id="img-picture"/> 
                 <input type = "file" name="image_address_update" id="image-address-update">  
-                <input type = "hidden" name="image_address" id="image-address">  <br>                              
+                <input type = "hidden" name="image_address" id="image-address">                               
 
                 <label for="list-categories">Categorias</label><br>
                 <select name="category_id" id="list-categories"></select>                
-                <br><br>
+                
                 
                 <label for="local">Local</label><br>
                 <input type="text" name="local" id="local">
-                <br><br>                    
+                               
 
                 <label for="description">Descrição</label><br>
                 <textarea name="description" cols="30" rows="10" id="description"></textarea>
-                <br><br>                
+                           
                                 
                 <input type="hidden" name="returned_status" id="returned-status" >
                 <input type="hidden" name="reserved_status" id="reserved-status" >  
+                <span class="buttons-container">
+                    <button id="return-button" >Retirar</button>
+                    <button id="update-button" disabled >Atualizar</button>
+                </span>
                 
-                <button id="return-button" >Retirar</button>
-                <button id="update-button" disabled >Atualizar</button>
-                <br><br>
                 
             </form>            
         </div>

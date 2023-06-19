@@ -38,7 +38,3 @@ div#img-register-modal{
 div.background-modal div.container {    
   align-items: flex-end;  
 }
-
-form#form{
-  height: 100vh;
-}

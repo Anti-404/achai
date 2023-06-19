@@ -3,22 +3,30 @@
 table.categories-list tbody tr{        
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px dashed #888;
+    border-bottom: 1px dashed #888;    
 
 }
 
 table.categories-list tbody td{
     border: 0px solid #6d6868;
-    padding: 5px;    
+    padding: 5px;        
 }
 
 input[value]{
     border: none;
     outline: none;
+    
 }
 
 #register-categories-button{
-    margin-top: 15px;
+    margin-top: 15px;  
+    padding: 7px;     
+}
+
+.delete-button{
+    margin-bottom: 0px;  
+    margin-top:0px;    
+    padding: 5px 3px;
 }
 
 .success-message{

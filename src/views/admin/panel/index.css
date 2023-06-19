@@ -1,9 +1,4 @@
 @import url("../../../../assets/css/globalStyle.css");
-
-:root {
-    --sm-icon-width: 20px; 
-    --md-icon-width: 80px;
-  }
   
 .background-modal{
     display: none;  
@@ -50,6 +45,7 @@ header .container{
     cursor: pointer;
 }
 
+
 .panel-buttons ul li img {
     width: var(--md-icon-width);
     border-radius: 50%;
@@ -80,4 +76,10 @@ header .container{
 section h2 {
     font-weight: bold;
     font-size:var( --h2-titles);
+}
+
+.profile-button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 8px 11px;
 }

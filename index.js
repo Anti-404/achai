@@ -1,3 +1,4 @@
+import config from './config.js';
 import ModelCategories from './src/models/categories/index.js';
 import ModelThings from './src/models/things/index.js';
 import LayoutThing from './src/views/components/layoutthing/index.js';
@@ -17,8 +18,17 @@ class Home {
             for (let i = 0; i < allCategories.result.length; ++i) {  
                 let li = document.createElement("li"); 
                 let a = document.createElement("a");                
+                let img = document.createElement("img");                
+                let span = document.createElement("span");                    
+                
+                if(allCategories.result[i].image_address !== null){
+                    img.src = `${config.urlBase}/${allCategories.result[i].image_address}`;
+                }
+
                 a.setAttribute("data-id",allCategories.result[i].id);                                
-                a.appendChild(document.createTextNode((allCategories.result[i].name)));
+                span.textContent = allCategories.result[i].name;
+                a.appendChild(img); 
+                a.appendChild(span); 
                 li.appendChild(a);
                 ul.appendChild(li);                 
             }           
@@ -36,13 +46,12 @@ class Home {
         
         for (let i = 0; i < categoriesLinks.length; i++) {
             categoriesLinks[i].addEventListener('click',async(e)=>{                
-                let categoriesId = e.target.getAttribute("data-id");
-                
+                let categoriesId = e.target.parentNode.getAttribute("data-id");                
                 for (let j = 0; j < categoriesLinks.length; j++) {
-                    categoriesLinks[j].classList.remove('active');                  
+                    categoriesLinks[j].parentNode.classList.remove('active');                  
                 }
 
-                e.target.setAttribute('class','active');
+                e.target.parentNode.parentNode.setAttribute('class','active');
 
                 let lostThingsFilters = filters.item(0).getAttribute('status');                                
                 let allThings = {};

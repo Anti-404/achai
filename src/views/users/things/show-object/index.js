@@ -37,9 +37,7 @@ class ShowThing extends Controller{
             
             document.querySelector("#returned-status").value = thing.result[0].returned_status;
             
-            document.querySelector("#date").value = thing.result[0].date;
-              
-            
+            document.querySelector("#date").value = thing.result[0].date;   
 
         }else{
             alert(thing.erro);
@@ -63,12 +61,13 @@ class ShowThing extends Controller{
             item.removeAttribute('disabled');
         });
     }
-    sendEmail(){        
+    sendEmail(){                
         document.querySelector("#send-email-button").addEventListener("click",async (e)=>{    
             e.preventDefault();                 
             this.unDisabled();           
 
            let formData = new FormData(document.querySelector('#first-form'));
+                     
            formData.set('reserved_status',1);            
            
            let formEmail = document.querySelector("#send-email-modal form");                      
@@ -77,15 +76,51 @@ class ShowThing extends Controller{
              formEmail.to.focus();
              return; 
             }           
+            let formDataEmail = new FormData(); 
 
-            document.querySelector('#send-email-modal').style.display = 'none'; 
-            let response = await this.modelEmail.sendEmail(formData);
+            formDataEmail.append('local', formData.get('local'));
+            formDataEmail.append('local', formData.get('local'));
+            formDataEmail.append('id', formData.get('id'));
+            formDataEmail.append('description', formData.get('description'));
 
-           if(!response.erro){
+            document.querySelector('#send-email-modal').style.display = 'none';             
+            // let qrcode = document.querySelector('#canvas').toDataURL("image/jpeg", 1.0);
+                        
+            // try {            
+            //     const response = await fetch(qrcode);                           
+            //     let blob = await response.blob();                              
+                
+            //     formDataEmail.append('qrcodeBlob',blob); 
+                            
+            // } catch(e) {
+            //     console.log(e);
+            // }  
+           
+            
+            try {            
+                const screenshotTarget = document.querySelector('#canvas');     
+                let canvas2 = await html2canvas(screenshotTarget);
+                let base64image = canvas2.toDataURL("image/jpeg", 1.0); 
 
+                const response = await fetch(base64image);                           
+                let blob = await response.blob();                              
+                
+                formDataEmail.append('qrcodeBlobScreeshot',blob); 
+                            
+            } catch(e) {
+                console.log(e);
+            } 
+
+
+                       
+            let response = await this.modelEmail.sendEmail(formDataEmail);
+
+           if(response.error === ''){            
               this.modelThings.reserve('', formData, 'Reservado'); 
-               document.querySelector('#qrcode-modal').style.display = 'flex';                                         
-                                       
+              document.querySelector('#qrcode-modal').style.display = 'flex';                                                                                                                                                                            
+              
+           }else{
+            alert("Algo de errado não está certo.\n "+response.error);
            }          
                       
 
@@ -96,6 +131,7 @@ class ShowThing extends Controller{
     generateQrCode(){        
         
         const qrcode = new QRCode("qrcode");
+        
         let url = `${config.urlBase}/src/views/admin/things/thingreserved/?id=${this.identifier}`        
         if (!this.identifier) {
           alert("Id não enviado");          
@@ -116,7 +152,7 @@ class ShowThing extends Controller{
         let img = document.querySelector("#qrcode img");
 
         img.addEventListener('load', function(){
-               context.drawImage(this,33,33);
+               context.drawImage(this,35,35);
                img.style.display = 'none';
         });
                 

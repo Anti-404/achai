@@ -88,5 +88,4 @@ export default class ModelCategories extends Model{
     }
 
 
-
 }
