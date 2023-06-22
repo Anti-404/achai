@@ -21,8 +21,8 @@ import config from '../../../../config.js';
             let addressRedirecting = `${config.urlBase}/src/views/admin/panel/`;
                         
             const modelAdm = new ModelAdm();            
-            let response = await modelAdm.login(formData);                
-            if(response.error == ''){
+            let response = await modelAdm.login(formData);            
+            if(response.error === ''){
                 localStorage.setItem('hash',response.result.hash);
                 window.location.href = addressRedirecting;
             }

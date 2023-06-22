@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="index.css" />   
+    <link rel="stylesheet" type="text/css" href="index.css" />  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> 
     
     <title>Painel de Controle</title>
 </head>
@@ -61,12 +62,13 @@
             </div>  
 
             <div class="search-bar">              
-                 <img id="search-button" src="../../../../assets/imgs/lupa.png" alt="Pesquisar botão">
+                 <!-- <img id="search-button" src="../../../../assets/imgs/lupa.png" alt="Pesquisar botão"> -->
+                 <span id="search-button"  class="material-symbols-rounded">search</span>
                 
             </div>
                           
-            <div class="sandwich-menu-button">
-                <img src="../../../../assets/imgs/menu.png" alt="Menu botão">
+            <div class="sandwich-menu-button">                
+                <span class="material-symbols-rounded">menu</span>
             </div>
 
         </div>
@@ -77,22 +79,21 @@
             <section class="panel-buttons">    
                     <ul>                        
                         <li>
-                            <a class="register-thing-button">
-                                <img src="../../../../assets/imgs/simbolos.png" alt="">
-                                <span>Cadastrar <br> objeto</span>
-                                
+                            <a class="register-thing-button">                                 
+                                <span class="material-symbols-rounded">box_add</span>
+                                <span>Cadastrar<br> objetos</span>                                
                             </a>
                         </li>
                         <li>
                             <a class="returned-thing-button">
-                                <img src="../../../../assets/imgs/simbolos.png" alt="">
+                                <span class="material-symbols-rounded">qr_code_scanner</span>
                                 <span>Confirmar <br> retirada</span>
                                
                             </a>
                         </li>
                         <li>
                             <a class="manage-things-button">
-                                <img src="../../../../assets/imgs/simbolos.png" alt="">
+                                <span class="material-symbols-rounded">box_edit</span>
                                 <span>Gerenciar <br> objetos</span>
                                
                             </a>
@@ -102,7 +103,7 @@
             </section>
 
             <section>   
-                <h2>Objetos reservados</h2>     
+                <h1>Objetos reservados</h1>     
                 <div class="things-list">                    
                 </div>            
             </section>            

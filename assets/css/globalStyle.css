@@ -8,7 +8,7 @@
     font-size: var(--font-size);      
     color: var(--font-color);
     font-family: "Quicksand";
-    font-weight: 500;
+    font-weight: 400;
 }
 
 @font-face {
@@ -19,6 +19,7 @@
 header, main, footer{
     display: flex;  
     justify-content: center;
+    
 }
 
 header{
@@ -38,8 +39,10 @@ button{
   padding: 3px 2px;  
   align-self: center;
   margin-top: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 25px; 
   
+  height: 45px;
+  width: 230px;
 }
 button:hover{
   background-color: #1e1b1b;
@@ -60,15 +63,21 @@ main{
     flex-direction: column;
     min-width: var(--containers-width);
     
+    
 }
 
 .logo img {
     width: 60px;
 }
+div.search-bar{
+  display: flex;
+ 
+ align-items: center;
+}
 
 #search-button {
-    width: 24px;
-    margin-left: 200px;
+   margin-bottom: 4px;
+    margin-left: 185px;
 }
 
 #search-icon{
@@ -95,7 +104,7 @@ form img{
 form input, form textarea, form button, form select{
   border-radius: 8px;
   padding: 10px 5px;    
-  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
   border: none;
 }
 
@@ -105,11 +114,6 @@ form span.buttons-container{
   display: flex;
   justify-content: space-around;
 
-}
-form button{
-  width: 140px;
-  height: 45px;
-   cursor: pointer;
 }
 
 form textarea{
@@ -160,11 +164,12 @@ div.background-modal div.container {
   margin: 8px 0px 8px 8px;
   overflow: hidden auto;  
   scrollbar-width: none;
+  overflow-y: hidden;
 }
 
 .things-list figure div img{
   width: 100%;
-  border-radius: 5px;
+  border-radius: 5px;  
 }
 
 .things-list figure figcaption{

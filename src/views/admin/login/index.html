@@ -9,29 +9,26 @@
     <title>Login</title>
 </head>
 
-<body>    
-        <header> 
-            <div class="container">          
-                <div class="logo">
-                    <a href=""><img src="../../../../assets/imgs/logo.png"  alt="Achaí"/>  </a></br><br>
-                 </div>
-            </div>
-        </header>
+<body>   
+        
+        <main>
+            <div class="conteiner">
+                <div id="img-logo">
+                    <img src="../../../../assets/imgs/logo.png" alt="">                    
+                </div>
 
-            <main>
-                <div class="conteiner">
-                    <form id="form">
-                        <label>Usuário</label></br>
-                        <input type="text" name="user"  id="user" placeholder="Admin"/></br></br>
+                <form id="form">
+                    <label for="user">Usuário:</label>
+                    <input type="text" name="user"  id="user" placeholder="Admin" required />
 
-                        <label>Senha</label></br>
-                        <input type="password" name="password" id="password" placeholder="Senha" /></br></br>
-                        <span id="recover-password-button">Quer alterar a senha? </a><br><br>
-                            
-                        <button name="confirm-button" id="confirm-button" >Entrar</button>                              
-                    </form>
-                </div> 
-            </main>
+                    <label>Senha: </label>
+                    <input type="password" name="password" id="password" placeholder="Senha" required/>
+                    <span id="recover-password-button">Quer alterar a senha?</span>
+                        
+                    <button name="confirm-button" id="confirm-button">Entrar</button>                              
+                </form>
+            </div> 
+        </main>
 
         <script type="module" src="index.js"> </script>
         <script type="module" src="../../../../assets/js/utilities.js"></script>

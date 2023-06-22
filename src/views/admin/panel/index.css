@@ -13,6 +13,7 @@ div.background-modal .container{
 header .container{
     flex-direction:row;
     justify-content: space-between;
+    
 }
 .close-modal img{
     width:var(--sm-icon-width);
@@ -41,15 +42,34 @@ header .container{
     cursor: pointer;
 }
 
-.sandwich-menu-button{
+.sandwich-menu-button span{
     cursor: pointer;
+    font-size: 35px;
+    
 }
 
+.material-symbols-rounded {
 
-.panel-buttons ul li img {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 48
+
+
+}
+
+.panel-buttons ul li .material-symbols-rounded{
     width: var(--md-icon-width);
+    height: var(--md-icon-width);
     border-radius: 50%;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    margin-bottom: 5px;
+
 }
 
 .panel-buttons ul  {
@@ -68,14 +88,9 @@ header .container{
   
 }
 
-.panel-buttons ul li span {
-    padding-top: 10px;
-
-}
-
-section h2 {
+section h1 {
     font-weight: bold;
-    font-size:var( --h2-titles);
+    font-size:var( --h1-titles);
 }
 
 .profile-button{

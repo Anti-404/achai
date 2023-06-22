@@ -27,7 +27,7 @@ class EmailController extends Controller{
     
             
             if($to && $id && $local && $description && isset($qrcodeBlobScreeshot) && !empty($qrcodeBlobScreeshot)){        
-                               
+                              
     
                 try {
                     
