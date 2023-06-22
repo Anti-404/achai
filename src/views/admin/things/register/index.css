@@ -10,16 +10,19 @@ div.background-modal{
 
 div.background-modal .container{
   flex-direction: row;
-  justify-content: center;
+  justify-content: center;    
 }
 
 div#img-register-modal{
-    background-color: rgb(255, 255, 255);
-    width: 320px;  
-    height: 200px;
-    margin-bottom: 10px;
+    position: fixed;
+    bottom: 0px;
+    background-color:var(--background-color);
+    width: 320px;   
+    min-height: 200px; 
 }
 
-div.background-modal div.container {    
-  align-items: flex-end;  
+form#form{
+  height: 60vh;  
 }
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+    <link rel="stylesheet" href="index.css">
+
+    <title>Objeto Reservado</title>
+</head>
+<body class="body">  
+    <header>
+        <div class="container">            
+            <div class="logo">              
+                <a href=""><img src="../../../../../assets/imgs/logo.png"  alt="Achaí"/>  </a>             
+            </div>
+
+            <div class="breadcrumb">Breadscrum</div><br><br>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">    
+            <form id='first-form' action="" method="post">                        
+                <input type="hidden" name="id" id="data-id">                         
+                <input type = "hidden" name="image_address" id="image-address">                        
+                <img >  
+
+                <label id="code"></label>
+                
+                <label>Categoria: </label><br>
+                <input type='text' id="category" disabled />
+                <input type = "hidden" name="category_id" id="category-id"> 
+
+                <label for="description">Descrição</label><br>
+                <textarea name="description" cols="30" rows="10" id="description" disabled></textarea>
+
+                <label for="local">Local perdido</label><br>
+                <input type="text" name="local" id="local" disabled>
+                
+                <label for="local">Horario perdido</label><br>
+                <input type="text" name="date" id="date" disabled>                                
+                
+                <input type = "hidden" name="returned_status" id="returned-status">                        
+                                     
+                                   
+            </form>                            
+        </div>
+
+    </main>         
+    
+    <script type = "module" src="index.js" ></script>
+    <script type = "module" src="../../../../../assets/js/utilities.js"></script>    
+</body>
+</html>

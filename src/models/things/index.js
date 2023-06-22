@@ -124,23 +124,33 @@ export default class ModelThings extends Model{
       }   
   }
 
- async sendEmail(formData){
-    const endpoint = `${this.path}${this.nameController}/sendemail`;                  
+  async reserve(addressRedirecting, formData, message='Reservado'){       
+    const endpoint = `${this.path}${this.nameController}/reserve`;                  
       
       try {
         let response = await fetch(endpoint, {
           method: "POST",            
-          body:  formData          
+          body:  formData
+          
         });  
         
-        response = await response.json();        
-        return response;                 
+        response = await response.json();
+        
+        if(response.error == ''){
+          alert(message+' com Sucesso'); 
+          
+          if(!(addressRedirecting == '')){                
+            window.location.href = addressRedirecting;      
+          }
+
+        }else{
+          alert(response.error);                 
+        }
         
       } catch (error) {
         console.log('Erro no codigo do sistema: '+error);
       }   
   }
-
   
   async compressDescarded(addressRedirecting, formData, message='Zipado com Sucesso'){
         const endpoint = `${this.path}${this.nameController}/compressdescarded`;       

@@ -1,43 +1,100 @@
 @import url("../../../../assets/css/globalStyle.css");
-
-:root {
-    --width-icon: 80px;
-  }
   
+.background-modal{
+    display: none;  
+    z-index: 0;
+}
+
+div.background-modal .container{          
+    flex-direction: row;
+    justify-content: center;     
+}
+
 header .container{
     flex-direction:row;
     justify-content: space-between;
+    
+}
+.close-modal img{
+    width:var(--sm-icon-width);
+}
+.sandwich-menu{
+    position: relative;
 }
 
 .sandwich-menu-body{
     position: absolute;
-    right: 20px;
+    top: 50px;     
+    left: -15px;   
+    padding: 15px;
+    z-index: 1;    
+    background-color: var(--background-color);
 }
 
-.sandwich-menu-body{
-    z-index: 1;
+.sandwich-menu-body div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 3px;
 }
 
-.panel-buttons ul li img {
-    width: var(--width-icon);
+.sandwich-menu-body img, button, a, #exit-button{
+    cursor: pointer;
+}
+
+.sandwich-menu-button span{
+    cursor: pointer;
+    font-size: 35px;
+    
+}
+
+.material-symbols-rounded {
+
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 48
+
+
+}
+
+.panel-buttons ul li .material-symbols-rounded{
+    width: var(--md-icon-width);
+    height: var(--md-icon-width);
     border-radius: 50%;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    margin-bottom: 5px;
+
 }
 
 .panel-buttons ul  {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 45px;
     text-align: center;
+    
 }
 
 .panel-buttons ul li a {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    cursor: pointer;
   
 }
 
-.panel-buttons ul li a :hover {
-    cursor: pointer;
+section h1 {
+    font-weight: bold;
+    font-size:var( --h1-titles);
+}
 
+.profile-button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 8px 11px;
 }

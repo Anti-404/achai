@@ -20,28 +20,38 @@
 
     <main>
         <div class="container">    
-            <form action="" method="post">
-
+            <form id='first-form' action="" method="post">                        
                 <input type="hidden" name="id" id="data-id">                         
-                <input type = "hidden" name="image_address" id="image-address">
-                <img > <br>               
+                <input type = "hidden" name="image_address" id="image-address">                        
+                <img >                       
+                <br><br> 
 
-                <label for="category">Categoria</label><br>
-                <input type="text" name="category" id="category">
-                <br><br>
+                <label id="code"></label>
                 
-                <label for="local">Local</label><br>
-                <input type="text" name="local" id="local">
-                <br><br>                    
-
+                <br><br> 
+                <label>Categoria: </label><br>
+                <input type='text' id="category" disabled />
+                <input type = "hidden" name="category_id" id="category-id">                                               
+                <br><br>
+                                        
                 <label for="description">Descrição</label><br>
-                <textarea name="description" cols="30" rows="10" id="description"></textarea>
-                <br><br>                
-                
-                <button id="return-button" >Retirar</button>                
+                <textarea name="description" cols="30" rows="10" id="description" disabled></textarea>
                 <br><br>
+
+                <label for="local">Local perdido</label><br>
+                <input type="text" name="local" id="local" disabled>
+                <br><br>                    
                 
-            </form>
+                <label for="local">Horario perdido</label><br>
+                <input type="text" name="date" id="date" disabled>
+                <br><br>                    
+                
+                <input type = "hidden" name="returned_status" id="returned-status">   
+                <input type = "hidden" name="reserved_status" id="reserved-status">    
+                
+                <button id="return-button" >Retirar</button>
+                                   
+            </form> 
             
         </div>
     </main>

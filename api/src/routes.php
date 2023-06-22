@@ -15,8 +15,8 @@ $router->get('/thing', 'ThingController@index');
 $router->get('/thing/get/{id}', 'ThingController@get'); 
 $router->delete('/thing/delete/{id}', 'ThingController@delete'); 
 $router->post('/thing/update', 'ThingController@update');
+$router->post('/thing/reserve', 'ThingController@reserve');
 $router->post('/thing/insert', 'ThingController@insert');
-$router->post('/thing/sendemail', 'ThingController@sendEmail');
 $router->post('/thing/compressdescarded', 'ThingController@compressDescarded');
 $router->get('/thing/getallbycategory/{categoryid}', 'ThingController@getAllByCategory');
 $router->get('/thing/getallreserved', 'ThingController@getAllReserved');
@@ -32,4 +32,5 @@ $router->post('/admin/update', 'AdminController@update');
 
 $router->get('/zip', 'ZipController@index'); 
 $router->delete('/zip/delete/{id}', 'ZipController@delete');
-//$router->post('/zip/insert', 'ZipController@insert');
+
+$router->post('/email/sendemail', 'EmailController@sendemail');

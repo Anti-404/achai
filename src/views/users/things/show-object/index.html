@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head class = "restricted-admin">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
@@ -27,24 +27,25 @@
                 <img >                       
                 <br><br> 
 
-                <label for="">N°: </label>
-                <span id="code"></span>
+                <label id="code"></label>                
                 <br><br> 
+                
                 <label for="">Categoria: </label><br>
-                <span id="category"></span>
+                <input type='text' id="category" disabled />
+                
                 <input type = "hidden" name="category_id" id="category-id">                                               
                 <br><br>
                                         
                 <label for="description">Descrição</label><br>
-                <textarea name="description" cols="30" rows="10" id="description"></textarea>
+                <textarea name="description" cols="30" rows="10" id="description" disabled></textarea>
                 <br><br>
 
                 <label for="local">Local perdido</label><br>
-                <input type="text" name="local" id="local">
+                <input type="text" name="local" id="local" disabled>
                 <br><br>                    
                 
                 <label for="local">Horario perdido</label><br>
-                <input type="text" name="date" id="date">
+                <input type="text" name="date" id="date" disabled>
                 <br><br>                    
                 
                 <input type = "hidden" name="returned_status" id="returned-status">                         
@@ -53,28 +54,31 @@
             </form>
 
             <div id="send-email-modal">               
-               <form action="">
-                 <label for="email">Insira seu email</label><br>
-                 <input type="email" name="to" id="to" required/>
-                 <br><br><br>
-        
-                 Para: <input type="text" name="from" id="from" value="allangeorge@virtual.ufc.br"> <br><br>
-                 Assunto:<br>
-                 <input type="text" name="subject" id="subject" value="Achai - Objeto Reservado"> <br><br>
-                 Mensagem:<br>
-                 <textarea name="body" cols="30" rows="10" id="message-body"></textarea>
-                 <br><br>          
+               <form id='email-form' >
+                <span>
+                    <label for="email">Insira seu email</label><br>
+                    <input type="email" name="to" id="to" required placeholder="Email"/>                 
+                </span>
+
+                <input type="hidden" name="from" id="from" value="allangeorge@virtual.ufc.br">               
+                <input type="hidden" name="subject" id="subject" value="Achai - Objeto Reservado">                  
                  
-                 <button id="send-email-button"> Enviar</button>
+                 
+                 <button id="send-email-button"> Reservar</button>
                </form> 
             </div>  
-
+            
             <div id="qrcode-modal">
-                <p>O QR code abaixo foi enviado para o seu email. <br> 
-                    Por favor mostrar quando for á secretaria buscar o seu objeto</p>
-                <div id="qrcode"></div> <br>
+                <p>O QR code abaixo foi enviado para o seu email. 
+                    Por favor, mostrar quando for á secretaria buscar o seu objeto
+                </p>
+                <div id="qrcode"></div><br> 
+                
+                <canvas id="canvas"></canvas>       
+                               
                 <button id="confirm-screen-qrcode-button">OK</button>
-            <div>                            
+            <div>  
+                                  
         </div>
 
     </main>         
@@ -82,5 +86,6 @@
     <script type = "module" src="index.js" ></script>
     <script type = "module" src="../../../../../assets/js/utilities.js"></script>
     <script src="../../../../../assets/js/libraries/qrcode.min.js"></script>
+    <script src="../../../../../assets/js/libraries/html2canvas.js"></script>
 </body>
 </html>

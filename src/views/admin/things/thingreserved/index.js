@@ -11,66 +11,70 @@ class QRCode extends Controller{
         this.modelThings = new  ModelThings();
         this.modelCategories = new  ModelCategories();
         this.identifier = this.retrieveURLId();        
-        this.formData = new FormData(document.querySelector("form"));
+        
     }   
 
     async getThing(){  
 
         const thing = await this.modelThings.getReservedById(this.identifier); 
+        const category = await this.modelCategories.get(thing.result[0].category_id); 
        
-        if(!thing.erro){   
-                
-            document.querySelector("#data-id").value =  this.identifier;
-            document.querySelector("form img").setAttribute('src', `${config.urlBase}/${thing.result[0].image_address}`);            
-            document.querySelector("#local").value = thing.result[0].local;
-            document.querySelector("#description").value = thing.result[0].description;
+        if(!thing.erro && !category.erro){            
+            document.querySelector("#data-id").value = this.identifier;
 
-            let category = await this.modelCategories.get(thing.result[0].category_id);   
-
-            if(!category.erro){
-                document.querySelector("#category").value = category.result.name;
-            }else{
-                alert(category.erro);
-            }        
+            document.querySelector("#code").textContent = `N°:${this.identifier}`;   
             
-            this.formData.append('id', this.identifier);   
-            this.formData.append('image_address', thing.result[0].image_address);   
-            this.formData.append('local', thing.result[0].local);   
-            this.formData.append('description', thing.result[0].description);   
-            this.formData.append('category_id', thing.result[0].category_id);   
-            this.formData.append('reserved_status', thing.result[0].reserved_status);            
-                       
-                    
+            document.querySelector("form img").setAttribute('src', `${config.urlBase}/${thing.result[0].image_address}`);            
+
+            document.querySelector("#image-address").value = thing.result[0].image_address;                        
+
+            document.querySelector("#category").value = category.result.name;
+
+            document.querySelector("#category-id").value = thing.result[0].category_id;                        
+            
+            document.querySelector("#local").value = thing.result[0].local;
+
+            document.querySelector("#description").value = thing.result[0].description;
+            
+            document.querySelector("#returned-status").value = thing.result[0].returned_status;
+            
+            document.querySelector("#reserved-status").value = thing.result[0].reserved_status;
+            
+            document.querySelector("#date").value = thing.result[0].date;
+            
 
         }else{
             alert(thing.erro);
-        }        
+        }         
+    }
+    unDisabled(){
+        const disabledFields =  document.querySelectorAll('[disabled]');
+        disabledFields.forEach((item)=>{
+            item.removeAttribute('disabled');
+        });
     }
 
     return(){
 
         document.querySelector("#return-button").addEventListener("click",(e)=>{  
             e.preventDefault();
-            
+            this.unDisabled();
+
+            let formData = new FormData(document.querySelector("#first-form"));
+
             if(localStorage.getItem("hash")){
-                this.formData.append('hash',localStorage.getItem("hash"));                
+                formData.append('hash',localStorage.getItem("hash"));                
             }
 
-            this.formData.append('returned_status','1');                  
-            this.modelThings.update(`${config.urlBase}/src/views/admin/panel/`,this.formData,'Retirado'); 
+            formData.append('returned_status','1');                  
+            this.modelThings.update(`${config.urlBase}/src/views/admin/panel/`,formData,'Retirado'); 
         });
 
     }
-
-    handlePageBack(){                
-        document.querySelector("#back").addEventListener('click', ()=>{
-            window.history.back();
-        });
-    }
+    
 
 }   
 
 const qrcode = new QRCode();
 await qrcode.getThing();
 qrcode.return();
-qrcode.handlePageBack();

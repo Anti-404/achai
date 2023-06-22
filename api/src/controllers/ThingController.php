@@ -53,8 +53,8 @@ class ThingController extends Controller {
         
     }
 
-    public function get($id){    
-        
+    public function get($id){  
+                        
         if($id) {            
             
             $things = Things::select()
@@ -68,7 +68,10 @@ class ThingController extends Controller {
             
                 foreach($things as $item) {                
                     $diffDates = $this->checkDateDifference($item['date'], $this->numberDays); 
-                    
+                    $date = new DateTime($item['date']);
+                    $date->format('Y-m-d H:i:s');
+                    $item['date'] = $date->format('d/m/Y H:i:s'); 
+
                      if(!$diffDates){ 
                        $this->array['result'][] = [
                             'id' => $item['id'],                
@@ -86,7 +89,7 @@ class ThingController extends Controller {
                 }
             
             } else {
-                $this->array['error'] = 'ID não enviado';
+                $this->array['error'] = 'ID não encontrado';
             } 
         
         }
@@ -253,6 +256,9 @@ class ThingController extends Controller {
             
                 foreach($things as $item) {                
                     $diffDates = $this->checkDateDifference($item['date'], $this->numberDays); 
+                    $date = new DateTime($item['date']);
+                    $date->format('Y-m-d H:i:s');
+                    $item['date'] = $date->format('d/m/Y H:i:s'); 
                     
                      if(!$diffDates){ 
                        $this->array['result'][] = [
@@ -374,7 +380,7 @@ class ThingController extends Controller {
             exit;
         }
         
-        $imageAddres = filter_input(INPUT_POST, 'image_address_can');
+        $mail = filter_input(INPUT_POST, 'image_address_can');
         
         $file = $_FILES['image_address'];        
         $extensionUploadedImage = explode('/',$_FILES['image_address']['type'])[1];
@@ -510,51 +516,130 @@ class ThingController extends Controller {
 
 
 
-    }    
+    } 
+    
+    public function reserve(){ 
+        
+        $id = filter_input(INPUT_POST, 'id');
+        $pathImageAddressDB = filter_input(INPUT_POST, 'image_address');
+        $description = filter_input(INPUT_POST, 'description')??null;
+        $local = filter_input(INPUT_POST, 'local')??null;
+        $returnedStatus = filter_input(INPUT_POST, 'returned_status');        
+        $reservedStatus = filter_input(INPUT_POST, 'reserved_status');        
+        $categoryId = filter_input(INPUT_POST, 'category_id');        
+        
+       if(isset($_FILES['image_address_update']) && !empty($_FILES['image_address_update'])){
 
-    public function sendEmail(){        
-        $toMail = filter_input(INPUT_POST, 'to');        
-        $subject = filter_input(INPUT_POST, 'subject');  
-        $fromMail =    filter_input(INPUT_POST, 'from'); 
-        $body = filter_input(INPUT_POST, 'body');
+        if($_FILES['image_address_update']['size']){
+                $file = $_FILES['image_address_update'];        
+                $extensionUploadedImage = explode('/',$_FILES['image_address_update']['type'])[1];            
+                    
+                if(isset($file['tmp_name']) && !empty($file['tmp_name'])){
+                    $nameImg = md5(time().rand(0,99));
+                    $pathImageAddressDB = 'api/assets/imgs/'.$nameImg.'.'.$extensionUploadedImage;        
+                    $localPathImageAddres = '../assets/imgs/'.$nameImg.'.'.$extensionUploadedImage;        
+                    move_uploaded_file($file['tmp_name'], $localPathImageAddres);   
 
-        $fromName = explode('@', $fromMail)[0];        
+                    $this->compressImage($localPathImageAddres, 300,-1, $localPathImageAddres, 50);
+                }   
+                    
+            }
+        }       
 
-        $headers = "MIME-Version: 1.0"."\r\n". 
-                   "Content-type: text/html; charset=iso-8859-1". "\r\n".
-                   'From: '.$fromName.' Reminder <'.$fromMail.'>'."\r\n".
-                   'X-Mailer: PHP/'. phpversion();       
+        $data = [
+            'id' => $id,
+            'image_address' => $pathImageAddressDB,
+            'description' => $description,
+            'local' => $local,
+            'returned_status' => $returnedStatus,
+            'reserved_status' => $reservedStatus,
+            'category_id' => $categoryId            
+        ];
+
+        
+        if($data['id'] && $data['image_address'] && $data['category_id']) {   
+            $things = Things::select()->where('id', $data['id'])->execute();            
+
+            if(count($things) > 0){
+
+                Things::update()->set(
+                    [
+                        'image_address' => $data['image_address'],
+                        'description' => $data['description'], 
+                        'local'=>$data['local'],
+                        'returned_status'=>$data['returned_status'],
+                        'reserved_status'=>$data['reserved_status'],
+                        'category_id'=>$data['category_id'],
+                    ]
+                    )->where('id', $data['id'])->execute();
+                
+                $this->array['result'] = [
+                        'image_address' => $data['image_address'],
+                        'description' => $data['description'], 
+                        'local'=>$data['local'],
+                        'returned_status'=>$data['returned_status'],
+                        'reserved_status'=>$data['reserved_status'],
+                        'category_id'=>$data['category_id'],
+                ];
+
+            }else{
+                $this->array['error'] = 'ID inexistente';
+            }                 
+            
+
+        } else {
+            $this->array['error'] = 'Dados não enviados';
+        } 
+     
+       echo json_encode($this->array);
+       exit;
+
+
+
+
+    } 
+    //     $toMail = filter_input(INPUT_POST, 'to');        
+    //     $subject = filter_input(INPUT_POST, 'subject');  
+    //     $fromMail =    filter_input(INPUT_POST, 'from'); 
+    //     $body = filter_input(INPUT_POST, 'body');
+
+    //     $fromName = explode('@', $fromMail)[0];        
+
+    //     $headers = "MIME-Version: 1.0"."\r\n". 
+    //                "Content-type: text/html; charset=iso-8859-1". "\r\n".
+    //                'From: '.$fromName.' Reminder <'.$fromMail.'>'."\r\n".
+    //                'X-Mailer: PHP/'. phpversion();       
         
 
-        wordwrap($body, 70, "\r\n");
-        /*
-            tem que ser o email atrelado a hospedagem que voce esta usando para enviar esse arquivo. 
-            Esse "Reply-To: ".$mail que dizer que quando responder esse email a resposta sera enviada para
-             o cara que fez a pergunta e nao para do suporte
-        */    
-        try{
-            //print_r(array($toMail, $subject, $body, implode('\r\n',$headers))); exit;
-            //mail($toMail, $subject, $body, $headers);
-            $this->array['result'] = 'Email enviado com sucesso';               
-        }catch(Exception $e){
-            $this->array['error'] = $e->getMessage(); 
-        }
+    //     wordwrap($body, 70, "\r\n");
+    //     /*
+    //         tem que ser o email atrelado a hospedagem que voce esta usando para enviar esse arquivo. 
+    //         Esse "Reply-To: ".$mail que dizer que quando responder esse email a resposta sera enviada para
+    //          o cara que fez a pergunta e nao para do suporte
+    //     */    
+    //     try{
+    //         //print_r(array($toMail, $subject, $body, implode('\r\n',$headers))); exit;
+    //         //mail($toMail, $subject, $body, $headers);
+    //         $this->array['result'] = 'Email enviado com sucesso';               
+    //     }catch(Exception $e){
+    //         $this->array['error'] = $e->getMessage(); 
+    //     }
 
 
-        /*
+    //     /*
         
-        to - I am sending an email to the secretariat
-        subject - about it
-        body - message content
-        headers- message send headers
+    //     to - I am sending an email to the secretariat
+    //     subject - about it
+    //     body - message content
+    //     headers- message send headers
         
 
-        */   
+    //     */   
 
-		echo json_encode($this->array);
-        exit; 
+	// 	echo json_encode($this->array);
+    //     exit; 
 
-    }
+    // }
 
     public function compressDescarded(){
         $hash = filter_input(INPUT_POST, 'hash');

@@ -16,7 +16,76 @@ export default class ModelCategories extends Model{
             } catch(e) {
               console.log(e);
             }     
-    }  
+    }
+    
+    async update(addressRedirecting, formData){       
+      const endpoint = `${this.path}${this.nameController}/update`;       
+    
+      const data = {};
+      formData.forEach(function(value, key){
+      data[key] = value;
+        
+      });
+      
+      formData = JSON.stringify(data);        
+            
+
+        try {
+          let response = await fetch(endpoint, {
+            method: "PUT",            
+            body:  formData,
+          });  
+          
+          response = await response.json();
+          
+          if(response.error == ''){
+            
+            return "Editado com Sucesso";
+                 
+
+          }else{
+            alert(response.error);                 
+          }
+          
+        } catch (error) {
+          console.log(error);
+        }   
+    }
+
+    async delete(addressRedirecting, id, formData){
+      
+  
+      const endpoint = `${this.path}${this.nameController}/delete/${id}`;
+      
+      const data = {};
+        formData.forEach(function(value, key){
+        data[key] = value;
+          
+        });
+        
+        formData = JSON.stringify(data); 
+      
+      try {
+        let response = await fetch(endpoint, {
+          method: "DELETE",
+          body:  formData
+  
+        });  
+        
+        response = await response.json();
+  
+        if(response.error == ''){
+          
+          return "Excluido com Sucesso";                             
+  
+        }else{
+          alert(response.error);                 
+        }
+      } catch (error) {
+        alert(error);
+      }
+  
+    }
 
 
 }

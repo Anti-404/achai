@@ -1,4 +1,21 @@
 :root {
-    --width-containers: 300px;
+    --containers-width: 320px;
+    --object-box-height: 116px;
+    --object-img-width: 100px;
+    --background-color: rgb(255, 255, 255);
+    --modal-background-color: rgba(9, 9, 9, 0.2);
+    --modal-background-color: rgba(9, 9, 9, 0.2);
+    --font-color:  rgb(11, 11, 11);
+    --font-size:  16px;  
+    --h1-titles: 18px;
+    --h2-titles: 16px;
+    --h3-breadcrumbs: 12px;
+    --h4-titles: 14px;
+    --p-titles: 16px;
+    --sm-icon-width: 20px; 
+    --md-icon-width: 80px;
+    --footer-margin-bottom: 30px;
+    --box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
   }
+  
   

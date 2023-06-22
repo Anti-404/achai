@@ -23,12 +23,7 @@ class CategoriesRegistration extends Controller{
        });
     }
 
-    handlerPageBack(){                
-        document.querySelector("#back").addEventListener('click', ()=>{
-            window.history.back();
-        });
-    }
-
+    
     getPrevPageURL(){
         let url = this.retrieveURLCurrentPage();
         let prevPage = '';
@@ -57,6 +52,5 @@ class CategoriesRegistration extends Controller{
 
 const categoriesRegistration = new CategoriesRegistration();
 categoriesRegistration.save();
-categoriesRegistration.handlerPageBack();
-categoriesRegistration.handlerPageBack();
+
 categoriesRegistration.focusNameField();

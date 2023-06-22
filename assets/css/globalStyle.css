@@ -4,34 +4,82 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;   
-    list-style: none;     
-    
-    color: black;  
-    font-size: 16px;  
+    list-style: none;
+    font-size: var(--font-size);      
+    color: var(--font-color);
+    font-family: "Quicksand";
+    font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url("../fonts/Quicksand.ttf");
 }
 
 header, main, footer{
     display: flex;  
     justify-content: center;
+    
 }
+
 header{
-  padding-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  
+}
+
+button{
+  cursor: pointer;
+  background-color: #4a4242;
+  color: #f5f5f5;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 3px 2px;  
+  align-self: center;
+  margin-top: 15px;
+  margin-bottom: 25px; 
+  
+  height: 45px;
+  width: 230px;
+}
+button:hover{
+  background-color: #1e1b1b;
+}
+
+.breadcrumb{
+  padding-top: 15px;
+  font-size: var( --h3-breadcrumbs);
+}
+
+main{
+  min-height: 20vh;
+  
 }
 
 .container {
     display: flex;    
     flex-direction: column;
-    min-width: var(--width-containers);  
+    min-width: var(--containers-width);
+    
+    
 }
 
 .logo img {
     width: 60px;
 }
+div.search-bar{
+  display: flex;
+ 
+ align-items: center;
+}
 
 #search-button {
-    width: 24px;
-    margin-left: 200px;
+   margin-bottom: 4px;
+    margin-left: 185px;
 }
+
 #search-icon{
   width: 24px;
 }
@@ -40,34 +88,131 @@ header{
     width: 26px;
 }
 
+/*  forms  */
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+form img{
+  border-radius: 8px;
+}
+
+
+form input, form textarea, form button, form select{
+  border-radius: 8px;
+  padding: 10px 5px;    
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
+  border: none;
+}
+
+form span.buttons-container{
+  margin-top: 8px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+form textarea{
+  resize: none;  
+}
+
 /* related to modal screens */
+
+/* all modal */
 
 div.background-modal{    
   position: absolute;  
   width: 100%;
   height: 100%;
-  z-index: 1;
-  
-  background-color: rgba(0, 0, 0, .3);
+  z-index: 1;  
+  background-color: var(--modal-background-color);
 }
 
 div.background-modal div.container {
   display: flex;
   justify-content: center;
-  height: 100%;
-}
-
-video:hover{
-  cursor: pointer;
+  height: 100%;  
 }
   
-#exit-modal-button:hover{
-  cursor: pointer;
+#exit-modal-button:hover{  
   background-color: rgb(153, 148, 148);
+}
+
+/* thing list*/
+
+.things-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.things-list figure{
+  height: var(--object-box-height);  
+  display: flex;
+  cursor: pointer;
+
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
+  margin-top: 10px; 
+  border-radius: 10px;  
+}
+
+.things-list figure div{
+  width: var( --object-img-width);    
+  margin: 8px 0px 8px 8px;
+  overflow: hidden auto;  
+  scrollbar-width: none;
+  overflow-y: hidden;
+}
+
+.things-list figure div img{
+  width: 100%;
+  border-radius: 5px;  
+}
+
+.things-list figure figcaption{
+  margin: 16px;
+  display: flex;
+  flex-direction: column;  
+  
+}
+
+.things-list figure figcaption span:nth-child(1) {
+  margin-bottom: 20px; 
+  font-weight: bold;
+  font-size: var( --h1-titles);  
+}
+
+.things-list figure figcaption span:nth-child(2) { 
+  font-size: var( --p-titles);  
+  color: rgb(55, 55, 55);  
+}
+
+.things-list figure figcaption span:nth-child(3) { 
+  font-size: var( --p-titles);          
+  color: #A8A8A8;       
+  width: 180px;      
+  scrollbar-width: none;
+ 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+/* modal with camera */
+video:hover{
+  cursor: pointer;
 }
 
 canvas{
   display: none;
+}
+
+.take-picture video, #img-picture{
+  width: 320px;
 }
 
 #take-picture-button:hover{
@@ -82,16 +227,55 @@ canvas{
 
 #img-picture{
   display: block;
-}
-
-#img-picture:hover{
   cursor: pointer;
 }
 
-label.picture:hover{
+label.picture{
   cursor: pointer;
 }
 
 input#image-address{
   display: none;
 }  
+
+/* modal search*/
+
+#search-modal{
+  margin-top: 40px;
+  display: flex;    
+  flex-direction: column;    
+}
+.search-bar-modal{   
+  display: flex;    
+  width: 280px;   
+  justify-content: space-between; 
+  padding: 3px;   
+  background-color: var(--background-color);
+  border-radius: 5px;
+}
+
+#search-button:hover{
+  cursor: pointer;
+}
+
+input#search-item{     
+  width: 100%;
+  height: 30px;
+  border: none;
+  padding-left: 3px;
+}
+
+img#search-icon{  
+  
+  width: 30px;
+  background-color: var(--background-color);
+}
+
+footer .container span{
+  text-align: center;
+}
+
+footer{
+  margin-bottom: var(--footer-margin-bottom);    
+}
+

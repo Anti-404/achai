@@ -1,1 +1,39 @@
 @import url("../../../../assets/css/globalStyle.css");
+
+main{
+    align-items: center;      
+    min-height: 100vh;
+}
+
+#form{
+    justify-content: center; 
+    flex-direction: column;    
+}
+#img-logo img{
+    width: 300px;
+    margin-bottom: 30px;
+}
+
+label{
+    margin-bottom: 5px;
+}
+
+input{
+    margin-bottom: 15px;    
+}
+
+#recover-password-button{
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #949494;
+    font-size: var(--p-titles);
+    
+}
+
+
+button#confirm-button{
+    width: 100px;
+    height: 40px; 
+    
+}

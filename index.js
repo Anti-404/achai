@@ -1,11 +1,13 @@
+import config from './config.js';
 import ModelCategories from './src/models/categories/index.js';
 import ModelThings from './src/models/things/index.js';
-import config from './config.js';
+import LayoutThing from './src/views/components/layoutthing/index.js';
 
 class Home {
     constructor(){
         this.modelCategories = new ModelCategories();               
-        this.modelThings = new ModelThings();                       
+        this.modelThings = new ModelThings();  
+        this.layoutThing = new LayoutThing();                      
     }
 
     async categoriesList(){         
@@ -16,24 +18,44 @@ class Home {
             for (let i = 0; i < allCategories.result.length; ++i) {  
                 let li = document.createElement("li"); 
                 let a = document.createElement("a");                
+                let img = document.createElement("img");                
+                let span = document.createElement("span");                    
+                
+                if(allCategories.result[i].image_address !== null){
+                    img.src = `${config.urlBase}/${allCategories.result[i].image_address}`;
+                }
+
                 a.setAttribute("data-id",allCategories.result[i].id);                                
-                a.appendChild(document.createTextNode((allCategories.result[i].name)));
+                span.textContent = allCategories.result[i].name;
+                a.appendChild(img); 
+                a.appendChild(span); 
                 li.appendChild(a);
                 ul.appendChild(li);                 
             }           
             
        }    
-       
-       const a =  document.querySelectorAll("ul li a");
-       const filters =  document.querySelectorAll(".filter-things span");       
+             
+            
+    }
 
-        for (let i = 0; i < a.length; i++) {
+    handleThingsByBategories(){
+        if(document.querySelectorAll('#categories-list li a') === null) return;
 
-            a[i].addEventListener("click", async (e)=>{            
-                let categoriesId = e.target.getAttribute("data-id");
-                
+        let categoriesLinks = document.querySelectorAll('#categories-list li a');
+        const filters =  document.querySelectorAll(".filter-things span"); 
+        
+        for (let i = 0; i < categoriesLinks.length; i++) {
+            categoriesLinks[i].addEventListener('click',async(e)=>{                
+                let categoriesId = e.target.parentNode.getAttribute("data-id");                
+                for (let j = 0; j < categoriesLinks.length; j++) {
+                    categoriesLinks[j].parentNode.classList.remove('active');                  
+                }
+
+                e.target.parentNode.parentNode.setAttribute('class','active');
+
                 let lostThingsFilters = filters.item(0).getAttribute('status');                                
                 let allThings = {};
+
                 if(categoriesId == "0" &&  Number.parseInt(lostThingsFilters)){
                     allThings = await this.modelThings.getAll();
 
@@ -50,91 +72,22 @@ class Home {
                 let thingsList = document.querySelector(".things-list");              
 
                 thingsList.innerHTML = "";
-                               
-                if(!allThings.error){ 
-                    
-                    for (let i = 0; i < allThings.result.length; ++i) {
-                        let a = document.createElement("a");
-                        let figure = document.createElement("figure");
-                        let img = document.createElement("img");
-                        let figCaption = document.createElement("figcaption");
-                        let p  = document.createElement("p");
-                        let span = document.createElement("span");             
-
-                        p.appendChild(document.createTextNode("Código: "+allThings.result[i].id));      
-
-                        a.setAttribute("href",`${config.urlBase}/src/views/users/things/show-object/?id=${allThings.result[i].id}`);                                              
-                        figure.setAttribute("data-id",allThings.result[i].id);                                                            
-                        a.setAttribute("data-id",allThings.result[i].id);                                                            
-                        img.setAttribute("src",`${config.urlBase}/`+allThings.result[i].image_address);                        
-                        img.setAttribute("alt",allThings.result[i].description);                                                        
-                        figCaption.appendChild(document.createTextNode(allThings.result[i].description));
-                        document.querySelectorAll('#categories-list a').forEach((item)=>{
-                                        
-                            if(allThings.result[i].category_id == item.getAttribute('data-id')){
-                                span.appendChild(document.createTextNode(item.innerHTML));                  
-                                return;
-                            }
-                        });
-                         
-                        figure.appendChild(img);
-                        figure.appendChild(figCaption);
-                        a.appendChild(span);
-                        a.appendChild(figure);                        
-                        thingsList.appendChild(a);
-                        
-                    }  
-        
-                    
-                } 
                 
-            });            
-        }
-               
-                
+                this.layoutThing.create(thingsList, allThings, true, 'users/things/show-object');
+            });
             
-    }   
+        }
 
+
+    }    
+    
     async thingsList(){
         
             const allThings = await this.modelThings.getAll();           
             
             let  thingsList = document.querySelector(".things-list");
             
-            if(!allThings.error){ 
-                
-                for (let i = 0; i < allThings.result.length; ++i) {
-                    let a  = document.createElement("a");
-                    let figure = document.createElement("figure");
-                    let img = document.createElement("img");
-                    let figCaption = document.createElement("figcaption");             
-                    let span = document.createElement("span");             
-                    
-                    a.setAttribute("href",`${config.urlBase}/src/views/users/things/show-object/?id=${allThings.result[i].id}`);
-                    figure.setAttribute("data-id",allThings.result[i].id);                        
-                    img.setAttribute("src",`${config.urlBase}/`+allThings.result[i].image_address);                        
-                    img.setAttribute("alt",allThings.result[i].description);  
-                    
-                    document.querySelectorAll('#categories-list a').forEach((item)=>{
-                                        
-                        if(allThings.result[i].category_id == item.getAttribute('data-id')){
-                            span.appendChild(document.createTextNode(item.innerHTML));                  
-                            return;
-                        }
-                    });                                                                                         
-                    figCaption.appendChild(document.createTextNode(allThings.result[i].description));
-                     
-                    figure.appendChild(img);
-                    figure.appendChild(figCaption);                     
-                    a.appendChild(span);
-                    a.appendChild(figure);
-                    
-                    thingsList.appendChild(a);
-                    
-                }
-    
-                
-            } 
+            this.layoutThing.create(thingsList, allThings, true, 'users/things/show-object');
 
     }
         
@@ -145,17 +98,18 @@ class Home {
 
             thingsFilters.forEach(async(filter, index) => {
                 let status = filter.getAttribute('status');
-                
+                let path = '';                
                 if (status == "1") {              
                 
                     switch (index) {                        
                         case 0:                                                       
-                            allThings = await this.modelThings.getAll();                            
+                            allThings = await this.modelThings.getAll(); 
+                            path =  'users/things/show-object';                                                     
                             break;
 
                         case 1:                            
-                            allThings = await this.modelThings.getThingsReserved();                            
-                            
+                            allThings = await this.modelThings.getThingsReserved();  
+                            path =  'users/things/show-reserved-object';                                                      
                             break;                       
                     
                         default:
@@ -165,43 +119,7 @@ class Home {
 
                 thingsList.innerHTML = '';
 
-                if(!allThings.error){ 
-                
-                    for (let i = 0; i < allThings.result.length; ++i) {
-                        let a  = document.createElement("a");
-                        let figure = document.createElement("figure");
-                        let img = document.createElement("img");
-                        let figCaption = document.createElement("figcaption");             
-                        let span = document.createElement("span");             
-                        
-                        if(thingsFilters[0].getAttribute('status') == '1'){                                               
-                            a.setAttribute("href",`${config.urlBase}/src/views/users/things/show-object/?id=${allThings.result[i].id}`);
-                        }
-
-                        figure.setAttribute("data-id",allThings.result[i].id);                        
-                        img.setAttribute("src",`${config.urlBase}/`+allThings.result[i].image_address);                        
-                        img.setAttribute("alt",allThings.result[i].description);  
-                        document.querySelectorAll('#categories-list a').forEach((item)=>{
-                                            
-                            if(allThings.result[i].category_id == item.getAttribute('data-id')){
-                                span.appendChild(document.createTextNode(item.innerHTML));                  
-                                return;
-                            }
-                        });                                                                                         
-                        figCaption.appendChild(document.createTextNode(allThings.result[i].description));
-                         
-                        figure.appendChild(img);
-                        figure.appendChild(figCaption);                     
-                        a.appendChild(span);
-                        a.appendChild(figure);
-                        
-                        thingsList.appendChild(a);
-                        
-                    }
-        
-                    
-                }
-
+                this.layoutThing.create(thingsList, allThings, true, path);
                 
         });
             
@@ -253,21 +171,24 @@ class Home {
     openSearchModal(){
         document.querySelector('#search-button').addEventListener('click',()=>{
             document.querySelector('.background-modal').style.display = 'block';
-            window.event.stopPropagation();
+            document.querySelector('#search-item').focus();
         });
      }
 
     closeSearchModal(){
-        document.querySelector('#search-icon').addEventListener('click',(event)=>{            
+        document.querySelector('#search-item').addEventListener('blur',(event)=>{           
+           document.querySelector('#search-item').value = '';
            document.querySelector('.background-modal').style.display = 'none';
             
         });        
     }
+    
 
 }
 
 const home = new Home();
 await home.categoriesList();
+home.handleThingsByBategories();
 await home.thingsList();
 home.filterThings();
 home.searchItem();

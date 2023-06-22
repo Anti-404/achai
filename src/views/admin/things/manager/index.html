@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head class = "restricted-admin">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css" />   
+    
+    <title>Gerenciador de Objetos</title>
+</head>
+
+<body class="body">
+    <div class="background-modal">        
+        <div class="container">
+            <div id="search-modal">                
+                <span>
+                    <div class="search-bar-modal">                        
+                        <input type="text" id='search-item' placeholder="Ex: garrafa amarela"/>
+                        <img id="search-icon" src="../../../../../assets/imgs/lupa.png" alt="pesquisa é realizada automaticamente ao digitar">  
+                    </div>
+                </span><br> 
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div id="container-top">
+                <div class="logo">
+                    <a href="achai/src/views/admin/panel/"><img src="../../../../../assets/imgs/logo.png" alt="Achaí"/></a></br>            
+                </div> 
+
+                <div class="search-bar">              
+                    <img id="search-button" src="../../../../../assets/imgs/lupa.png" alt="Pesquisar botão">
+                    
+                    <div class="search-bar-modal">
+                                               
+                    </div>               
+                </div>
+            </div>
+            
+            <div class="breadcrumb">Breadscrum</div>
+            
+            <div class="categories">                
+                <select name="categories-list" id="categories-list">
+                    <option value="0">Categorias</option>
+                </select>                
+            </div>    
+        </div>
+    </header> 
+    <br>
+    <main>
+        <div class="container">            
+            <div class="things-list">                
+            </div>
+            
+            <button id="register-things-button">+</button>
+        </div>
+    </main>
+    <script type="module" src="index.js" ></script>
+    <script type="module" src="../../../../../assets/js/utilities.js"></script>
+</body>
+</html>

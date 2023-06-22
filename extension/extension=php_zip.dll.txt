@@ -1,0 +1,5 @@
+18:41 17/06/2023
+Save the file "php_zip" in this path: C:\xampp\php\ext
+
+wWite the line bellow in php.in: 
+extension=php_zip.dll

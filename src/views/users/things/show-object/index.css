@@ -9,5 +9,51 @@
 }
 
 #qrcode-modal{
-width: 256px;
+    width: 256px;
+}
+
+form#email-form{
+    display: flex;
+    gap: 65vh;
+    flex-direction: column;
+
+}  
+
+form#email-form span{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#qrcode-modal{    
+    align-self: center;    
+    flex-direction: column;    
+    align-items: center;
+}
+
+#qrcode img{
+    display: none;
+}
+
+#new-qrcode{
+    display: block; 
+}
+
+#qrcode-modal button{
+    border-radius: 8px;
+    padding: 10px 5px;    
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
+    border: none;
+    width: 80px;    
+    cursor: pointer;
+}
+#canvas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+       
+}
+
+textarea#message-body{
+    display:none;
 }

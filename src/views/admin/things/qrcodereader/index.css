@@ -11,7 +11,7 @@ header div.container h2{
 
 video#preview{
     margin-top: 80px;
-    width: var(--width-containers);  
+    width: var(--containers-width);  
     cursor: none;
 }
 
