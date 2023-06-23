@@ -17,7 +17,8 @@ class LayoutThing{
             let figure = document.createElement("figure");
             let img = document.createElement("img");
             let figCaption = document.createElement("figcaption");             
-            //let thingId = document.createElement("span");             
+            let thingId = document.createElement("span");             
+            let header = document.createElement("span");             
             let category = document.createElement("span");             
             let local = document.createElement("span");             
             let description = document.createElement("span");             
@@ -30,15 +31,18 @@ class LayoutThing{
             figure.setAttribute("data-id",allThings.result[i].id);                        
             img.setAttribute("src",`${config.urlBase}/`+allThings.result[i].image_address);                        
             img.setAttribute("alt",allThings.result[i].description);  
-           // thingId.textContent = allThings.result[i].id;  
+            thingId.appendChild(document.createTextNode(`${allThings.result[i].id} - `));  
             local.textContent = allThings.result[i].local;  
             description.textContent = allThings.result[i].description;  
             
             let categoryName = await this.modelCategories.get(allThings.result[i].category_id) ?? null;
-            category && category.appendChild(document.createTextNode(`${allThings.result[i].id} - ${categoryName.result.name}`));  
+            category.appendChild(document.createTextNode(`${categoryName.result.name}`));  
+            
+            header.setAttribute('class','thing-header');  
+            header.appendChild(thingId);  
+            header.appendChild(category);  
                         
-            figCaption.appendChild(category);
-            //figCaption.appendChild(thingId);
+            figCaption.appendChild(header);            
             figCaption.appendChild(local);
             figCaption.appendChild(description);
                 

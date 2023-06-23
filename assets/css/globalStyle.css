@@ -16,6 +16,10 @@
   src: url("../fonts/Quicksand.ttf");
 }
 
+body{
+  margin: 15px;
+}
+
 header, main, footer{
     display: flex;  
     justify-content: center;
@@ -179,13 +183,17 @@ div.background-modal div.container {
   
 }
 
-.things-list figure figcaption span:nth-child(1) {
+.things-list figure figcaption span.thing-header {
   margin-bottom: 20px; 
+  
+}
+
+.things-list figure figcaption span.thing-header span{
   font-weight: bold;
   font-size: var( --h1-titles);  
 }
 
-.things-list figure figcaption span:nth-child(2) { 
+.things-list figure figcaption > span:nth-child(2) { 
   font-size: var( --p-titles);  
   color: rgb(55, 55, 55);  
 }
