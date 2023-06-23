@@ -57,7 +57,13 @@ class ThingRegistration extends Controller{
 
         let video = document.querySelector('.take-picture video');
 
-        navigator.mediaDevices.getUserMedia({video:{width: 320}})
+        navigator.mediaDevices.getUserMedia({video:{
+            width: 320,
+            facingMode: {
+                exact: 'environment'
+              }
+            }
+        })
         .then(stream => {
             video.srcObject = stream;
             video.play();
