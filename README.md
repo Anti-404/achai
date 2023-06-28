@@ -49,9 +49,9 @@ A pasta `/src` é onde se encontra o front-end
 
 Esse projeto está sendo desenvolvido por alunos da UFC do curso SMD, a nossa equipe é a ANT-404. Participantes:
 
-- ANGELO VINICIUS 
-- ARTHUR OLIVEIRA
-- CARLOS DOUGLAS
-- EDNARA MIRANDA
-- GUILHERME FERREIRA
-- HEBERT KLEI
+- Angelo Vinicius 
+- Arthur Lourenço
+- Carlos Douglas
+- Ednara Miranda
+- Guilherme Ferreira
+- Hebert Klei
