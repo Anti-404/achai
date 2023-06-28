@@ -2,6 +2,10 @@ import ModelCategories from '../../../models/categories/index.js';
 import Controller from '../../../core/controller/index.js';
 import config from '../../../../config.js';
 
+import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
+
+import LayoutHeaderContent from '../../components/headercontent/index.js';
+
 class Things extends Controller{
 
     constructor(){    
@@ -14,13 +18,15 @@ class Things extends Controller{
 
         if(allCategories.error !== '') return;
                     
-        for (let i = 0; i < allCategories.result.length; ++i) {  
-            let li = document.createElement("li"); 
-            let a = document.createElement("a");                
-            a.setAttribute("data-id",allCategories.result[i].id);                                
-            a.appendChild(document.createTextNode((allCategories.result[i].name)));
-            li.appendChild(a);
-            container.appendChild(li);                 
+        for (let i = 0; i < allCategories.result.length; ++i) { 
+            if(allCategories.result[i].name !== 'Todas') { 
+                let li = document.createElement("li"); 
+                let a = document.createElement("a");                
+                a.setAttribute("data-id",allCategories.result[i].id);                                
+                a.appendChild(document.createTextNode((allCategories.result[i].name)));
+                li.appendChild(a);
+                container.appendChild(li);                 
+            }
         }
 
     }
@@ -54,10 +60,26 @@ class Things extends Controller{
         
     }
 
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true);
+    } 
+
 }
 
 const things = new Things();
+things.createHeaderContent();
 
 things.categoriesList();
 things.handleClickCategory();
 things.goToRegisterthing();
+
+
+HelperSandwichMenu.createSandwichMenu();
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();
+HelperSandwichMenu.openSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu();
+// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.exit();

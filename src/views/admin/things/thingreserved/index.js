@@ -3,6 +3,9 @@ import ModelCategories from '../../../../models/categories/index.js';
 import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
 
+import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
+
+import LayoutHeaderContent from '../../../components/headercontent/index.js';
 
 class QRCode extends Controller{
 
@@ -71,10 +74,25 @@ class QRCode extends Controller{
         });
 
     }
+
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true);
+    } 
     
 
 }   
 
 const qrcode = new QRCode();
+qrcode.createHeaderContent();
 await qrcode.getThing();
 qrcode.return();
+
+HelperSandwichMenu.createSandwichMenu();
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();
+HelperSandwichMenu.openSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu();
+// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.exit();

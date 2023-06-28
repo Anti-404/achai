@@ -2,6 +2,10 @@ import ModelCategories from '../../../models/categories/index.js';
 import Controller from '../../../core/controller/index.js';
 import config from '../../../../config.js';
 
+import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
+
+import LayoutHeaderContent from '../../components/headercontent/index.js';
+
 class Categories extends Controller{
     constructor(){        
         super();
@@ -21,17 +25,20 @@ class Categories extends Controller{
             for (let i = 0; i < allCategories.result.length; ++i) {
                 let tr = document.createElement("tr");                
                 let td1 = document.createElement("td"); 
-                let td2 = document.createElement("td"); 
-                let button = document.createElement('button');
+                let td2 = document.createElement("td");                 
+                let spanDelete = document.createElement('span');
                 let input = document.createElement('input');              
 
                 input.setAttribute('value',allCategories.result[i].name);               
                 input.setAttribute('class','category-name');               
-                td1.appendChild(input);                
-                button.appendChild(document.createTextNode('Delete'));                
-                button.setAttribute('class','delete-button');
-                td2.appendChild(button);
+                td1.appendChild(input);
                 
+                if(allCategories.result[i].icon_name === null){
+                    spanDelete.textContent = 'delete';
+                    spanDelete.setAttribute('class','material-symbols-rounded delete-button');
+                    td2.appendChild(spanDelete);
+                }                
+                                
                 
                 tr.setAttribute("data-id",allCategories.result[i].id);                
                 tr.appendChild(td1);                
@@ -108,6 +115,7 @@ class Categories extends Controller{
             formData.append('hash',localStorage.getItem("hash"));
             
         }
+        
         let msg = await this.modelCategories.update(this.currentPage,formData); 
 
         let div = document.createElement('div');        
@@ -135,27 +143,72 @@ class Categories extends Controller{
         let allCategories = document.querySelectorAll('.category-name');
         
         for (let i = 0; i < allCategories.length; i++) {              
+            if(allCategories[i].parentNode.parentNode.textContent.includes('delete')){
+                allCategories[i].addEventListener("keyup",async (e)=>{                 
+                    let key = e.which || e.keyCode;
+                    if (key == 13) { 
+                        const id = e.target.parentNode.parentNode.getAttribute('data-id'); 
+                        this.updateAssistant(id, allCategories[i].value); 
+                        e.target.blur();                   
+                    }
+                    
+                });
 
-            allCategories[i].addEventListener("keyup",async (e)=>{                 
-                let key = e.which || e.keyCode;
-                if (key == 13) { 
-                    const id = e.target.parentNode.parentNode.getAttribute('data-id'); 
-                    this.updateAssistant(id, allCategories[i].value); 
-                    e.target.blur();                   
-                }
+            }else{
+                allCategories[i].addEventListener("keyup",async (e)=>{
+                    let key = e.which || e.keyCode;
+                    if (key == 13) {
+
+                        let msg = 'Você não pode alterar essa categoria.'; 
+
+                        let div = document.createElement('div');        
+                        div.textContent = msg;       
+
+                        div.setAttribute('class','fail-message');   
+                        div.style.display = 'block';             
+                        document.querySelector('main .container').appendChild(div);
+
+                        setInterval(() =>{            
+                            if(div.parentNode !== null){            
+                                div.parentNode.removeChild(div);
+                            }
+                            
+                            clearInterval(this);
+                        },3000);
+                        
+                    }     
+
                 
-            });
+
+                });
+            }
             
             
         }       
 
-    }   
+    } 
+    
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true);
+    } 
+
    
     
 }
 
 const categories = new Categories();
+categories.createHeaderContent();
 categories.goToCategoryRegister();
 await categories.showAll();
 categories.delete();
 categories.update();
+
+HelperSandwichMenu.createSandwichMenu();
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();
+HelperSandwichMenu.openSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu();
+// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.exit();

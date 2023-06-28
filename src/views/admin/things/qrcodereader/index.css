@@ -1,6 +1,11 @@
 @import url('../../../../../assets/css/globalStyle.css');
-
-header div.container{
+body{
+    height: 100%;
+}
+.background-modal{
+    display: none;
+}
+header div.container .header-top{
     display: flex;
     flex-direction: row;   
     justify-content: space-between;            

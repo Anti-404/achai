@@ -16,21 +16,16 @@
   src: url("../fonts/Quicksand.ttf");
 }
 
-body{
-  margin: 15px;
-}
-
 header, main, footer{
     display: flex;  
     justify-content: center;
     
 }
 
-header{
-  padding-top: 15px;
-  padding-bottom: 20px;
-  padding-left: 15px;
-  
+body{  
+  position: relative;  
+  padding: 15px;  
+  height: 100vh;
 }
 
 button{
@@ -65,24 +60,32 @@ main{
 .container {
     display: flex;    
     flex-direction: column;
-    min-width: var(--containers-width);
-    
+    min-width: var(--containers-width); 
     
 }
+
+
+.material-symbols-rounded {
+
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 48;
+  cursor: pointer;
+
+}
+
 
 .logo img {
     width: 60px;
 }
 div.search-bar{
   display: flex;
- 
- align-items: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
-#search-button {
-   margin-bottom: 4px;
-    margin-left: 185px;
-}
 
 #search-icon{
   width: 24px;
@@ -103,7 +106,6 @@ form{
 form img{
   border-radius: 8px;
 }
-
 
 form input, form textarea, form button, form select{
   border-radius: 8px;
@@ -129,21 +131,30 @@ form textarea{
 /* all modal */
 
 div.background-modal{    
-  position: absolute;  
-  width: 100%;
-  height: 100%;
+  position: absolute; 
   z-index: 1;  
   background-color: var(--modal-background-color);
+  width: 100%;
+  height: 100%;
+  margin-left: -15px;
+  margin-top: -15px;
 }
 
 div.background-modal div.container {
   display: flex;
   justify-content: center;
-  height: 100%;  
+  flex-direction: row;
+  height: 100vh;  
 }
   
 #exit-modal-button:hover{  
   background-color: rgb(153, 148, 148);
+  cursor: pointer;
+}
+
+#open-picture-modal:hover {
+  background-color: rgb(153, 148, 148);
+  cursor: pointer;
 }
 
 /* thing list*/
@@ -183,17 +194,13 @@ div.background-modal div.container {
   
 }
 
-.things-list figure figcaption span.thing-header {
+.things-list figure figcaption span:nth-child(1) {
   margin-bottom: 20px; 
-  
-}
-
-.things-list figure figcaption span.thing-header span{
   font-weight: bold;
   font-size: var( --h1-titles);  
 }
 
-.things-list figure figcaption > span:nth-child(2) { 
+.things-list figure figcaption span:nth-child(2) { 
   font-size: var( --p-titles);  
   color: rgb(55, 55, 55);  
 }
@@ -211,17 +218,14 @@ div.background-modal div.container {
 
 
 /* modal with camera */
-video:hover{
-  cursor: pointer;
-}
 
 canvas{
   display: none;
 }
 
-.take-picture video, #img-picture{
+/* .take-picture video, #img-picture{
   width: 320px;
-}
+} */
 
 #take-picture-button:hover{
   cursor: pointer;
@@ -236,6 +240,15 @@ canvas{
 #img-picture{
   display: block;
   cursor: pointer;
+
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
+  height: 320px;
+  border: 1px solid var(--background-color);  
+  background-image: url("../imgs/fechar.png");
+  background-repeat: no-repeat;
+  background-position-x: center; 
+  background-position-y: center; 
+  
 }
 
 label.picture{
@@ -260,23 +273,19 @@ input#image-address{
   padding: 3px;   
   background-color: var(--background-color);
   border-radius: 5px;
+  
 }
 
-#search-button:hover{
+.search-button:hover{
   cursor: pointer;
 }
 
-input#search-item{     
+input.search-item{     
   width: 100%;
   height: 30px;
   border: none;
   padding-left: 3px;
-}
-
-img#search-icon{  
   
-  width: 30px;
-  background-color: var(--background-color);
 }
 
 footer .container span{
@@ -287,3 +296,78 @@ footer{
   margin-bottom: var(--footer-margin-bottom);    
 }
 
+/* sandwich-menu */
+
+.sandwich-menu{
+  position: relative;
+}
+
+.sandwich-menu-body{   
+  padding: 10px;  
+  background-color: var(--background-color);  
+  align-self: center;
+  border-radius: 15px;
+} 
+
+.sandwich-menu-body .body-modal{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.sandwich-menu-body .modal-task{
+  margin-top: 5px;
+  margin-bottom: 7px;
+
+}
+.sandwich-menu-body .modal-task ul{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+}
+.sandwich-menu-body .modal-task ul li{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+}
+.sandwich-menu-body .body-modal img{
+  width: var(--md-icon-width);
+  
+}
+
+.sandwich-menu-body img, button, a, #exit-button{
+  cursor: pointer;
+}
+
+.sandwich-menu-button span{
+  cursor: pointer;
+  font-size: 35px;
+  
+}
+
+/* modal register*/
+
+#img-register-modal{
+  padding: 10px;
+  border: 5px;
+  border-radius: 15px;
+} 
+
+/* Header Panel */
+
+.header-top{
+  display: flex;
+  justify-content: space-between;
+}
+
+/*              */
+
+@media (min-width: 500px)
+{
+  body{
+    width: 400px;
+    margin: auto;
+  }
+}

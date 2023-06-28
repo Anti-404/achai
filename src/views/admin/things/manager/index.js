@@ -2,7 +2,12 @@ import ModelThings from '../../../../models/things/index.js';
 import ModelCategories from '../../../../models/categories/index.js';
 import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
-import LayoutThing from '../../../components/layoutthing/index.js';
+import LayoutThing from '../../../components/thing/index.js';
+
+import LayoutHeaderContent from '../../../components/headercontent/index.js';
+import LayoutModalSearch from '../../../components/modalsearch/index.js';
+import LayoutSandwichMenu from '../../../components/sandwichmenu/index.js';
+import LayoutCateogoriesList from '../../../components/categories/index.js';
 
 class ThingsManager extends Controller{
 
@@ -72,32 +77,25 @@ class ThingsManager extends Controller{
 
     }
     
-    async categoriesList(){         
-        let select = document.querySelector("#categories-list");
-        const allCategories = await this.modelCategories.getAll();
+    async categoriesList(){ 
+
+        let categories = document.querySelector('.categories');
         
-        if(!allCategories.error){                        
-            for (let i = 0; i < allCategories.result.length; ++i) {                  
-                let option = document.createElement("option");                                                              
-                option.setAttribute("value",allCategories.result[i].id);
-                option.appendChild(document.createTextNode((allCategories.result[i].name)));                                 
-                select.appendChild(option);                 
-            }           
-            
-       }           
+        const layoutCateogoriesList = new  LayoutCateogoriesList();
+        layoutCateogoriesList.create(categories);
              
 
     } 
-    
-      
+          
     searchItem(){       
-        let searchItem = document.querySelector('#search-item');
-        
-        if(searchItem == null) return;
-        
+        let searchItem = document.querySelector('.search-item');
+
+        if(searchItem == null){
+            return;
+        }
 
         searchItem.addEventListener('keyup',()=>{
-            let input = document.querySelector('#search-item').value
+            let input = document.querySelector('.search-item').value
             input=input.toLowerCase();
             let x = document.querySelectorAll('.things-list a');
             
@@ -115,26 +113,66 @@ class ThingsManager extends Controller{
     }
 
     openSearchModal(){
-        document.querySelector('#search-button').addEventListener('click',()=>{
-            document.querySelector('.background-modal').style.display = 'block';
-            document.querySelector("#search-modal").style.display = 'block'; 
-            document.querySelector('#search-item').focus();                     
+        document.querySelector('header .container div .search-button').addEventListener('click',()=>{
+            document.querySelector('body .background-modal').style.display = 'block';
+            document.querySelector("#search-modal").style.display = 'block';
+            document.querySelector(".sandwich-menu-body").style.display = 'none';            
+            document.querySelector('.search-bar-modal .search-item').focus();            
         });
      }
 
     closeSearchModal(){
-        document.querySelector('#search-item').addEventListener('blur',(event)=>{    
-            document.querySelector('#search-item').value = '';        
-            document.querySelector('.background-modal').style.display = 'none';
+        document.querySelector('#search-modal .search-bar-modal .search-item').addEventListener('blur',(event)=>{           
+           document.querySelector('#search-modal .search-bar-modal .search-item').value = '';
+           document.querySelector('body .background-modal').style.display = 'none';
             
         });        
-    } 
+    }
+
+    openSandwichMenu(){
+        
+        document.querySelector(".sandwich-menu-button").addEventListener("click",(e)=>{
+            
+            document.querySelector("#search-modal").style.display = 'none';
+            document.querySelector(".background-modal").style.display = 'block';           
+            document.querySelector(".sandwich-menu-body").setAttribute("style","display:block");            
+            
+        });
+               
+    }
+
+    closeSandwichMenu(){
+        document.querySelector(".close-modal").addEventListener("click",(e)=>{
+
+            document.querySelector(".sandwich-menu-body").setAttribute("style","display:none");
+            document.querySelector(".background-modal").style.display = 'none'; 
+            
+            
+        });        
+    }
+
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, true, true,true);
+    }
+
+    createModalSearch(){
+        const layoutModalSearch = new LayoutModalSearch();
+        layoutModalSearch.create(document.querySelector('.background-modal .container'));
+    }
+    
+    createSandwichMenu(){
+        const layoutSandwichMenu = new LayoutSandwichMenu();
+        layoutSandwichMenu.create(document.querySelector('.background-modal .container'));
+    }
 
 
 }
 
 const thingsManager = new ThingsManager();
-
+thingsManager.createSandwichMenu();
+thingsManager.createHeaderContent();
+thingsManager.createModalSearch();
 await thingsManager.categoriesList();
 await thingsManager.thingsList(); 
 thingsManager.goToRegisterthing();
@@ -142,3 +180,5 @@ thingsManager.searchItem();
 thingsManager.openSearchModal();
 thingsManager.closeSearchModal();
 thingsManager.handleChangeThingsByBategories();
+thingsManager.openSandwichMenu();
+thingsManager.closeSandwichMenu();

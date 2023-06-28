@@ -4,60 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />     
     <link rel="stylesheet" href="index.css">
     <title>Achaí</title>
 </head>
 <body>
     <div class="background-modal">        
-        <div class="container">
-            <div id="search-modal">                
-                <span>
-                    <div class="search-bar-modal">                        
-                        <input type="text" id='search-item' placeholder="Ex: garrafa amarela"/>
-                        <img id="search-icon" src="./assets/imgs/lupa.png"  alt="pesquisa é realizada automaticamente ao digitar">  
-                    </div>
-                </span><br> 
-            </div>
-        </div>
-        
+        <div class="container"></div>         
     </div>
-   <header>        
-        <div class="container">            
-            <div class="logo">              
-                <a href=""><img src="./assets/imgs/logo.png"  alt="Achaí"/>  </a></br><br>               
-            </div>            
-            <br>
-            <div class="search-bar">              
-                <img id="search-button" src="./assets/imgs/lupa.png" alt="Botão pesquisar ">            
-               
-           </div>
-        
-        </div>
+
+    <header>        
+        <div class="container"> </div>
     </header>
 
     <main>  
         <div class="container">            
-            <div class="container-header">
-                <span>Mais recentes</span>
-                    
-                <div class="filter-things">           
-                    <span status="1">Perdidos</span>           
-                    <span status="0">Reservados</span>                   
-                </div>            
+            <div class="container-header">  
+                <span>Minhas categorias</span>             
+                <div class="categories-panel">
+                    <ul id = "categories-list"></ul>
+                </div> 
+                <div class="filter-struct">
+                    <span>Mais recentes</span>                    
+                    <div class="filter-things">           
+                        <span status="1">Perdidos</span>           
+                        <span status="0">Reservados</span>                   
+                    </div>  
+                </div>
             </div>
+                 
 
             <div class="things-list"></div>
                
         </div>
 
-    </main>
-           
-    <br>
+    </main>    
     <footer>
-        <div class="container">
-            <div class="categories-panel">
-                <ul id = "categories-list"></ul>
-            </div> 
+        <div class="container">            
             <!-- <span> Copyright - Todos os direitos reservados <br> Desenvolvido por: <a href="">ANT-404</a></span> -->
         </div>
     </footer>

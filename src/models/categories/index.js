@@ -18,6 +18,7 @@ export default class ModelCategories extends Model{
             }     
     }
     
+    /*
     async update(addressRedirecting, formData){       
       const endpoint = `${this.path}${this.nameController}/update`;       
     
@@ -51,7 +52,8 @@ export default class ModelCategories extends Model{
           console.log(error);
         }   
     }
-
+    */
+    /*
     async delete(addressRedirecting, id, formData){
       
   
@@ -68,6 +70,58 @@ export default class ModelCategories extends Model{
       try {
         let response = await fetch(endpoint, {
           method: "DELETE",
+          body:  formData
+  
+        });  
+        
+        response = await response.json();
+  
+        if(response.error == ''){
+          
+          return "Excluido com Sucesso";                             
+  
+        }else{
+          alert(response.error);                 
+        }
+      } catch (error) {
+        alert(error);
+      }
+  
+    }
+    */
+
+    async update(addressRedirecting, formData){       
+      const endpoint = `${this.path}${this.nameController}/update`;      
+    
+
+        try {
+          let response = await fetch(endpoint, {
+            method: "POST",            
+            body:  formData,
+          });  
+          
+          response = await response.json();
+          
+          if(response.error == ''){
+            
+            return "Editado com Sucesso";
+                 
+
+          }else{
+            alert(response.error);                 
+          }
+          
+        } catch (error) {
+          console.log(error);
+        }   
+    }
+
+    async delete(addressRedirecting, id, formData){
+      const endpoint = `${this.path}${this.nameController}/delete/${id}`;
+      
+      try {
+        let response = await fetch(endpoint, {
+          method: "POST",
           body:  formData
   
         });  

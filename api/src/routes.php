@@ -6,10 +6,11 @@ $router = new Router();
 $router->get('/category', 'CategoryController@index'); 
 $router->get('/category/get/{id}', 'CategoryController@get'); 
 $router->get('/category/getcategorybyname/{name}', 'CategoryController@getCategoryByName'); 
-$router->delete('/category/delete/{id}', 'CategoryController@delete'); 
-$router->put('/category/update', 'CategoryController@update');
+//$router->delete('/category/delete/{id}', 'CategoryController@delete'); 
+//$router->put('/category/update', 'CategoryController@update');
+$router->post('/category/delete/{id}', 'CategoryController@delete'); 
+$router->post('/category/update', 'CategoryController@update');
 $router->post('/category/insert', 'CategoryController@insert');
-
 
 $router->get('/thing', 'ThingController@index'); 
 $router->get('/thing/get/{id}', 'ThingController@get'); 

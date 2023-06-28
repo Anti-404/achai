@@ -2,6 +2,10 @@ import ModelAdmins from '../../../models/login/index.js';
 import Controller from '../../../core/controller/index.js';
 import config from '../../../../config.js';
 
+import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
+
+import LayoutHeaderContent from '../../components/headercontent/index.js';
+
 class Profile extends Controller{    
 
     constructor(){     
@@ -51,9 +55,24 @@ class Profile extends Controller{
         }       
 
     }
+
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true);
+    } 
 }
 
 const profile = new Profile();
+profile.createHeaderContent();
 profile.getUserAdmin();
 profile.update();
 profile.enableButton("user", "password", "email");
+
+HelperSandwichMenu.createSandwichMenu();
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();
+HelperSandwichMenu.openSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu();
+// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.exit();

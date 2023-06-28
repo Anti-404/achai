@@ -1,5 +1,9 @@
 @import url('../../../../../assets/css/globalStyle.css');
 
+.background-modal{
+    display: none;
+}
+
 .things-list figure{
     cursor: auto;
 }

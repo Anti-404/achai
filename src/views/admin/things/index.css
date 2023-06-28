@@ -1,5 +1,9 @@
 @import url('../../../../assets/css/globalStyle.css');
 
+.background-modal{
+    display: none;
+}
+
 header div.container div#container-top{
     display: flex;        
 }

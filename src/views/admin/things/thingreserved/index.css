@@ -1,5 +1,10 @@
 @import url('../../../../../assets/css/globalStyle.css');
-
+body{
+    height: 100%;
+}
+.background-modal{
+    display: none;
+}
 
 form#first-form{
     display: flex;

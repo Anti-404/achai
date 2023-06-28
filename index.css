@@ -1,10 +1,5 @@
 @import url("./assets/css/globalStyle.css"); 
 
-.categories-panel{
-    margin-top: 10px;
-    width: var(--containers-width);
-}
-
 .background-modal{
     display: none;  
     z-index: 0;
@@ -15,19 +10,27 @@ div.background-modal .container{
     justify-content: center;     
 }
 
-header .container {        
+/* header .container {        
     flex-direction: row;
-    justify-content: space-between;}
+    justify-content: space-between;    
+} */
+
+main .container, .container-header{
+    gap:10px;
+}    
 
 main .container-header{
     display: flex;    
-    justify-content: space-between;  
-    margin-bottom: 10px;         
-    align-items: center;    
+    justify-content: space-between;      
+    flex-direction: column;   
 }
 
-.things-list figure figcaption span span:nth-child(1){
+.things-list figure figcaption .thing-header span:nth-child(1){
     display: none;
+}
+main .container-header .filter-struct{
+    display: flex;
+    justify-content: space-between;
 }
 
 main div.container-header div.filter-things{
@@ -54,29 +57,41 @@ footer{
    
 .categories-panel{    
     background-color: var(--background-color); 
-    border-radius: 5px;         
-    position: fixed;    
-    bottom: 0px;  
-    overflow: hidden auto;
+    border-radius: 5px;
+    width: var(--containers-width);
        
 }
 
 .categories-panel ul{
     display: flex;
-    gap: 10px;
-    margin-top: 5px; 
-    text-align: center;   
+    gap: 3.33px;    
+    text-align: center;  
+    justify-content: space-between;
 }
 
 .categories-panel ul li{
-    cursor: pointer;
-    padding: 4.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 4px;   
+}
+
+.categories-panel ul li span{
+    font-size: 12px;
+    font-weight: 600px;
 }
 
 .categories-panel ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;    
     
-    font-weight: bold;
 }
+
+.categories-panel ul li a span.material-symbols-rounded{
+    font-size: 35px;
+}
+
 .categories-panel ul .active{
     background-color: rgb(210, 182, 182);
     padding: 3px;
@@ -84,8 +99,9 @@ footer{
     font-weight: bold;
 }
 
-#categories-list img{
-    width: var(--md-icon-width);
+#categories-list a{
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
-}
+} 

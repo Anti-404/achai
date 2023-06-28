@@ -4,34 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> 
     <link rel="stylesheet" href="index.css">
 
-    <title></title>
+    <title>Editar objetos</title>
 </head>
-<body class="body">  
-    <header>
+<body class="body"> 
+    <div class="background-modal">        
         <div class="container">
-            <div class="logo">              
-                <a href="achai/src/views/admin/panel/"><img src="../../../../../assets/imgs/logo.png"  alt="Achaí"/>  </a>             
+            <div id="img-register-modal">
+                <p id="exit-modal-button">
+                    <img src="" alt="">
+                    X
+                </p>
+                <p>
+                    <img src="" alt="">
+                    <p id="open-picture-modal">Camera</p>
+                </p>
+
+                <label class="picture" for="image-address-update">
+                    <img src="" alt="">                    
+                    <p id="choose-picture-button">Escolher existente</p>            
+                </label> 
             </div>
-            <div class="breadcrumb">Breadscrum</div><br><br>
-        </div>
+
+            <div class="cam-modal">                
+                <video autoplay></video>
+                <button id="take-picture-button"><span></span></span>Tirar Foto</button>
+            </div>
+
+        </div>        
         
+    </div>
+    
+    <header>
+        <div class="container"></div>        
     </header>
 
     <main>
-        <div class="container">    
-            <div id="camera">
-                <div class="take-picture">
-                    <video autoplay></video><br>
-                    <canvas></canvas>                               
-                </div>                 
-            </div> 
-
-            <form id="form">
-                        
+        
+        <div class="container"> 
+            <form id="form">                        
                 <input type="hidden" name="id" id="data-id"> 
                 <img id="img-picture"/> 
+                <canvas></canvas>  
                 <input type = "file" name="image_address_update" id="image-address-update">  
                 <input type = "hidden" name="image_address" id="image-address">                               
 
@@ -57,28 +73,7 @@
                 
             </form>            
         </div>
-    </main>
-
-    <div class="background-modal">        
-        <div class="container">
-            <div id="img-register-modal">
-                <span id="exit-modal-button">
-                    <img src="" alt="">
-                    X
-                </span><br>
-                <span>
-                    <img src="" alt="">
-                    <span id="take-picture-button">Tirar foto</span>
-                </span><br>
-
-                <label class="picture" for="image-address-update">
-                    <img src="" alt="">                    
-                    <span id="choose-picture-button">Escolher existente</span>            
-                </label> 
-            </div>
-        </div>
-        
-    </div>
+    </main>    
         
     <script type = "module" src="index.js" ></script>
     <script type = "module" src="../../../../../assets/js/utilities.js"></script>

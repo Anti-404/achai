@@ -1,5 +1,6 @@
 :root {
-    --containers-width: 320px;
+    /* --containers-width: 330px; */
+    --containers-width: 100%; 
     --object-box-height: 116px;
     --object-img-width: 100px;
     --background-color: rgb(255, 255, 255);

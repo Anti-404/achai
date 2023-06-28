@@ -1,5 +1,9 @@
 @import url('../../../../assets/css/globalStyle.css');
 
+.background-modal{
+    display: none;
+}
+
 table.categories-list tbody tr{        
     display: flex;
     justify-content: space-between;
@@ -23,14 +27,17 @@ input[value]{
     padding: 7px;     
 }
 
-.delete-button{
-    margin-bottom: 0px;  
-    margin-top:0px;    
-    padding: 5px 3px;
-}
-
 .success-message{
     background-color: rgb(75, 161, 75);
+    padding: 10px;
+    color: rgb(233, 238, 241);
+    margin-top: 20px;
+    border-radius: 4px;
+    display: none;
+}
+
+.fail-message{
+    background-color: rgb(181, 3, 3);
     padding: 10px;
     color: rgb(233, 238, 241);
     margin-top: 20px;

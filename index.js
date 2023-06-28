@@ -1,7 +1,8 @@
-import config from './config.js';
 import ModelCategories from './src/models/categories/index.js';
 import ModelThings from './src/models/things/index.js';
-import LayoutThing from './src/views/components/layoutthing/index.js';
+import LayoutThing from './src/views/components/thing/index.js';
+import LayoutHeaderContent from './src/views/components/headercontent/index.js';
+import LayoutModalSearch from './src/views/components/modalsearch/index.js';
 
 class Home {
     constructor(){
@@ -18,19 +19,21 @@ class Home {
             for (let i = 0; i < allCategories.result.length; ++i) {  
                 let li = document.createElement("li"); 
                 let a = document.createElement("a");                
-                let img = document.createElement("img");                
+                let spanIcon = document.createElement("span");                
                 let span = document.createElement("span");                    
                 
-                if(allCategories.result[i].image_address !== null){
-                    img.src = `${config.urlBase}/${allCategories.result[i].image_address}`;
+                if(allCategories.result[i].icon_name !== null){
+                    spanIcon.setAttribute('class','material-symbols-rounded');
+                    spanIcon.textContent = allCategories.result[i].icon_name;
+                    a.setAttribute("data-id",allCategories.result[i].id);                                
+                    span.textContent = allCategories.result[i].name;
+                    a.appendChild(spanIcon); 
+                    li.appendChild(a);
+                    li.appendChild(span); 
+                    ul.appendChild(li);
                 }
 
-                a.setAttribute("data-id",allCategories.result[i].id);                                
-                span.textContent = allCategories.result[i].name;
-                a.appendChild(img); 
-                a.appendChild(span); 
-                li.appendChild(a);
-                ul.appendChild(li);                 
+                                 
             }           
             
        }    
@@ -144,14 +147,14 @@ class Home {
   
 
     searchItem(){       
-        let searchItem = document.querySelector('#search-item');
+        let searchItem = document.querySelector('.search-item');
 
         if(searchItem == null){
             return;
         }
 
         searchItem.addEventListener('keyup',()=>{
-            let input = document.querySelector('#search-item').value
+            let input = document.querySelector('.search-item').value
             input=input.toLowerCase();
             let x = document.querySelectorAll('.things-list a');
             
@@ -169,18 +172,28 @@ class Home {
     }
 
     openSearchModal(){
-        document.querySelector('#search-button').addEventListener('click',()=>{
-            document.querySelector('.background-modal').style.display = 'block';
-            document.querySelector('#search-item').focus();
+        document.querySelector('header .container div .search-button').addEventListener('click',()=>{
+            document.querySelector('body .background-modal').style.display = 'block';
+            document.querySelector('.search-bar-modal .search-item').focus();
         });
      }
 
     closeSearchModal(){
-        document.querySelector('#search-item').addEventListener('blur',(event)=>{           
-           document.querySelector('#search-item').value = '';
-           document.querySelector('.background-modal').style.display = 'none';
+        document.querySelector('#search-modal .search-bar-modal .search-item').addEventListener('blur',(event)=>{           
+           document.querySelector('#search-modal .search-bar-modal .search-item').value = '';
+           document.querySelector('body .background-modal').style.display = 'none';
             
         });        
+    }
+
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'));
+    }
+
+    createModalSearch(){
+        const layoutModalSearch = new LayoutModalSearch();
+        layoutModalSearch.create(document.querySelector('.background-modal .container'));
     }
     
 
@@ -188,9 +201,11 @@ class Home {
 
 const home = new Home();
 await home.categoriesList();
+home.createHeaderContent();
 home.handleThingsByBategories();
 await home.thingsList();
 home.filterThings();
-home.searchItem();
+home.createModalSearch();
 home.openSearchModal();
 home.closeSearchModal();
+home.searchItem();

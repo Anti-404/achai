@@ -2,8 +2,11 @@ import ModelThing from '../../../../models/things/index.js';
 import ModelZip from '../../../../models/zips/index.js';
 import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
-import LayoutThing from '../../../components/layoutthing/index.js';
+import LayoutThing from '../../../components/thing/index.js';
 
+import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
+
+import LayoutHeaderContent from '../../../components/headercontent/index.js';
 
 class Discard extends Controller{
     constructor(){              
@@ -98,10 +101,25 @@ class Discard extends Controller{
     });
 }
 
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true);
+    } 
+
 }   
 
 const discard = new Discard();
+discard.createHeaderContent();
 discard.allThingsDiscard();
 discard.handlerFilesZip();
 await discard.handlerShowAllFilesZip();
 discard.delete();
+
+HelperSandwichMenu.createSandwichMenu();
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();
+HelperSandwichMenu.openSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu();
+// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.exit();

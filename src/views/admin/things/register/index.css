@@ -1,28 +1,46 @@
 @import url("../../../../../assets/css/globalStyle.css");
-
 body{
-  position: relative;
+  height: 100%;
 }
-div.background-modal{
-  left: 0px;  
-  top: 0px;
+
+.background-modal{
+  display: none;
+}
+.cam-modal{
+  display: flex;
+  flex-direction: column; 
+}
+
+.cam-modal video{
+  width: 320px;
+  height: 320px;
 }
 
 div.background-modal .container{
   flex-direction: row;
-  justify-content: center;    
+  justify-content: center;
+  align-items: center;    
+}
+div.background-modal .sandwich-menu-body{
+  display: none;
+
 }
 
 div#img-register-modal{
-    position: fixed;
-    bottom: 0px;
+    /* position: fixed;
+    bottom: 0px; */
     background-color:var(--background-color);
     width: 320px;   
-    min-height: 200px; 
+    min-height: 100px; 
 }
 
+.profile-button{
+  margin-bottom: 5px;
+}
+
+/* 
 form#form{
   height: 60vh;  
-}
+} */
 
 

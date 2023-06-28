@@ -1,6 +1,11 @@
 import ModelCategories from '../../../../models/categories/index.js';
 import ModelThings from '../../../../models/things/index.js';
 import Controller from '../../../../core/controller/index.js';
+import config from '../../../../../config.js';
+
+import LayoutHeaderContent from '../../../components/headercontent/index.js';
+
+import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
 class ThingRegistration extends Controller{
 
@@ -20,11 +25,13 @@ class ThingRegistration extends Controller{
         const allCategories = await this.modelCategories.getAll();
 
         if(!allCategories.error){                        
-            for (let i = 0; i < allCategories.result.length; ++i) {  
-                let option = document.createElement("option"); 
-                option.setAttribute("value",allCategories.result[i].id);              
-                option.appendChild(document.createTextNode(allCategories.result[i].name));
-                this.select.appendChild(option);                 
+            for (let i = 0; i < allCategories.result.length; ++i) { 
+                if(allCategories.result[i].name !== 'Todas') {
+                    let option = document.createElement("option"); 
+                    option.setAttribute("value",allCategories.result[i].id);              
+                    option.appendChild(document.createTextNode(allCategories.result[i].name));
+                    this.select.appendChild(option);                 
+                }
             }           
             
         }    
@@ -51,14 +58,19 @@ class ThingRegistration extends Controller{
 
         });
     }
-
+   
 
     takePicture(){
 
-        let video = document.querySelector('.take-picture video');
+        let video = document.querySelector('.cam-modal video');
+        // const exactValue = {
+        //     frontalCamera: 'user',
+        //     backBamera: 'environment',
+        //     leftBamera: 'left',
+        //     rightBamera: 'right'
 
-        navigator.mediaDevices.getUserMedia({video:{
-            width: 320,
+        // }
+        navigator.mediaDevices.getUserMedia({video:{            
             facingMode: {
                 exact: 'environment'
               }
@@ -76,7 +88,7 @@ class ThingRegistration extends Controller{
         if(!(document.querySelector('#take-picture-button') == null)){
             document.querySelector('#take-picture-button').addEventListener('click', async () => {                
                 document.querySelector('div.background-modal').style.display = 'none';
-                document.querySelector("#camera").style.display = "none";
+                // document.querySelector("#camera").style.display = "none";
 
                 let canvas = document.querySelector('canvas');            
                 
@@ -102,7 +114,7 @@ class ThingRegistration extends Controller{
             });
         }       
 
-    }   
+    }
 
     inputFileImageUploadPreview(globalThis = this){
             
@@ -129,7 +141,7 @@ class ThingRegistration extends Controller{
         }          
         
         document.querySelector('div.background-modal').style.display = 'none';
-        document.querySelector('#camera').style.display = 'none';
+        // document.querySelector('#camera').style.display = 'none';
         
         });
 
@@ -144,27 +156,49 @@ class ThingRegistration extends Controller{
     }
 
     openImageRegistrationModal(){
-
-    document.querySelector('#camera, #img-picture').addEventListener('click',()=>{
-        document.querySelector('div.background-modal').style.display = 'block';
         
-    });        
+        document.querySelector('#open-picture-modal').addEventListener('click',()=>{  
+            document.querySelector('div.background-modal').style.display = 'block';          
+            document.querySelector('.cam-modal').style.display = 'flex';
+            document.querySelector('#img-register-modal').style.display = 'none';
+            
+        });   
 
-    document.querySelector('#img-picture').addEventListener('click',()=>{
-        document.querySelector('div.background-modal').style.display = 'block';
-        document.querySelector('#img-picture').removeAttribute('src');
-        document.querySelector('#camera').style.display = 'block';
+        document.querySelector('#img-picture').addEventListener('click',()=>{
+            document.querySelector('div.background-modal').style.display = 'block';
+            document.querySelector('#img-register-modal').style.display = 'block';
+            document.querySelector('.cam-modal').style.display = 'none';
+            //document.querySelector('#img-picture').removeAttribute('src');
+            //document.querySelector('#camera').style.display = 'block';
+            
+        });        
+
         
-    });        
 
 
     }
+
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true);
+    } 
 }
 
 const thingRegistration = new ThingRegistration();
+thingRegistration.createHeaderContent();
 thingRegistration.selectCategories();
 thingRegistration.save();
 thingRegistration.takePicture();
 thingRegistration.inputFileImageUploadPreview();
 thingRegistration.closeImageRegistrationModal();
 thingRegistration.openImageRegistrationModal();
+
+HelperSandwichMenu.createSandwichMenu();
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();
+HelperSandwichMenu.openSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu();
+// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.exit();
+

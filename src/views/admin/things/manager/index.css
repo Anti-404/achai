@@ -1,14 +1,14 @@
 @import url('../../../../../assets/css/globalStyle.css');
 
-header div.container div#container-top{
+/* header div.container div#container-top{
     display: flex;        
-}
+} */
 
 .background-modal{
     display: none;  
     z-index: 0;
 }
-
+/* 
 div.background-modal .container{          
     flex-direction: row;
     justify-content: center;     
@@ -26,4 +26,6 @@ div.background-modal .container{
     text-align: center;
     line-height: 14.5px;
     align-self: self-end;
-}
+} */
+
+

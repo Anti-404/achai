@@ -1,4 +1,9 @@
 import Controller from '../../../../core/controller/index.js';
+import LayoutHeaderContent from '../../../components/headercontent/index.js';
+
+import HelperSearch from '../../../helpers/search/index.js';
+import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
+import config from '../../../../../config.js';
 
 class QRCodeReader extends Controller{
 
@@ -39,8 +44,23 @@ class QRCodeReader extends Controller{
         });
     }
 
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true);
+    } 
+
 }   
 
 const qrCodeReader = new QRCodeReader();
 qrCodeReader.scanner();
-qrCodeReader.handlePageBack();
+qrCodeReader.createHeaderContent();
+// qrCodeReader.handlePageBack();
+
+HelperSandwichMenu.createSandwichMenu();
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();
+HelperSandwichMenu.openSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu();
+// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.exit();
