@@ -153,7 +153,7 @@ class ThingsManager extends Controller{
 
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
-        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, true, true,true);
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, true, true,true,false);
     }
 
     createModalSearch(){

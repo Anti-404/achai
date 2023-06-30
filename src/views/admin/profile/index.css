@@ -3,3 +3,54 @@
 .background-modal{
     display: none;
 }
+#profile-form{
+    gap: 15px;
+}
+.profile-content-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-content-top img{
+    width: 100px;
+    height: 100px;
+}
+.profile-content-top div{
+    display: flex;
+    align-items: center;
+}
+.profile-content-top div span:nth-child(2){
+    background-image: url("../../../../assets/imgs/icons/edit_FILL0_wght300_GRAD0_opsz24.svg"); 
+    background-repeat: no-repeat; 
+    background-position: center center;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+}
+
+.profile-content-body{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.profile-content-body label{
+cursor: pointer;
+}
+.profile-content-body legend{
+    border-bottom: 1px solid #A8A8A8;
+}
+
+.profile-content-body span{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+
+#exit-button{  
+   display: flex; 
+   align-items: center;
+}
+
+

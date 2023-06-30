@@ -4,8 +4,7 @@
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link rel="stylesheet" type="text/css" href="index.css" />   
     
     <title>Perfil</title>
@@ -22,12 +21,33 @@
     <main>        
         <div class="container">
             <form method="post" id="profile-form">
-                <caption>Administrador</caption><br><br>              
-                <input type="text" name="user" id="user" placeholder="Alterar Usuário" required> <br><br>                              
-                <input type="password" name="password" id="password" placeholder="Alterar Senha" required><br><br>
-                <input type="text" name="email" id="email" placeholder="Alterar Email" required><br><br>                              
+                <div class="profile-content-top">
+                    <img src="../../../../assets/imgs/icons/account_circle_FILL1_wght300_GRAD0_opsz40.svg" alt="Administrador">
+                    <div>
+                        <span>Administrador</span>
+                        <span></span>
+                    </div>
+                </div>
 
-                <button id="update-button" disabled >Alterar</button>
+                <div class="profile-content-body">
+                    <legend>E-mail</legend>
+                    <span class="span-email">
+                        <label for="email" class="label-email"></label>
+                        <input type="text" name="email" id="email" placeholder="Alterar Email" required disabled>   
+                    </span> 
+                    <span class="span-password">
+                        <label for="password">Senha</label>                                         
+                        <input type="password" name="password" id="password" placeholder="Alterar Senha" required disabled>
+                    </span>                       
+                </div>  
+
+                <div class="profile-content-footer">
+                    <div id="exit-button">
+                        <img src="../../../../assets/imgs/icons/logout_FILL0_wght300_GRAD0_opsz24.svg" alt="sair">
+                        <span>Sair</span>
+                    </div>
+                </div>
+
             </form>  
         </div>         
         

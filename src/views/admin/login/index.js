@@ -1,4 +1,4 @@
-import ModelAdm from '../../../models/login/index.js';
+import ModelAdm from '../../../models/admin/index.js';
 import Controller from '../../../core/controller/index.js';
 import config from '../../../../config.js';
 
@@ -31,7 +31,7 @@ import config from '../../../../config.js';
 
         
     }
-
+    
     
     checkUserLogged(){
         

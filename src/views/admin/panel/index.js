@@ -80,7 +80,7 @@ class Panel extends Controller{
     
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
-        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, true, true, false);
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, true, true, false, false);
     }   
     
     handleChangeThingsByBategories(){
@@ -133,7 +133,6 @@ HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
 HelperSandwichMenu.closeSandwichMenu();
 // HelperSandwichMenu.goToReturnedThings();
-HelperSandwichMenu.exit();
 
 HelperSearch.createModalSearch();
 HelperSearch.searchItem();

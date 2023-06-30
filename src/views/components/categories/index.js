@@ -1,5 +1,4 @@
 
-import config from '../../../../config.js';
 import ModelCategory from '../../../models/categories/index.js';
 
 class LayoutCateogoriesList{

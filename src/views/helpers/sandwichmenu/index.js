@@ -20,7 +20,12 @@ class HelperSandwichMenu{
             searchModal !== null && (document.querySelector("#search-modal").style.display = 'none');
             imgRegisterModal !== null && (document.querySelector("#img-register-modal").style.display = 'none');
             document.querySelector(".background-modal").style.display = 'block';           
-            document.querySelector(".sandwich-menu-body").setAttribute("style","display:block");            
+            document.querySelector(".sandwich-menu-body").setAttribute("style","display:flex");
+            
+            let camModal = document.querySelector(".cam-modal");
+            (camModal !== null) && (camModal.setAttribute("style","display:none"));
+            
+            
             
         });
                
@@ -39,6 +44,8 @@ class HelperSandwichMenu{
     }
 
     static goToDiscardeThings(){
+        // if(document.querySelector(".discard-things-button") === null) return;
+
         document.querySelector(".discard-things-button").addEventListener("click",()=>{  
 
            window.location.href = `${config.urlBase}/src/views/admin/things/discard/`;
@@ -48,6 +55,8 @@ class HelperSandwichMenu{
     }
 
     static goToProfile(){
+        // if(document.querySelector(".profile-button") === null) return;
+
         document.querySelector(".profile-button").addEventListener("click",()=>{  
 
            window.location.href = `${config.urlBase}/src/views/admin/profile/`;
@@ -67,20 +76,12 @@ class HelperSandwichMenu{
     }
 
     static goToCategoryManager(){
+        // if(document.querySelector(".category-manager-button") === null) return;
+        
         document.querySelector(".category-manager-button").addEventListener("click",()=>{  
 
            window.location.href = `${config.urlBase}/src/views/admin/categories/`;
 
-        });
-        
-    }
-    
-    static exit(){
-        document.querySelector("#exit-button").addEventListener("click",()=>{
-            document.querySelector("body .background-modal").style.display = "none"; 
-            localStorage.removeItem("hash");
-            alert("Deslogado com sucesso");
-            window.location.href = `${config.urlBase}/src/views/admin/login/`;
         });
         
     }

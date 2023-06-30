@@ -77,7 +77,7 @@ class QRCode extends Controller{
 
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
-        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true);
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true, false);
     } 
     
 
@@ -95,4 +95,3 @@ HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
 HelperSandwichMenu.closeSandwichMenu();
 // HelperSandwichMenu.goToReturnedThings();
-HelperSandwichMenu.exit();

@@ -50,20 +50,12 @@ export default class Model{
     }
     
     async update(addressRedirecting, formData){       
-      const endpoint = `${this.path}${this.nameController}/update`;       
-    
-      const data = {};
-      formData.forEach(function(value, key){
-      data[key] = value;
-        
-      });
-      
-      formData = JSON.stringify(data);        
+      const endpoint = `${this.path}${this.nameController}/update`;      
             
 
         try {
           let response = await fetch(endpoint, {
-            method: "PUT",            
+            method: "POST",            
             body:  formData,
           });  
           

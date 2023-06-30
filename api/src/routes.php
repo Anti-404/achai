@@ -28,6 +28,7 @@ $router->get('/thing/getallbycategoryandreserved/{categoryid}', 'ThingController
 $router->get('/thing/getallbydescription', 'ThingController@getAllByDescription');
 
 $router->get('/admin/get/{id}', 'AdminController@get');
+$router->post('/admin/getbyhash', 'AdminController@getByHash');
 $router->post('/admin/login', 'AdminController@login'); 
 $router->post('/admin/update', 'AdminController@update'); 
 

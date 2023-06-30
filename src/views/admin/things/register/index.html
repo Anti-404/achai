@@ -3,8 +3,7 @@
 <head class = "restricted-admin">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />     
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >    
     <link rel="stylesheet" href="index.css">
     <title>Cadastro de Objetos</title>
 </head>
@@ -12,19 +11,20 @@
     <div class="background-modal">        
         <div class="container">
             <div id="img-register-modal">
-                <p id="exit-modal-button">
-                    <img src="" alt="">
-                    X
-                </p>
-                <p>
-                    <img src="" alt="">
-                    <p id="open-picture-modal">Camera</p>
-                </p>
+                <div>
+                    <p id="exit-modal-button"></p>
+                </div>
 
-                <label class="picture" for="image-address">
-                    <img src="" alt="">                    
+                <div id="open-picture-modal">                    
+                    <span></span>
+                    <p>Camera</p>
+                </div>
+
+                <label for="image-address">
+                    <span></span>                   
                     <p id="choose-picture-button">Escolher existente</p>            
-                </label> 
+                </label>          
+                
             </div>
 
             <div class="cam-modal">                
@@ -46,7 +46,7 @@
             
             <form id="first-form">                
                 <input type="hidden" name="id" id="id">
-                <img id="img-picture" />    
+                <img id="img-picture" alt="Inserir imagem"/>    
                 <canvas></canvas>                       
                 <input type="file" name="image_address" id="image-address">                
 

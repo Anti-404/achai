@@ -25,7 +25,7 @@ class ThingsInteraction extends Controller{
 
         if(!thing.erro){            
             document.querySelector("#data-id").value = this.identifier;            
-            
+            document.querySelector("#code").textContent = `N°:${this.identifier}`; 
             document.querySelector("form img").setAttribute('src', `achai/${thing.result[0].image_address}`);            
 
             document.querySelector("#image-address").value = thing.result[0].image_address;
@@ -138,11 +138,13 @@ class ThingsInteraction extends Controller{
 
         let video = document.querySelector('.cam-modal video');
         
-        navigator.mediaDevices.getUserMedia({video:{            
+        navigator.mediaDevices.getUserMedia({video/*:{            
+            
             facingMode: {
                 exact: 'environment'
               }
-            }
+            }*/
+            
         })
         .then(stream => {
             video.srcObject = stream;
@@ -157,6 +159,7 @@ class ThingsInteraction extends Controller{
             document.querySelector('#take-picture-button').addEventListener('click', async () => {                
                 document.querySelector('div.background-modal').style.display = 'none';
                 // document.querySelector("#camera").style.display = "none";
+                document.querySelector('.background-modal .container').style.backgroundColor = 'rgba(0,0,0,0.3)';
 
                 let canvas = document.querySelector('canvas');            
                 
@@ -209,7 +212,8 @@ class ThingsInteraction extends Controller{
             }          
             
             document.querySelector('div.background-modal').style.display = 'none';
-            document.querySelector('#camera').style.display = 'none';
+            let camera = document.querySelector('#camera');
+            (camera !== null) && (document.querySelector('#camera').style.display = 'none');
             
             });
 
@@ -228,6 +232,7 @@ class ThingsInteraction extends Controller{
             document.querySelector('div.background-modal').style.display = 'block';          
             document.querySelector('.cam-modal').style.display = 'flex';
             document.querySelector('#img-register-modal').style.display = 'none';
+            document.querySelector('.background-modal .container').style.backgroundColor = '#1c1b1f';
             
         });   
 
@@ -247,7 +252,7 @@ class ThingsInteraction extends Controller{
 
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
-        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true);
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, false);
     } 
 
 }
@@ -271,4 +276,3 @@ HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
 HelperSandwichMenu.closeSandwichMenu();
 // HelperSandwichMenu.goToReturnedThings();
-HelperSandwichMenu.exit();

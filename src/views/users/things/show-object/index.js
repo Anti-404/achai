@@ -84,17 +84,7 @@ class ShowThing extends Controller{
             formDataEmail.append('description', formData.get('description'));
 
             document.querySelector('#send-email-modal').style.display = 'none';             
-            // let qrcode = document.querySelector('#canvas').toDataURL("image/jpeg", 1.0);
-                        
-            // try {            
-            //     const response = await fetch(qrcode);                           
-            //     let blob = await response.blob();                              
-                
-            //     formDataEmail.append('qrcodeBlob',blob); 
-                            
-            // } catch(e) {
-            //     console.log(e);
-            // }  
+            
            
             
             try {            
@@ -143,7 +133,7 @@ class ShowThing extends Controller{
     async canvas(){        
 
         let canvas = document.querySelector('#canvas');            
-        canvas.style.display = 'block';
+        // canvas.style.display = 'block';
         let context = canvas.getContext('2d');
                 
         canvas.height = 320;            

@@ -13,19 +13,20 @@
     <div class="background-modal">        
         <div class="container">
             <div id="img-register-modal">
-                <p id="exit-modal-button">
-                    <img src="" alt="">
-                    X
-                </p>
-                <p>
-                    <img src="" alt="">
-                    <p id="open-picture-modal">Camera</p>
-                </p>
+                <div>
+                    <p id="exit-modal-button"></p>
+                </div>
 
-                <label class="picture" for="image-address-update">
-                    <img src="" alt="">                    
+                <div id="open-picture-modal">                    
+                    <span></span>
+                    <p>Camera</p>
+                </div>
+
+                <label for="image-address-update">
+                    <span></span>                   
                     <p id="choose-picture-button">Escolher existente</p>            
-                </label> 
+                </label>          
+                
             </div>
 
             <div class="cam-modal">                
@@ -50,6 +51,8 @@
                 <canvas></canvas>  
                 <input type = "file" name="image_address_update" id="image-address-update">  
                 <input type = "hidden" name="image_address" id="image-address">                               
+
+                <label id="code"></label>
 
                 <label for="list-categories">Categorias</label><br>
                 <select name="category_id" id="list-categories"></select>                

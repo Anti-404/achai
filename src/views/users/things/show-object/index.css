@@ -47,12 +47,12 @@ form#email-form span{
     width: 80px;    
     cursor: pointer;
 }
-#canvas{
+/* #canvas{
     display: flex;
     justify-content: center;
     align-items: center;
        
-}
+} */
 
 textarea#message-body{
     display:none;

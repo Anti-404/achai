@@ -19,8 +19,10 @@ class LayoutModalSearch{
             inputSearchItem.setAttribute('class','search-item');
             inputSearchItem.setAttribute('placeholder','Ex: garrafa amarela');
 
-            searchButton.setAttribute('class','material-symbols-rounded search-button');
-            searchButton.textContent = 'search';          
+            searchButton.setAttribute('class','material-symbols-rounded search-button');                   
+            searchButton.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/search_FILL0_wght300_GRAD0_opsz24.svg)`;
+            searchButton.style.backgroundRepeat = `no-repeat`;
+            searchButton.style.backgroundPosition = `center`;
 
             divSearchBarModal.appendChild(inputSearchItem);
             divSearchBarModal.appendChild(searchButton);

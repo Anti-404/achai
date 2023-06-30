@@ -12,12 +12,14 @@ class HelperSearch{
 
         searchItem.addEventListener('keyup',()=>{
             let input = document.querySelector('.search-item').value
-            input=input.toLowerCase();
-            let x = document.querySelectorAll('.things-list a');
+            input=input.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
             
+            let x = document.querySelectorAll('.things-list a');
+            //input = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
             
             for (let i = 0; i < x.length; i++) { 
-                 if (!x[i].outerText.toLowerCase().includes(input)) {
+                //x[i] = x[i].normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                 if (!x[i].outerText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(input)) {
                     x[i].style.display="none";
                 }
                 else {
@@ -38,7 +40,8 @@ class HelperSearch{
         document.querySelector('header .container div .search-button').addEventListener('click',()=>{
             document.querySelector('body .background-modal').style.display = 'block';
             document.querySelector("#search-modal").style.display = 'block';
-            document.querySelector(".sandwich-menu-body").style.display = 'none';            
+            let sandwichMenuBody = document.querySelector(".sandwich-menu-body");
+            (sandwichMenuBody !== null) && (document.querySelector(".sandwich-menu-body").style.display = 'none');            
             document.querySelector('.search-bar-modal .search-item').focus();            
         });
     }

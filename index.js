@@ -4,6 +4,10 @@ import LayoutThing from './src/views/components/thing/index.js';
 import LayoutHeaderContent from './src/views/components/headercontent/index.js';
 import LayoutModalSearch from './src/views/components/modalsearch/index.js';
 
+import HelperSearch from './src/views/helpers/search/index.js';
+
+import config from './config.js';
+
 class Home {
     constructor(){
         this.modelCategories = new ModelCategories();               
@@ -23,8 +27,10 @@ class Home {
                 let span = document.createElement("span");                    
                 
                 if(allCategories.result[i].icon_name !== null){
-                    spanIcon.setAttribute('class','material-symbols-rounded');
-                    spanIcon.textContent = allCategories.result[i].icon_name;
+                    spanIcon.setAttribute('class','material-symbols-rounded');                    
+                    spanIcon.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/${allCategories.result[i].icon_name})`;
+                    spanIcon.style.backgroundRepeat = `no-repeat`;
+                    spanIcon.style.backgroundPosition = `center`;                    
                     a.setAttribute("data-id",allCategories.result[i].id);                                
                     span.textContent = allCategories.result[i].name;
                     a.appendChild(spanIcon); 
@@ -51,10 +57,20 @@ class Home {
             categoriesLinks[i].addEventListener('click',async(e)=>{                
                 let categoriesId = e.target.parentNode.getAttribute("data-id");                
                 for (let j = 0; j < categoriesLinks.length; j++) {
-                    categoriesLinks[j].parentNode.classList.remove('active');                  
+                    //categoriesLinks[j].parentNode.classList.remove('active');                  
+                    categoriesLinks[j].parentNode.removeAttribute('class');                 
                 }
-
-                e.target.parentNode.parentNode.setAttribute('class','active');
+                
+                //console.log(e.target.parentNode.parentNode.classList.contains('active'));
+                //console.log(e.target.parentNode.parentNode.hasAttribute("class"));
+                
+                //console.log(e.target.parentNode.parentNode);
+                if(e.target.parentNode.parentNode.classList.contains('active')){
+                    //e.target.parentNode.parentNode.classList.remove('active');
+                    e.target.parentNode.parentNode.removeAttribute('class');   
+                }else{
+                    e.target.parentNode.parentNode.setAttribute('class','active');
+                }
 
                 let lostThingsFilters = filters.item(0).getAttribute('status');                                
                 let allThings = {};
@@ -145,56 +161,11 @@ class Home {
 
     }    
   
-
-    searchItem(){       
-        let searchItem = document.querySelector('.search-item');
-
-        if(searchItem == null){
-            return;
-        }
-
-        searchItem.addEventListener('keyup',()=>{
-            let input = document.querySelector('.search-item').value
-            input=input.toLowerCase();
-            let x = document.querySelectorAll('.things-list a');
-            
-            
-            for (let i = 0; i < x.length; i++) { 
-                 if (!x[i].outerText.toLowerCase().includes(input)) {
-                    x[i].style.display="none";
-                }
-                else {
-                    x[i].style.display="block";                 
-                }
-            }
-            
-        });
-    }
-
-    openSearchModal(){
-        document.querySelector('header .container div .search-button').addEventListener('click',()=>{
-            document.querySelector('body .background-modal').style.display = 'block';
-            document.querySelector('.search-bar-modal .search-item').focus();
-        });
-     }
-
-    closeSearchModal(){
-        document.querySelector('#search-modal .search-bar-modal .search-item').addEventListener('blur',(event)=>{           
-           document.querySelector('#search-modal .search-bar-modal .search-item').value = '';
-           document.querySelector('body .background-modal').style.display = 'none';
-            
-        });        
-    }
-
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
         contentHeader.create(document.querySelector('header .container'));
     }
 
-    createModalSearch(){
-        const layoutModalSearch = new LayoutModalSearch();
-        layoutModalSearch.create(document.querySelector('.background-modal .container'));
-    }
     
 
 }
@@ -205,7 +176,8 @@ home.createHeaderContent();
 home.handleThingsByBategories();
 await home.thingsList();
 home.filterThings();
-home.createModalSearch();
-home.openSearchModal();
-home.closeSearchModal();
-home.searchItem();
+
+HelperSearch.createModalSearch();
+HelperSearch.searchItem();
+HelperSearch.openSearchModal();
+HelperSearch.closeSearchModal();
