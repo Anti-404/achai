@@ -5,19 +5,22 @@ class LayoutHeaderContent{
     constructor(){}
 
     async create(container, hrefLink=config.urlBase, 
-        flagSearchButton = true, flagSandwichMenu = false, flagBreadcrumb=false, flagInfo=true){  
+        flagSearchButton = true, flagSandwichMenu = false, flagBreadcrumb=false, flagInfo=true, flagArrow=true){  
             
         let divHeaderTop = document.createElement("div");
         divHeaderTop.setAttribute('class','header-top');
 
-        let divHeaderTopbody = document.createElement("div");
-        divHeaderTopbody.setAttribute('class','header-top-body');
+        let divHeaderTopHeader = document.createElement("div");
+        divHeaderTopHeader.setAttribute('class','header-top-header');
+
+        let divHeaderTopBody = document.createElement("div");
+        divHeaderTopBody.setAttribute('class','header-top-body');
         
         let divHeaderBody = document.createElement("div");
         divHeaderBody.setAttribute('class','header-body');
         
-        let divBreadcrump = document.createElement("div");
-        divBreadcrump.textContent = 'breadcrumb';        
+        let ulBreadcrump = document.createElement('ul');
+        ulBreadcrump.setAttribute('class', 'breadcrumb')      
 
         let divHeaderFooter = document.createElement("div");
         divHeaderFooter.setAttribute('class','header-footer');
@@ -49,20 +52,25 @@ class LayoutHeaderContent{
         infoButton.setAttribute('class','material-symbols-rounded info-button');        
         infoButton.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/info_FILL0_wght300_GRAD0_opsz24.svg)`;
         infoButton.style.backgroundRepeat = `no-repeat`;
-        infoButton.style.backgroundPosition = `center`;
-                  
+        infoButton.style.backgroundPosition = `center`;  
+        
+        let arrowButton = document.createElement("img");
+        arrowButton.setAttribute('class','material-symbols-rounded arrow-button');        
+        arrowButton.src = `${config.urlBase}/assets/imgs/icons/arrow_back_FILL0_wght300_GRAD0_opsz24.svg`;       
        
+        
+        flagSearchButton && divHeaderTopBody.appendChild(searchButton);            
+        flagSandwichMenu && divHeaderTopBody.appendChild(sandwichMenu);  
+        flagInfo && divHeaderTopBody.appendChild(infoButton);  
+        flagArrow && divHeaderTopHeader.appendChild(arrowButton);  
+        
         linkLogo.appendChild(imgLogo);
         
-        flagSearchButton && divHeaderTopbody.appendChild(searchButton);            
-        flagSandwichMenu && divHeaderTopbody.appendChild(sandwichMenu);  
-        flagInfo && divHeaderTopbody.appendChild(infoButton);  
-                  
+        divHeaderTopHeader.appendChild(linkLogo);
+        divHeaderTop.appendChild(divHeaderTopHeader);
+        divHeaderTop.appendChild(divHeaderTopBody);
 
-        divHeaderTop.appendChild(linkLogo);
-        divHeaderTop.appendChild(divHeaderTopbody);
-
-        flagBreadcrumb && divHeaderBody.appendChild(divBreadcrump);
+        flagBreadcrumb && divHeaderBody.appendChild(ulBreadcrump);
 
         divHeaderFooter.appendChild(divCategories);
 

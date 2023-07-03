@@ -8,3 +8,8 @@ button#save-button{
     margin-top: 15px;
 
 }
+
+.background-modal{
+    display: none;  
+    z-index: 0;
+}

@@ -4,6 +4,7 @@ import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
+import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
@@ -252,13 +253,37 @@ class ThingsInteraction extends Controller{
 
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
-        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, false);
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true, false);
     } 
+
+    createBreadcrumbs(){
+        const layoutBreadcrumbs = new LayoutBreadcrumbs();
+        let ul = document.querySelector('.container .header-body ul.breadcrumb');
+        const values = [];
+        
+        values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
+        values.push( {name:'Gerenciar Objetos', href: `${config.urlBase}/src/views/admin/things/`}  );
+        values.push( {name:'Objetos filtrados', href:`${config.urlBase}/src/views/admin/things/manager/?id=0`}  );
+        values.push( {name:'Editar objetos', href:'#'}  );       
+        
+
+        layoutBreadcrumbs.create(ul, values);
+    }
+
+    arrowBack(){
+        let arrowButton = document.querySelector('.arrow-button');
+        arrowButton.addEventListener('click',()=>{
+            
+            window.location.href = `${config.urlBase}/src/views/admin/things/manager/?id=0`;                
+            
+        });
+    }
 
 }
 
 const thingsInteraction = new ThingsInteraction();
 thingsInteraction.createHeaderContent();
+thingsInteraction.createBreadcrumbs();
 thingsInteraction.getThing();
 thingsInteraction.update();
 thingsInteraction.return();
@@ -268,6 +293,7 @@ thingsInteraction.takePicture();
 thingsInteraction.inputFileImageUploadPreview();
 thingsInteraction.closeImageRegistrationModal();
 thingsInteraction.openImageRegistrationModal();
+thingsInteraction.arrowBack();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

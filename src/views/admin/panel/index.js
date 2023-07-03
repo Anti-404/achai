@@ -2,13 +2,15 @@ import ModelThings from "../../../models/things/index.js";
 import ModelCategories from '../../../models/categories/index.js';
 import Controller from "../../../core/controller/index.js";
 import config from "../../../../config.js";
-import LayoutThing from '../../components/thing/index.js';
 
 import HelperSearch from '../../helpers/search/index.js';
 import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
+import HelperCategories from '../../helpers/categories/index.js';
 
+import LayoutThing from '../../components/thing/index.js';
 import LayoutHeaderContent from '../../components/headercontent/index.js';
 import LayoutCateogoriesList from '../../components/categories/index.js';
+import LayoutFooter from "../../components/footer/index.js";
 
 class Panel extends Controller{
     constructor(){
@@ -80,38 +82,23 @@ class Panel extends Controller{
     
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
-        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, true, true, false, false);
-    }   
+        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, true, true, false, false, false);
+    }  
     
+
     handleChangeThingsByBategories(){
         if(document.querySelectorAll('#categories-list') === null) return;
+        let categoriesLinks = document.querySelectorAll('#categories-list');
 
-        let categoriesLinks = document.querySelectorAll('#categories-list');        
-        
-        for (let i = 0; i < categoriesLinks.length; i++) {
-            categoriesLinks[i].addEventListener('change',async(e)=>{                
-                let categoriesId = e.target.value;  
-               
-                let allThingsReserved = {};
-
-                if(categoriesId == "0"){
-                    allThingsReserved = await this.modelThings.getThingsReserved();
-
-                }else{
-                    allThingsReserved = await this.modelThings.getThingsByCategoryIdAndReserved(categoriesId);                      
-                }
-
-                let thingsList = document.querySelector(".things-list");              
-
-                thingsList.innerHTML = "";
-                
-                this.layoutThing.create(thingsList, allThingsReserved, true, 'admin/things/thingreserved');                 
-            });
-            
-        }
-
-
+        HelperCategories.handleChangeThingsReservedByCategories(categoriesLinks);
     }
+
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config);        
+        
+    } 
     
 
 }
@@ -125,6 +112,7 @@ panel.goToReturnedThing();
 panel.goToManageThings();
 panel.goToReservedThing();
 panel.handleChangeThingsByBategories();
+panel.appendFooter();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

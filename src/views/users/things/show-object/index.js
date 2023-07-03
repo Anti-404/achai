@@ -4,6 +4,9 @@ import ModelEmail from '../../../../models/email/index.js';
 import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
 
+import LayoutHeaderContent from '../../../components/headercontent/index.js';
+import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+
 class ShowThing extends Controller{   
 
     constructor(){  
@@ -132,8 +135,7 @@ class ShowThing extends Controller{
     }
     async canvas(){        
 
-        let canvas = document.querySelector('#canvas');            
-        // canvas.style.display = 'block';
+        let canvas = document.querySelector('#canvas');                    
         let context = canvas.getContext('2d');
                 
         canvas.height = 320;            
@@ -154,6 +156,28 @@ class ShowThing extends Controller{
          });        
 
     }
+
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), config.urlBase, false, false,true,true, false);
+    }
+
+    createBreadcrumbs(){
+        const layoutBreadcrumbs = new LayoutBreadcrumbs();
+        let ul = document.querySelector('.container .header-body ul.breadcrumb');
+        const values = [];
+        
+        values.push( {name:'Tela inicial', href:config.urlBase}  );              
+        values.push( {name:'Objeto', href:'#'}  );        
+
+        layoutBreadcrumbs.create(ul, values);
+    }   
+
+    handleButtonInfo(){
+        document.querySelector('.info-button').addEventListener('click',()=>{
+            window.location.href = `${config.urlBase}/src/views/users/information`;
+        });
+    }
     
 
 }
@@ -165,3 +189,6 @@ showThing.sendEmail();
 showThing.generateQrCode(); 
 showThing.canvas(); 
 showThing.confirmScreenQrcodeButton(); 
+showThing.createHeaderContent();
+showThing.createBreadcrumbs();
+showThing.handleButtonInfo();

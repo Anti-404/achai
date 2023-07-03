@@ -43,8 +43,7 @@ class HelperSandwichMenu{
         });        
     }
 
-    static goToDiscardeThings(){
-        // if(document.querySelector(".discard-things-button") === null) return;
+    static goToDiscardeThings(){        
 
         document.querySelector(".discard-things-button").addEventListener("click",()=>{  
 
@@ -54,8 +53,7 @@ class HelperSandwichMenu{
         
     }
 
-    static goToProfile(){
-        // if(document.querySelector(".profile-button") === null) return;
+    static goToProfile(){        
 
         document.querySelector(".profile-button").addEventListener("click",()=>{  
 
@@ -75,8 +73,7 @@ class HelperSandwichMenu{
         
     }
 
-    static goToCategoryManager(){
-        // if(document.querySelector(".category-manager-button") === null) return;
+    static goToCategoryManager(){        
         
         document.querySelector(".category-manager-button").addEventListener("click",()=>{  
 

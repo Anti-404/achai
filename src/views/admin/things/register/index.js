@@ -4,6 +4,7 @@ import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
+import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
@@ -36,8 +37,7 @@ class ThingRegistration extends Controller{
             
         }    
 
-    }
-    
+    }    
 
     save(){        
         document.querySelector("#save-button").addEventListener("click", (e)=>{             
@@ -144,9 +144,9 @@ class ThingRegistration extends Controller{
 
 
     closeImageRegistrationModal(){
-    document.querySelector('#exit-modal-button').addEventListener('click',()=>{
-        document.querySelector('div.background-modal').style.display = 'none';
-    });
+        document.querySelector('#exit-modal-button').addEventListener('click',()=>{
+            document.querySelector('div.background-modal').style.display = 'none';
+        });
 
     }
 
@@ -177,16 +177,51 @@ class ThingRegistration extends Controller{
         contentHeader.create(document.querySelector('header .container'), 
         `${config.urlBase}/src/views/admin/panel/`, false, true, true, false);
     } 
+
+    createBreadcrumbs(){
+        const layoutBreadcrumbs = new LayoutBreadcrumbs();
+        let ul = document.querySelector('.container .header-body ul.breadcrumb');
+        const values = [];
+        
+        if(this.prevPage.includes('panel')){
+            values.push( {name:'Tela inicial', href:this.prevPage}  );
+            values.push( {name:'Cadastrar Objetos', href:'#'}  );
+
+        }else if(this.prevPage.includes('manager')){
+            values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
+            values.push( {name:'Gerenciar Objetos', href: `${config.urlBase}/src/views/admin/things/`}  );
+            values.push( {name:'Objetos filtrados', href:`${config.urlBase}/src/views/admin/things/manager/?id=0`}  );
+            values.push( {name:'Cadastrar objetos', href:'#'}  );
+        }
+        
+
+        layoutBreadcrumbs.create(ul, values);
+    }
+
+    arrowBack(){
+        let arrowButton = document.querySelector('.arrow-button');
+        arrowButton.addEventListener('click',()=>{
+            if(this.prevPage.includes('panel')){
+                window.location.href = this.prevPage;
+                
+            }else if(this.prevPage.includes('manager')){
+                window.location.href = `${config.urlBase}/src/views/admin/things/manager/?id=0`;
+                
+            }
+        });
+    }
 }
 
 const thingRegistration = new ThingRegistration();
 thingRegistration.createHeaderContent();
+thingRegistration.createBreadcrumbs();
 thingRegistration.selectCategories();
 thingRegistration.save();
 thingRegistration.takePicture();
 thingRegistration.inputFileImageUploadPreview();
 thingRegistration.closeImageRegistrationModal();
 thingRegistration.openImageRegistrationModal();
+thingRegistration.arrowBack();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

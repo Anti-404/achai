@@ -1,0 +1,31 @@
+@import url("../../../../assets/css/globalStyle.css");
+ button{    
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+
+ }
+ .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+  }
+  
+ 
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
+  
+  
+  .panel-accordion {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;   
+  } 

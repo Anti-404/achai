@@ -3,6 +3,9 @@ import ModelThings from '../../../../models/things/index.js';
 import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
 
+import LayoutHeaderContent from '../../../components/headercontent/index.js';
+import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+
 class ShowReservedThing extends Controller{   
 
     constructor(){  
@@ -43,9 +46,34 @@ class ShowReservedThing extends Controller{
             alert(thing.erro);
         }        
         
-    }      
+    }   
+    
+    createHeaderContent(){
+        const contentHeader = new LayoutHeaderContent();
+        contentHeader.create(document.querySelector('header .container'), config.urlBase, false, false,true,true, false);
+    }
+
+    createBreadcrumbs(){
+        const layoutBreadcrumbs = new LayoutBreadcrumbs();
+        let ul = document.querySelector('.container .header-body ul.breadcrumb');
+        const values = [];
+        
+        values.push( {name:'Tela inicial', href:config.urlBase}  );              
+        values.push( {name:'Objeto reservado', href:'#'}  );        
+
+        layoutBreadcrumbs.create(ul, values);
+    } 
+
+    handleButtonInfo(){
+        document.querySelector('.info-button').addEventListener('click',()=>{
+            window.location.href = `${config.urlBase}/src/views/users/information`;
+        });
+    }
 
 }
 
 const showReservedThing = new ShowReservedThing();
 await showReservedThing.getThing();
+showReservedThing.createHeaderContent();
+showReservedThing.createBreadcrumbs();
+showReservedThing.handleButtonInfo();

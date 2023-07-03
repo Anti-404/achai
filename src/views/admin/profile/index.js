@@ -5,6 +5,7 @@ import config from '../../../../config.js';
 import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
 
 import LayoutHeaderContent from '../../components/headercontent/index.js';
+import LayoutBreadcrumbs from '../../components/breadcrumbs/index.js';
 
 class Profile extends Controller{    
 
@@ -16,32 +17,31 @@ class Profile extends Controller{
     }
 
     async update(){
-        let id = this.identifier;
-        // let user = document.querySelector("#user").value;
+        let id = this.identifier;        
         let user = document.querySelector("#email").value;
         let email = document.querySelector("#email").value;
-        let password = document.querySelector("#password").value;
+        let password = document.querySelector("#password").value;        
         
-        if(email === '')  {   
-            alert('campo email vazio');             
-            return;
-        }else{
-            if(document.querySelector("#email").getAttribute('disabled') === null
-                || document.querySelector("#password").getAttribute('disabled') === null
-            ){
-                if (window.confirm("Deseja salvar as alterações?")) {
-                    let formData = new FormData();
-                    formData.set('id', id);
-                    formData.set('user', user);
-                    formData.set('email', email);
-                    formData.set('password', password);
-                    await this.modelAdmins.update(this.prevPage, formData); 
-                } 
+        if(document.querySelector("#email").getAttribute('disabled') === null
+            || document.querySelector("#password").getAttribute('disabled') === null
+        ){
+           
+            if(email === '')  {   
+                alert('campo email vazio');             
+                return false;
             }
-                 
 
-        }   
-        
+            if (window.confirm("Deseja salvar as alterações?")) {
+                let formData = new FormData();
+                formData.set('id', id);
+                formData.set('user', user);
+                formData.set('email', email);
+                formData.set('password', password);
+                await this.modelAdmins.update(this.prevPage, formData);                
+            } 
+        }
+            
+        return true;
             
     }    
     
@@ -64,13 +64,13 @@ class Profile extends Controller{
     } 
 
     exit(){
-        document.querySelector("#exit-button").addEventListener("click", async(e)=>{
-            this.update();
+        document.querySelector("#exit-button").addEventListener("click", async(e)=>{            
+            if(!await this.update()) return;
 
             document.querySelector("body .background-modal").style.display = "none"; 
             localStorage.removeItem("hash");
             alert("Deslogado com sucesso");
-           window.location.href = `${config.urlBase}/src/views/admin/login/`;
+            window.location.href = `${config.urlBase}/src/views/admin/login/`;
         });
         
     }
@@ -89,13 +89,37 @@ class Profile extends Controller{
         });
         
     }
+
+    createBreadcrumbs(){
+        const layoutBreadcrumbs = new LayoutBreadcrumbs();
+        let ul = document.querySelector('.container .header-body ul.breadcrumb');
+        const values = [];
+        
+        values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
+        values.push( {name:'Perfil', href:'#'}  );
+        
+        layoutBreadcrumbs.create(ul, values);        
+
+    }
+
+    arrowBack(){
+        let arrowButton = document.querySelector('.arrow-button');
+        arrowButton.addEventListener('click',()=>{
+            
+            window.location.href = `${config.urlBase}/src/views/admin/panel/`;                
+            
+        });
+    }
+
 }
 
 const profile = new Profile();
 profile.createHeaderContent();
+profile.createBreadcrumbs();
 profile.enableFileds();
 profile.setEmail();
 profile.exit();
+profile.arrowBack();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

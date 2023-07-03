@@ -2,12 +2,16 @@ import ModelThings from '../../../../models/things/index.js';
 import ModelCategories from '../../../../models/categories/index.js';
 import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
-import LayoutThing from '../../../components/thing/index.js';
 
+import LayoutThing from '../../../components/thing/index.js';
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutModalSearch from '../../../components/modalsearch/index.js';
 import LayoutSandwichMenu from '../../../components/sandwichmenu/index.js';
 import LayoutCateogoriesList from '../../../components/categories/index.js';
+import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+
+import HelperCategories from '../../../helpers/categories/index.js';
+import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
 class ThingsManager extends Controller{
 
@@ -17,7 +21,7 @@ class ThingsManager extends Controller{
         this.modelCategories = new  ModelCategories();        
         this.currentPage = this.retrieveURLCurrentPage();       
         this.categoriesIdUrl = this.retrieveURLId();
-        this.layoutThing = new LayoutThing(); 
+        this.layoutThing = new LayoutThing();         
     }
     
     
@@ -45,36 +49,13 @@ class ThingsManager extends Controller{
             
         });
         
-    }
-    
+    }   
+
     handleChangeThingsByBategories(){
         if(document.querySelectorAll('#categories-list') === null) return;
+        let categoriesLinks = document.querySelectorAll('#categories-list');
 
-        let categoriesLinks = document.querySelectorAll('#categories-list');        
-        
-        for (let i = 0; i < categoriesLinks.length; i++) {
-            categoriesLinks[i].addEventListener('change',async(e)=>{                
-                let categoriesId = e.target.value;  
-               
-                let allThings = {};
-
-                if(categoriesId == "0"){
-                    allThings = await this.modelThings.getAll();
-
-                }else{
-                    allThings = await this.modelThings.getThingsByCategoryId(categoriesId);                      
-                }
-
-                let thingsList = document.querySelector(".things-list");              
-
-                thingsList.innerHTML = "";
-                
-                this.layoutThing.create(thingsList, allThings, true, 'admin/things/interaction');
-            });
-            
-        }
-
-
+        HelperCategories.handleChangeThingsByCategories(categoriesLinks);
     }
     
     async categoriesList(){ 
@@ -166,12 +147,33 @@ class ThingsManager extends Controller{
         layoutSandwichMenu.create(document.querySelector('.background-modal .container'));
     }
 
+    createBreadcrumbs(){
+        const layoutBreadcrumbs = new LayoutBreadcrumbs();
+        let ul = document.querySelector('.container .header-body ul.breadcrumb');
+        const values = [];
+        
+        values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
+        values.push( {name:'Gerenciar Objetos', href: `${config.urlBase}/src/views/admin/things/`}  );       
+        values.push( {name:'Objetos filtrados', href:'#'}  );        
+
+        layoutBreadcrumbs.create(ul, values);
+    }
+
+    arrowBack(){
+        let arrowButton = document.querySelector('.arrow-button');
+        arrowButton.addEventListener('click',()=>{
+            
+            window.location.href = `${config.urlBase}/src/views/admin/things/`;                
+            
+        });
+    }
 
 }
 
 const thingsManager = new ThingsManager();
 thingsManager.createSandwichMenu();
 thingsManager.createHeaderContent();
+thingsManager.createBreadcrumbs();
 thingsManager.createModalSearch();
 await thingsManager.categoriesList();
 await thingsManager.thingsList(); 
@@ -182,3 +184,8 @@ thingsManager.closeSearchModal();
 thingsManager.handleChangeThingsByBategories();
 thingsManager.openSandwichMenu();
 thingsManager.closeSandwichMenu();
+thingsManager.arrowBack();
+
+HelperSandwichMenu.goToProfile();
+HelperSandwichMenu.goToDiscardeThings();
+HelperSandwichMenu.goToCategoryManager();

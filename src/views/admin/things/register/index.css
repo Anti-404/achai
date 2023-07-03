@@ -26,11 +26,9 @@ div.background-modal .sandwich-menu-body{
 
 }
 
-div#img-register-modal{
-    /* position: fixed;
-    bottom: 0px; */
+div#img-register-modal{    
     background-color:var(--background-color);
-    width: 320px;   
+    width: 100%;   
     min-height: 100px; 
 }
 

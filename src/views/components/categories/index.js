@@ -29,6 +29,36 @@ class LayoutCateogoriesList{
     
     }
 
+    async createPanel(container){
+        const allCategories = await this.modelCategories.getAll();
+
+        if(allCategories.error !== '') return;
+        
+        let categoriesPanel = document.createElement('div');       
+        categoriesPanel.setAttribute('class','categories-panel-modal');
+
+        let ul = document.createElement('ul');
+        ul.setAttribute('class','categories-list-panel');
+
+        for (let index = 0; index < allCategories.result.length; index++) {
+            if(allCategories.result[index].name !== 'Todas'){
+                let li = document.createElement('li');
+                let a = document.createElement('a');
+                a.setAttribute('data-id',allCategories.result[index].id);
+                a.textContent = allCategories.result[index].name;
+                                
+                li.appendChild(a);
+                ul.appendChild(li)
+            }    
+        }
+
+        categoriesPanel.appendChild(ul);
+        container.appendChild(categoriesPanel);        
+    
+    }
+
+
+
 }
 
 export default LayoutCateogoriesList;
