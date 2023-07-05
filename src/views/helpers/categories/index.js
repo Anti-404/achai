@@ -39,6 +39,7 @@ class HelperCategories{
     }
 
     static handleChangeThingsByCategories(selectOptions){
+        
         this.modelThings = new ModelThings();
         this.layoutThing = new LayoutThing(); 
 
@@ -49,21 +50,20 @@ class HelperCategories{
         for (let i = 0; i < categoriesLinks.length; i++) {
             categoriesLinks[i].addEventListener('change',async(e)=>{                
                 let categoriesId = e.target.value;  
-               
-                let allThingsReserved = {};
+                
+                let allThings = {};
 
                 if(categoriesId == "0"){
-                    allThingsReserved = await this.modelThings.getThings();
-
+                    allThings = await this.modelThings.getAll();                    
                 }else{
-                    allThingsReserved = await this.modelThings.getThingsByCategoryId(categoriesId);                      
+                    allThings = await this.modelThings.getThingsByCategoryId(categoriesId);                      
                 }
 
                 let thingsList = document.querySelector(".things-list");              
 
                 thingsList.innerHTML = "";
                 
-                this.layoutThing.create(thingsList, allThingsReserved, true, 'admin/things/thingreserved');                 
+                this.layoutThing.create(thingsList, allThings, true, 'admin/things/thingreserved');                 
             });
             
         }

@@ -9,6 +9,24 @@
     <title>Objeto</title>
 </head>
 <body class="body">  
+    <div class="background-modal">        
+        <div class="container">           
+            
+                <div id="qrcode-modal">
+                    <p> Um QR code foi gerado e enviado para o seu email. 
+                        Por favor, mostrar quando for á secretaria buscar o seu objeto
+                    </p>
+                    <div id="qrcode"></div>
+                    <canvas id="canvas"></canvas>  
+
+                    <button id="confirm-screen-qrcode-button">OK</button>
+                </div>
+
+        </div>      
+        
+
+    </div>
+
     <header>
         <div class="container"> </div>
     </header>
@@ -18,29 +36,26 @@
             <form id='first-form' action="" method="post">                        
                 <input type="hidden" name="id" id="data-id">                         
                 <input type = "hidden" name="image_address" id="image-address">                        
-                <img >                       
-                <br><br> 
-
-                <label id="code"></label>                
-                <br><br> 
-                
-                <label for="">Categoria: </label><br>
+                <img > 
+                <div>
+                    <label for="code"><h1>Categoria: </h1></label>                    
+                    <label id="code"></label>  
+                </div>
                 <input type='text' id="category" disabled />
                 
-                <input type = "hidden" name="category_id" id="category-id">                                               
-                <br><br>
-                                        
-                <label for="description">Descrição</label><br>
-                <textarea name="description" cols="30" rows="10" id="description" disabled></textarea>
-                <br><br>
+                <input type = "hidden" name="category_id" id="category-id">
 
-                <label for="local">Local perdido</label><br>
-                <input type="text" name="local" id="local" disabled>
-                <br><br>                    
+                <label for="description"><h1>Descrição</h1></label>
+                <textarea name="description" cols="30" rows="10" id="description" disabled></textarea>
                 
-                <label for="local">Horario perdido</label><br>
+
+                <label for="local"><h1>Local perdido</h1></label>
+                <input type="text" name="local" id="local" disabled>
+                                   
+                
+                <label for="local"><h1>Horario perdido</h1></label>
                 <input type="text" name="date" id="date" disabled>
-                <br><br>                    
+                                   
                 
                 <input type = "hidden" name="returned_status" id="returned-status">                         
 
@@ -48,11 +63,13 @@
             </form>
 
             <div id="send-email-modal">               
-               <form id='email-form' >
-                <span>
-                    <label for="email">Insira seu email</label><br>
+               <form id='email-form' >                
+                    <label for="email">Insira seu nome*</label><br>
+                    <input type="email" name="name" id="name" required placeholder="Nome"/>                               
+                
+                    <label for="email">Insira seu email*</label><br>
                     <input type="email" name="to" id="to" required placeholder="Email"/>                 
-                </span>
+                
 
                 <input type="hidden" name="from" id="from" value="allangeorge@virtual.ufc.br">               
                 <input type="hidden" name="subject" id="subject" value="Achai - Objeto Reservado">                  
@@ -60,18 +77,7 @@
                  
                  <button id="send-email-button"> Reservar</button>
                </form> 
-            </div>  
-            
-            <div id="qrcode-modal">
-                <p> Um QR code foi gerado e enviado para o seu email. 
-                    Por favor, mostrar quando for á secretaria buscar o seu objeto
-                </p>
-                <div id="qrcode"></div><br> 
-                
-                <canvas id="canvas"></canvas>       
-                               
-                <button id="confirm-screen-qrcode-button">OK</button>
-            <div>  
+            </div> 
                                   
         </div>
 

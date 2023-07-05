@@ -30,18 +30,23 @@ class Information extends Controller{
     }   
 
     handleAccordion(){
-        let accordion = document.querySelectorAll(".accordion");        
+        let accordion = document.querySelectorAll(".accordion .header-accordion");        
 
         for (let i = 0; i < accordion.length; i++) {
-            accordion[i].addEventListener("click", function() {
+            accordion[i].addEventListener("click", function(e) {
             
             this.classList.toggle("active");
            
             let panel = this.nextElementSibling;
             if (panel.style.display === "block") {
-            panel.style.display = "none";
+                panel.style.display = "none";            
+                let img = e.target.parentNode.querySelector('img');
+                img.src = `${config.urlBase}/assets/imgs/icons/expand_more_FILL0_wght300_GRAD0_opsz24.svg`;
             } else {
-            panel.style.display = "block";
+                panel.style.display = "block";
+                let img = e.target.parentNode.querySelector('img');
+                img.src = `${config.urlBase}/assets/imgs/icons/expand_less_FILL0_wght300_GRAD0_opsz24.svg`;
+                
             }
         });
         }
@@ -51,8 +56,11 @@ class Information extends Controller{
         const layoutAccordion = new LayoutAccordion();
         let container = document.querySelector('main .container');
         const values = [
-            {title: 'Onde encontro os objetos pessoalmente?', content: 'bla bla bla ...'},
-            {title: 'Reservaram meu objeto, e agora?', content: 'bla bla bla ...'}
+            {title: 'Onde encontro os objetos pessoalmente?', 
+            content: 'Instituto UFC Virtual - SMD<br>2° andar - Secretaria'},
+            
+            {title: 'Reservaram meu objeto, e agora?',
+             content: 'Entre em contato com a secretaria para a resolução do problema<br><br>Meios de contato:<br>Celular: (85) 0 0000 0000<br> Email: exemplo@gmail.com'}
         ];
 
         layoutAccordion.create(container, values);

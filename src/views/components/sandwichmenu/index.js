@@ -14,9 +14,7 @@ class LayoutSandwichMenu{
         return modelAdmin.getByHash(formData);
     }
 
-    async create(container){    
-        
-        
+    async create(container){ 
         let divSandwichMenuBody = document.createElement("div");   
         divSandwichMenuBody.setAttribute('class','sandwich-menu-body');
 

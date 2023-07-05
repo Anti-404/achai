@@ -5,27 +5,40 @@
     border-radius: 0;
 
  }
- .accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
+
+ .header-accordion{
+  display: flex;
+  justify-content: space-between;  
+ }
+
+
+ div.container div.accordion{
+    background-color: var(--background-color); 
+    width: 100%;    
+    border-bottom: 1px var(--font-color) solid;
+    color: var(--font-color); 
+    margin-bottom: 10px;
+    font-size: var(--h2-titles);    
+   
   }
-  
  
-  .active, .accordion:hover {
-    background-color: #ccc;
+  .container div.accordion p{
+    font-weight: 600;
   }
-  
-  
-  .panel-accordion {
-    padding: 0 18px;
-    background-color: white;
-    display: none;
-    overflow: hidden;   
+  .container div.accordion .header-accordion p:nth-child(1){
+    margin-bottom: 10px;    
+    
   } 
+   
+  .panel-accordion{ 
+    padding: 10px;
+    background-color:  #F1F1F1; 
+    border-radius: 10px;
+    overflow: hidden;       
+    display: none;
+    transition: 0.4s;
+    margin-bottom: 10px;
+    
+  } 
+
+  

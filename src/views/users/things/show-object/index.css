@@ -1,23 +1,16 @@
 @import url("../../../../../assets/css/globalStyle.css");
 
-#send-email-modal{
-    display:none;           
-}
-
-#qrcode-modal{
-    display:none;           
-}
-
-#qrcode-modal{
-    width: 256px;
-}
-
-form#email-form{
+form#first-form div{
     display: flex;
-    gap: 65vh;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;    
+}
 
-}  
+form#first-form div #code{
+    font-weight: 600;
+    font-size: 12px;
+    color:var(--gray-color);
+}
 
 form#email-form span{
     display: flex;
@@ -25,34 +18,29 @@ form#email-form span{
     gap: 5px;
 }
 
-#qrcode-modal{    
+#send-email-modal{
+    display:none;           
+}
+div.background-modal{
+    padding: 20px
+}
+.background-modal{
+    display: none;
+}
+ #qrcode-modal{  
+    display: flex;     
+    justify-content: center;
+    background-color: var(--background-color);
     align-self: center;    
     flex-direction: column;    
     align-items: center;
+    height: 177px;
+    padding: 15px;
+    border-radius: 10px;
+    gap: 10px;    
 }
 
-#qrcode img{
-    display: none;
-}
 
-#new-qrcode{
-    display: block; 
-}
-
-#qrcode-modal button{
-    border-radius: 8px;
-    padding: 10px 5px;    
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2); 
-    border: none;
-    width: 80px;    
-    cursor: pointer;
-}
-/* #canvas{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-       
-} */
 
 textarea#message-body{
     display:none;

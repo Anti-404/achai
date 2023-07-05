@@ -1,5 +1,11 @@
 @import url("./assets/css/globalStyle.css"); 
 
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url("../fonts/Poppins-SemiBold.ttf");
+  
+}
+
 .background-modal{
     display: none;  
     z-index: 0;
@@ -24,6 +30,11 @@ main .container-header{
     flex-direction: column;   
 }
 
+main .container-header #categories-title{
+  font-family: 'Poppins-SemiBold';
+  font-size: var(--titles); 
+}
+
 .things-list figure figcaption .thing-header span:nth-child(1){
     display: none;
 }
@@ -32,22 +43,36 @@ main .container-header .filter-struct{
     justify-content: space-between;
 }
 
+main .container-header .filter-struct #filter-struct-title{
+    font-family: 'Poppins-SemiBold';
+    font-size: var(--titles); 
+}
+
 main div.container-header div.filter-things{
     display: flex;     
     gap: 8px;
-    background-color: rgb(41, 38, 38);
+    background-color: #7E7E7E;
     padding: 3px;     
     border-radius: 15px;  
 }
 .filter-things span{
     padding: 0px 8px; 
-    cursor: pointer;   
+    cursor: pointer;
+    font-weight: 600;   
+    font-size: 14px;
 }
 
 .filter-things span[status="1"]{
-    background-color: rgb(239, 244, 244);
+    background-color: var(--background-color); 
     border-radius: 15px;  
+    color:  var(--gray-color);
     
+}
+
+.filter-things span[status="0"]{
+    background-color: var(--gray-color);
+    border-radius: 15px;  
+    color: var(--background-color);    
 }
 
 footer{
@@ -105,9 +130,11 @@ footer{
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
 } 
 
-a .material-symbols-rounded{
+.categories-list a span.material-symbols-rounded{
     width: 100%;
     height: 100%;
+
+    border-radius: 50%;
 }
 
 

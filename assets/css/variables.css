@@ -1,14 +1,15 @@
-:root {
-    /* --containers-width: 330px; */
+:root {    
     --containers-width: 100%; 
     --object-box-height: 116px;
     --object-img-width: 100px;
-    --background-color: rgb(255, 255, 255);
-    --modal-background-color: rgba(9, 9, 9, 0.2);
-    --modal-background-color: rgba(9, 9, 9, 0.2);
-    --font-color:  rgb(11, 11, 11);
+    --background-color: #FFFDF7;
+    --gray-color: #7E7E7E;
+    --modal-background-color: rgba(0, 0, 0, 0.5);    
+    --font-color:  #1C1B1F;
     --font-size:  16px;  
-    --h1-titles: 18px;
+    --font-title: "Poppins-SemiBold";
+    --font-size-title: 18px;
+    --titles: 18px;
     --h2-titles: 16px;
     --h3-breadcrumbs: 12px;
     --h4-titles: 14px;

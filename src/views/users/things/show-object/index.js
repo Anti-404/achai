@@ -24,7 +24,7 @@ class ShowThing extends Controller{
         
         if(!thing.erro && !category.erro){            
             document.querySelector("#data-id").value = this.identifier;            
-            document.querySelector("#code").textContent = `N°:${this.identifier}`;            
+            document.querySelector("#code").textContent = `N°: ${this.identifier}`;            
             
             document.querySelector("form img").setAttribute('src', `${config.urlBase}/${thing.result[0].image_address}`);            
 
@@ -58,6 +58,7 @@ class ShowThing extends Controller{
 
         });
     } 
+    
     unDisabled(){
         const disabledFields =  document.querySelectorAll('[disabled]');
         disabledFields.forEach((item)=>{
@@ -105,12 +106,14 @@ class ShowThing extends Controller{
             } 
 
 
-                       
+            console.log('enviando email...');          
             let response = await this.modelEmail.sendEmail(formDataEmail);
+            console.log('email enviado com sucesso!');          
 
            if(response.error === ''){            
-              this.modelThings.reserve('', formData, 'Reservado'); 
-              document.querySelector('#qrcode-modal').style.display = 'flex';                                                                                                                                                                            
+              this.modelThings.reserve('', formData, 'Reservado');             
+             document.querySelector('.background-modal').style.display = 'block';  
+
               
            }else{
             alert("Algo de errado não está certo.\n "+response.error);
@@ -133,6 +136,7 @@ class ShowThing extends Controller{
         
         qrcode.makeCode(url);
     }
+
     async canvas(){        
 
         let canvas = document.querySelector('#canvas');                    

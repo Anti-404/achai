@@ -115,6 +115,9 @@ class Home {
         
         thingsFilters.forEach((filter) => {
             filter.addEventListener('click', ()=>{
+                let active =  document.querySelector('.active');                
+                if(active !== null) document.querySelector('.active').removeAttribute('class')               
+                
                 for (let i = 0; i < thingsFilters.length; i++) {                    
                     thingsFilters[i].setAttribute('status','0');
                 }

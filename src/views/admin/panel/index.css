@@ -2,15 +2,11 @@
 main{
     margin-top: 7px;
 }
-main .container {
-    gap: 7px;
-}
 
- .background-modal{
+.background-modal{
     display: none;  
     z-index: 0;
 }
-
 
 .register-thing-button span:nth-child(1){   
     background-image: url("../../../../assets/imgs/icons/box_add_FILL0_wght300_GRAD0_opsz48.svg"); 
@@ -51,20 +47,15 @@ main .container {
     text-align: center;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 20px;
     
 }
-
 .panel-buttons ul li a {
     display: flex;
     justify-content: center;
     flex-direction: column;
     cursor: pointer;
-  
-}
-
-section h1 {
-    font-weight: bold;
-    font-size:var( --h1-titles);
+    
 }
 
 .profile-button{
@@ -73,3 +64,10 @@ section h1 {
     
 }
 
+section h1{
+    margin-bottom: 5px;
+}
+
+.categories{
+    margin-bottom: 10px;
+}

@@ -47,6 +47,7 @@ class LayoutHeaderContent{
         sandwichMenu.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/menu_FILL0_wght300_GRAD0_opsz24.svg)`;
         sandwichMenu.style.backgroundRepeat = `no-repeat`;
         sandwichMenu.style.backgroundPosition = `center`;
+        sandwichMenu.style.backgroundSize = "35px";
 
         let infoButton = document.createElement("span");
         infoButton.setAttribute('class','material-symbols-rounded info-button');        

@@ -16,6 +16,7 @@ class LayoutModalSearch{
 
             divSearchBarModal.setAttribute('class','search-bar-modal');
 
+            inputSearchItem.setAttribute('type','search');
             inputSearchItem.setAttribute('class','search-item');
             inputSearchItem.setAttribute('placeholder','Ex: garrafa amarela');
 
