@@ -5,6 +5,7 @@ import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../../components/footer/index.js';
 
 import config from '../../../../../config.js';
 
@@ -81,6 +82,13 @@ class CategoriesRegistration extends Controller{
             
         });
     }
+
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
     
 
 }
@@ -91,6 +99,7 @@ categoriesRegistration.createBreadcrumbs();
 categoriesRegistration.save();
 categoriesRegistration.focusNameField();
 categoriesRegistration.arrowBack();
+categoriesRegistration.appendFooter();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

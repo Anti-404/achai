@@ -8,6 +8,7 @@ import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../../components/footer/index.js';
 
 class Discard extends Controller{
     constructor(){              
@@ -128,6 +129,13 @@ class Discard extends Controller{
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
+
 }   
 
 const discard = new Discard();
@@ -138,6 +146,7 @@ discard.handlerFilesZip();
 await discard.handlerShowAllFilesZip();
 discard.delete();
 discard.arrowBack();
+discard.appendFooter();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

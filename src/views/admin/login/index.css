@@ -28,7 +28,7 @@ input{
     cursor: pointer;
     color: #949494;
     font-size: var(--p-titles);
-    
+    margin-bottom: 10px;
 }
 
 
@@ -37,3 +37,12 @@ button#confirm-button{
     height: 40px; 
     
 }
+
+footer .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+footer .container span{  
+    text-decoration: underline;
+  }

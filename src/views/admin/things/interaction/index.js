@@ -5,6 +5,7 @@ import config from '../../../../../config.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../../components/footer/index.js';
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
@@ -158,9 +159,8 @@ class ThingsInteraction extends Controller{
             
         if(!(document.querySelector('#take-picture-button') == null)){
             document.querySelector('#take-picture-button').addEventListener('click', async () => {                
-                document.querySelector('div.background-modal').style.display = 'none';
-                // document.querySelector("#camera").style.display = "none";
-                document.querySelector('.background-modal .container').style.backgroundColor = 'rgba(0,0,0,0.3)';
+                document.querySelector('div.background-modal').style.display = 'none';                
+                document.querySelector('.background-modal .container').style.backgroundColor = 'rgba(0,0,0,0.5)';
 
                 let canvas = document.querySelector('canvas');            
                 
@@ -241,8 +241,6 @@ class ThingsInteraction extends Controller{
             document.querySelector('div.background-modal').style.display = 'block';
             document.querySelector('#img-register-modal').style.display = 'block';
             document.querySelector('.cam-modal').style.display = 'none';
-            //document.querySelector('#img-picture').removeAttribute('src');
-            //document.querySelector('#camera').style.display = 'block';
             
         });        
 
@@ -279,6 +277,14 @@ class ThingsInteraction extends Controller{
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
+    
+
 }
 
 const thingsInteraction = new ThingsInteraction();
@@ -294,6 +300,7 @@ thingsInteraction.inputFileImageUploadPreview();
 thingsInteraction.closeImageRegistrationModal();
 thingsInteraction.openImageRegistrationModal();
 thingsInteraction.arrowBack();
+thingsInteraction.appendFooter();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
@@ -301,4 +308,3 @@ HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
 HelperSandwichMenu.closeSandwichMenu();
-// HelperSandwichMenu.goToReturnedThings();

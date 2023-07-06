@@ -1,31 +1,27 @@
 @import url('../../../../../assets/css/globalStyle.css');
 
-/* header div.container div#container-top{
-    display: flex;        
-} */
-
 .background-modal{
     display: none;  
     z-index: 0;
 }
-/* 
-div.background-modal .container{          
-    flex-direction: row;
-    justify-content: center;     
+
+.header-footer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.close-modal img{
-    width:var(--sm-icon-width);
+#register-things-button{      
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    
+    
 }
 
-
-#register-things-button{
-    margin-top: 10px;
-    width: 25px;
-    height: 25px;    
-    text-align: center;
-    line-height: 14.5px;
-    align-self: self-end;
-} */
-
-
+#register-things-button span{
+   color: var(--background-color);
+    font-size: 40px;    
+}

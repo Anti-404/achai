@@ -6,6 +6,7 @@ import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
 
 import LayoutHeaderContent from '../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../components/footer/index.js';
 
 class Profile extends Controller{    
 
@@ -111,6 +112,13 @@ class Profile extends Controller{
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
+
 }
 
 const profile = new Profile();
@@ -120,6 +128,7 @@ profile.enableFileds();
 profile.setEmail();
 profile.exit();
 profile.arrowBack();
+profile.appendFooter();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

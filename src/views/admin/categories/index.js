@@ -6,6 +6,7 @@ import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
 
 import LayoutHeaderContent from '../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../components/footer/index.js';
 
 class Categories extends Controller{
     constructor(){        
@@ -215,6 +216,13 @@ class Categories extends Controller{
             
         });
     }
+
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
    
     
 }
@@ -227,6 +235,7 @@ await categories.showAll();
 categories.delete();
 categories.update();
 categories.arrowBack();
+categories.appendFooter();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

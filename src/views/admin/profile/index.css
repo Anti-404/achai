@@ -37,9 +37,7 @@
 .profile-content-body label{
 cursor: pointer;
 }
-.profile-content-body legend{
-    border-bottom: 1px solid #A8A8A8;
-}
+
 
 .profile-content-body span{
     display: flex;
@@ -51,6 +49,10 @@ cursor: pointer;
 #exit-button{  
    display: flex; 
    align-items: center;
+   
 }
 
-
+form img {    
+    border: none;
+    margin-bottom: 0px;    
+  }

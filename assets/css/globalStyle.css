@@ -312,22 +312,28 @@ input.search-item{
 }
 footer{
   margin-top: 20px;
+  background: #ECECEC;
+  padding: 15px;
 }
 
 footer .container{  
-  flex-direction: row;  
-  justify-content: space-between;
-}
-
-footer .container span{  
-  text-decoration: underline;
+  flex-direction: column-reverse;  
+  gap: 10px;
+  text-align: center;
 }
 
 footer .container img{  
   width: 80px;
+  margin-bottom: 5px;
 }
 
+footer .container a:nth-child(2){
+  text-decoration: underline;
+}
 
+footer .container div, a{
+  font-weight: 600;
+}
 /* sandwich-menu */
 
 .sandwich-menu{

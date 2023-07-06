@@ -1,6 +1,7 @@
 import ModelAdm from '../../../models/admin/index.js';
 import Controller from '../../../core/controller/index.js';
 import config from '../../../../config.js';
+import LayoutFooter from '../../components/footer/index.js';
 
 
     class Adm extends Controller{
@@ -53,9 +54,17 @@ import config from '../../../../config.js';
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config);        
+        
+    } 
+
 }
 
 const adms = new Adm();
 adms.checkUserLogged();
 adms.login();
 adms.recoverPassword();
+adms.appendFooter();

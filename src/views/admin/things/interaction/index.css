@@ -51,3 +51,7 @@ div#img-register-modal{
 .profile-button{
   margin-bottom: 5px;
 }
+
+button{
+  width: 140px;
+}

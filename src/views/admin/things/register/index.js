@@ -5,6 +5,7 @@ import config from '../../../../../config.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../../components/footer/index.js';
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 
@@ -210,6 +211,13 @@ class ThingRegistration extends Controller{
             }
         });
     }
+
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
 }
 
 const thingRegistration = new ThingRegistration();
@@ -222,6 +230,7 @@ thingRegistration.inputFileImageUploadPreview();
 thingRegistration.closeImageRegistrationModal();
 thingRegistration.openImageRegistrationModal();
 thingRegistration.arrowBack();
+thingRegistration.appendFooter();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

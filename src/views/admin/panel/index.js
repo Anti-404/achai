@@ -96,7 +96,7 @@ class Panel extends Controller{
     appendFooter(){
         let containerFooter = document.querySelector("footer .container");
         const layoutFooter  = new LayoutFooter();
-        layoutFooter.create(containerFooter, config);        
+        layoutFooter.create(containerFooter, config, true);        
         
     } 
     

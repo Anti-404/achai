@@ -9,6 +9,7 @@ import LayoutModalSearch from '../../../components/modalsearch/index.js';
 import LayoutSandwichMenu from '../../../components/sandwichmenu/index.js';
 import LayoutCateogoriesList from '../../../components/categories/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../../components/footer/index.js';
 
 import HelperCategories from '../../../helpers/categories/index.js';
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
@@ -63,8 +64,7 @@ class ThingsManager extends Controller{
         let categories = document.querySelector('.categories');
         
         const layoutCateogoriesList = new  LayoutCateogoriesList();
-        layoutCateogoriesList.create(categories);
-             
+        layoutCateogoriesList.create(categories);             
 
     } 
           
@@ -168,6 +168,25 @@ class ThingsManager extends Controller{
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
+    
+    appendRegisterThingsButton(){
+       let headerFooter = document.querySelector(".header-footer");
+       
+       let button = document.createElement('button'); 
+       button.setAttribute('id','register-things-button');       
+       
+       let span = document.createElement('span');  
+       span.textContent = '+';
+
+       button.appendChild(span)
+       headerFooter.appendChild(button);        
+    } 
 }
 
 const thingsManager = new ThingsManager();
@@ -177,6 +196,7 @@ thingsManager.createBreadcrumbs();
 thingsManager.createModalSearch();
 await thingsManager.categoriesList();
 await thingsManager.thingsList(); 
+thingsManager.appendRegisterThingsButton();
 thingsManager.goToRegisterthing();
 thingsManager.searchItem();
 thingsManager.openSearchModal();
@@ -185,6 +205,7 @@ thingsManager.handleChangeThingsByBategories();
 thingsManager.openSandwichMenu();
 thingsManager.closeSandwichMenu();
 thingsManager.arrowBack();
+thingsManager.appendFooter();
 
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
