@@ -117,11 +117,12 @@ footer{
     font-size: 35px;
 }
 
-.categories-panel ul .active{
-    background-color: rgb(210, 182, 182);
-    padding: 3px;
-    color: rgb(211, 211, 211);
-    font-weight: bold;
+.categories-panel ul .active a{
+    background-color: #0F8B8D;            
+}
+
+.categories-panel ul .active span{
+    color: #0F8B8D;            
 }
 
 .categories-list a{
