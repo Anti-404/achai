@@ -17,7 +17,7 @@ class Home {
         this.modelThings = new ModelThings();  
         this.layoutThing = new LayoutThing();                      
     }
-
+    /*
     async categoriesList(){         
         let ul = document.querySelector(".categories-list");
         const allCategories = await this.modelCategories.getAll();
@@ -34,6 +34,41 @@ class Home {
                     spanIcon.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/${allCategories.result[i].icon_name})`;
                     spanIcon.style.backgroundRepeat = `no-repeat`;
                     spanIcon.style.backgroundPosition = `center`;                    
+                    a.setAttribute("data-id",allCategories.result[i].id);                                                 
+                    span.textContent = allCategories.result[i].name;
+
+                    if(/Todas/.test(span.textContent)){
+                        a.setAttribute('id', 'all-categories');
+                    }  
+                    a.appendChild(spanIcon); 
+                    li.appendChild(a);
+                    li.appendChild(span); 
+                    ul.appendChild(li);
+                }
+
+                                 
+            }           
+            
+       }    
+             
+            
+    }
+    */
+    async categoriesList(){         
+        let ul = document.querySelector(".categories-list");
+        const allCategories = await this.modelCategories.getAll();
+        
+        if(!allCategories.error){                        
+            for (let i = 0; i < allCategories.result.length; ++i) {  
+                let li = document.createElement("li"); 
+                let a = document.createElement("a");                
+                let spanIcon = document.createElement("img");                
+                let span = document.createElement("span");                    
+                
+                if(allCategories.result[i].icon_name !== null){
+                    spanIcon.setAttribute('class','material-symbols-rounded');                    
+                    spanIcon.src = `${config.urlBase}/assets/imgs/icons/${allCategories.result[i].icon_name}`;
+                                      
                     a.setAttribute("data-id",allCategories.result[i].id);                                                 
                     span.textContent = allCategories.result[i].name;
 
