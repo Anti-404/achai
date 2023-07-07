@@ -73,7 +73,7 @@ class Things extends Controller{
         const values = [];
         
         values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
-        values.push( {name:'Gerenciar objetos', href:'#'}  );
+        values.push( {name:'Gerenciar objetos', href:this.retrieveURLCurrentPage()}  );
         
         layoutBreadcrumbs.create(ul, values);        
 

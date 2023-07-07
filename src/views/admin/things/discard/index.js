@@ -35,7 +35,7 @@ class Discard extends Controller{
             let formData = new FormData();
 
             imagesElements.forEach((img)=>{
-                if(img.src){
+                if(!img.src.includes('deletado')){
                     let src = '../'+((img.src).split(`${config.urlBase}/api/`)[1]);
                     imgsSrc.push(src);
                 }
@@ -64,20 +64,20 @@ class Discard extends Controller{
             
             let div = document.createElement("div");
             let a = document.createElement("a");
-            let button = document.createElement("button");
+            let buttonImg = document.createElement("img");
                                                                       
-            button.setAttribute("data-id",allFilesZip.result[i].id);                        
+            buttonImg.setAttribute("data-id",allFilesZip.result[i].id);                        
             a.setAttribute("href", `${config.urlBase}/${allFilesZip.result[i].file_address}` ); 
-            button.setAttribute("id", 'delete-button'); 
+            buttonImg.setAttribute("id", 'delete-button'); 
+            buttonImg.src=`${config.urlBase}/assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg`; 
 
             let fileName = (allFilesZip.result[i].file_address).split('/');            
             fileName = fileName[fileName.length-1];
             
             a.appendChild(document.createTextNode(fileName));
-            button.appendChild(document.createTextNode('Excluir'));
             
             div.appendChild(a);
-            div.appendChild(button);   
+            div.appendChild(buttonImg);   
             filesZipList.appendChild(div);             
             
         }
@@ -114,7 +114,7 @@ class Discard extends Controller{
         const values = [];
         
         values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
-        values.push( {name:'Descartes', href:'#'}  );
+        values.push( {name:'Descartes', href:this.retrieveURLCurrentPage()}  );
         
         layoutBreadcrumbs.create(ul, values);        
 

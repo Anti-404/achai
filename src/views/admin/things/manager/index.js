@@ -154,7 +154,7 @@ class ThingsManager extends Controller{
         
         values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
         values.push( {name:'Gerenciar Objetos', href: `${config.urlBase}/src/views/admin/things/`}  );       
-        values.push( {name:'Objetos filtrados', href:'#'}  );        
+        values.push( {name:'Objetos filtrados', href:this.retrieveURLCurrentPage()}  );        
 
         layoutBreadcrumbs.create(ul, values);
     }

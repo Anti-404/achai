@@ -3,17 +3,24 @@
 .background-modal{
     display: none;
 }
-
+table{
+    height: 100vh;
+}
 table.categories-list tbody tr{        
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px dashed #888;    
-
+    align-items: center;                
 }
 
+table.categories-list tbody td:nth-child(1){
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);  
+    width: 100%;
+    
+}
 table.categories-list tbody td{
-    border: 0px solid #6d6868;
-    padding: 5px;        
+    border: 0px solid #6d6868; 
+    padding: 5px;
+    border-radius:5px;
 }
 
 input[value]{
@@ -24,8 +31,12 @@ input[value]{
 
 #register-categories-button{
     margin-top: 15px;  
+    margin-bottom: 15px;  
     padding: 7px;     
+    align-self: self-start;
 }
+
+
 
 .success-message{
     background-color: rgb(75, 161, 75);

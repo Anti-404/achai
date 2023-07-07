@@ -9,10 +9,14 @@
 }
 
 #files-zip-button{
-    margin-top: 10px;
+    align-self: self-start;
     margin-bottom: 10px;
 }
 
-button{
-    padding: 7px 6px;    
+#files-zip-list div{
+    display: flex;
+}
+
+#delete-button{
+    cursor: pointer;
 }

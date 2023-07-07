@@ -172,7 +172,7 @@ class ShowThing extends Controller{
         const values = [];
         
         values.push( {name:'Tela inicial', href:config.urlBase}  );              
-        values.push( {name:'Objeto', href:'#'}  );        
+        values.push( {name:'Objeto', href:this.retrieveURLCurrentPage()}  );        
 
         layoutBreadcrumbs.create(ul, values);
     }   

@@ -25,28 +25,30 @@ class Categories extends Controller{
         if(!allCategories.error){  
                       
             for (let i = 0; i < allCategories.result.length; ++i) {
-                let tr = document.createElement("tr");                
-                let td1 = document.createElement("td"); 
-                let td2 = document.createElement("td");                 
-                let spanDelete = document.createElement('span');
-                let input = document.createElement('input');              
-
-                input.setAttribute('value',allCategories.result[i].name);               
-                input.setAttribute('class','category-name');               
-                td1.appendChild(input);
                 
                 if(allCategories.result[i].icon_name === null){
-                    spanDelete.textContent = 'delete';
+                    let tr = document.createElement("tr");                
+                    let td1 = document.createElement("td"); 
+                    let td2 = document.createElement("td");                 
+                    let spanDelete = document.createElement('img');
+                    let input = document.createElement('input');              
+
+                    input.setAttribute('value',allCategories.result[i].name);               
+                    input.setAttribute('class','category-name');               
+                    td1.appendChild(input);                    
+                    
+                    spanDelete.src = `${config.urlBase}/assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg`;
                     spanDelete.setAttribute('class','material-symbols-rounded delete-button');
-                    td2.appendChild(spanDelete);
-                }                
-                                
-                
-                tr.setAttribute("data-id",allCategories.result[i].id);                
-                tr.appendChild(td1);                
-                tr.appendChild(td2);                
-                
-                tableBody.appendChild(tr);
+                    td2.appendChild(spanDelete);                               
+                                    
+                    
+                    tr.setAttribute("data-id",allCategories.result[i].id);                
+                    tr.appendChild(td1);                
+                    tr.appendChild(td2);                
+                    
+                    tableBody.appendChild(tr);
+
+                } 
                 
             }
 
@@ -138,7 +140,7 @@ class Categories extends Controller{
         
         
     }
-
+    /*
     update(){        
         
         if(document.querySelector(".category-name") === null) return;
@@ -189,6 +191,46 @@ class Categories extends Controller{
         }       
 
     } 
+    */
+
+    /*
+    update(){       
+
+        if(document.querySelector(".category-name") === null) return;
+        let allCategories = document.querySelectorAll('.category-name');
+        
+        allCategories.forEach((category)=>{
+            category.addEventListener('click', (event)=>{                
+                const categoryId = event.target.parentNode.parentNode.getAttribute('data-id');
+                this.updateAssistant(categoryId, category.value); 
+                
+
+
+            });
+        });
+        
+    }
+    */
+
+    /*
+    handleButtonUpdate(){
+        document.querySelector('#update-button').addEventListener('click', (event)=>{  
+            const categories = []
+
+            let allCategories = document.querySelectorAll('.category-name');   
+            
+            allCategories.forEach((category)=>{
+                category.addEventListener('click', (event)=>{                
+                    const categoryId = event.target.parentNode.parentNode.getAttribute('data-id');
+
+    
+                });
+            });
+
+
+        });
+    }
+    */
     
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
@@ -201,7 +243,7 @@ class Categories extends Controller{
         const values = [];
         
         values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
-        values.push( {name:'Editar categorias', href:'#'}  );
+        values.push( {name:'Editar categorias', href:this.retrieveURLCurrentPage()}  );
         
         
         layoutBreadcrumbs.create(ul, values);        
@@ -233,7 +275,7 @@ categories.createBreadcrumbs();
 categories.goToCategoryRegister();
 await categories.showAll();
 categories.delete();
-categories.update();
+//categories.update();
 categories.arrowBack();
 categories.appendFooter();
 

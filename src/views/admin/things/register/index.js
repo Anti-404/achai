@@ -186,13 +186,13 @@ class ThingRegistration extends Controller{
         
         if(this.prevPage.includes('panel')){
             values.push( {name:'Tela inicial', href:this.prevPage}  );
-            values.push( {name:'Cadastrar Objetos', href:'#'}  );
+            values.push( {name:'Cadastrar Objetos', href:this.retrieveURLCurrentPage()}  );
 
         }else if(this.prevPage.includes('manager')){
             values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
             values.push( {name:'Gerenciar Objetos', href: `${config.urlBase}/src/views/admin/things/`}  );
             values.push( {name:'Objetos filtrados', href:`${config.urlBase}/src/views/admin/things/manager/?id=0`}  );
-            values.push( {name:'Cadastrar objetos', href:'#'}  );
+            values.push( {name:'Cadastrar objetos', href:this.retrieveURLCurrentPage()}  );
         }
         
 

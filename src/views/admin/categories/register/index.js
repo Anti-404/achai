@@ -68,7 +68,7 @@ class CategoriesRegistration extends Controller{
         
         values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
         values.push( {name:'Editar categorias', href:`${config.urlBase}/src/views/admin/categories/`}  );
-        values.push( {name:'Cadastrar categorias', href:'#'}  );
+        values.push( {name:'Cadastrar categorias', href:this.retrieveURLCurrentPage()}  );
         
         layoutBreadcrumbs.create(ul, values);        
 

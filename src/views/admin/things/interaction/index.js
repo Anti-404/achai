@@ -242,7 +242,7 @@ class ThingsInteraction extends Controller{
             document.querySelector('#img-register-modal').style.display = 'block';
             document.querySelector('.cam-modal').style.display = 'none';
             
-        });        
+        });       
 
         
 
@@ -262,7 +262,7 @@ class ThingsInteraction extends Controller{
         values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
         values.push( {name:'Gerenciar Objetos', href: `${config.urlBase}/src/views/admin/things/`}  );
         values.push( {name:'Objetos filtrados', href:`${config.urlBase}/src/views/admin/things/manager/?id=0`}  );
-        values.push( {name:'Editar objetos', href:'#'}  );       
+        values.push( {name:'Editar objetos', href:this.retrieveURLCurrentPage()}  );       
         
 
         layoutBreadcrumbs.create(ul, values);
