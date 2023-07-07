@@ -54,6 +54,7 @@ main div.container-header div.filter-things{
     background-color: #7E7E7E;
     padding: 3px;     
     border-radius: 15px;  
+    align-items: center;
 }
 .filter-things span{
     padding: 0px 8px; 
