@@ -75,10 +75,6 @@ main div.container-header div.filter-things{
     border-radius: 15px;  
     color: var(--background-color);    
 }
-
-footer{
-    min-height: 10vh;        
-}
    
 .categories-panel{    
     background-color: var(--background-color); 
