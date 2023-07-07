@@ -5,6 +5,7 @@ import LayoutThing from './src/views/components/thing/index.js';
 import LayoutHeaderContent from './src/views/components/headercontent/index.js';
 import LayoutCateogoriesList from './src/views/components/categories/index.js';
 import LayoutBreadcrumbs from './src/views/components/breadcrumbs/index.js';
+import LayoutFooter from "./src/views/components/footer/index.js";
 
 import HelperSearch from './src/views/helpers/search/index.js';
 import HelperCategories from './src/views/helpers/categories/index.js';
@@ -17,43 +18,7 @@ class Home {
         this.modelThings = new ModelThings();  
         this.layoutThing = new LayoutThing();                      
     }
-    /*
-    async categoriesList(){         
-        let ul = document.querySelector(".categories-list");
-        const allCategories = await this.modelCategories.getAll();
-        
-        if(!allCategories.error){                        
-            for (let i = 0; i < allCategories.result.length; ++i) {  
-                let li = document.createElement("li"); 
-                let a = document.createElement("a");                
-                let spanIcon = document.createElement("span");                
-                let span = document.createElement("span");                    
-                
-                if(allCategories.result[i].icon_name !== null){
-                    spanIcon.setAttribute('class','material-symbols-rounded');                    
-                    spanIcon.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/${allCategories.result[i].icon_name})`;
-                    spanIcon.style.backgroundRepeat = `no-repeat`;
-                    spanIcon.style.backgroundPosition = `center`;                    
-                    a.setAttribute("data-id",allCategories.result[i].id);                                                 
-                    span.textContent = allCategories.result[i].name;
-
-                    if(/Todas/.test(span.textContent)){
-                        a.setAttribute('id', 'all-categories');
-                    }  
-                    a.appendChild(spanIcon); 
-                    li.appendChild(a);
-                    li.appendChild(span); 
-                    ul.appendChild(li);
-                }
-
-                                 
-            }           
-            
-       }    
-             
-            
-    }
-    */
+    
     async categoriesList(){         
         let ul = document.querySelector(".categories-list");
         const allCategories = await this.modelCategories.getAll();
@@ -206,6 +171,13 @@ class Home {
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
+
 }
 
 const home = new Home();
@@ -219,6 +191,7 @@ await home.thingsList();
 home.filterThings();
 home.handleButtonAllCategories();
 home.handleButtonInfo();
+home.appendFooter();
 
 HelperSearch.createModalSearch();
 HelperSearch.searchItem();
