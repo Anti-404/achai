@@ -59,7 +59,7 @@ class ShowReservedThing extends Controller{
         const values = [];
         
         values.push( {name:'Tela inicial', href:config.urlBase}  );              
-        values.push( {name:'Objeto reservado', href:'#'}  );        
+        values.push( {name:'Objeto reservado',  href:this.retrieveURLCurrentPage()}  );        
 
         layoutBreadcrumbs.create(ul, values);
     } 
