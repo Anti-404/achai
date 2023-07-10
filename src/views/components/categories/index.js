@@ -23,7 +23,7 @@ class LayoutCateogoriesList{
         select.appendChild(option);
 
         for (let i = 0; i < allCategories.result.length; ++i) {   
-            if(allCategories.result[i].name !== 'Todas') {                
+            if(allCategories.result[i].name !== 'Todas' && allCategories.result[i].name !== 'Ver todos') {                
                 let option = document.createElement("option");                                                              
                 option.setAttribute("value",allCategories.result[i].id);
                 option.appendChild(document.createTextNode((allCategories.result[i].name)));                                 

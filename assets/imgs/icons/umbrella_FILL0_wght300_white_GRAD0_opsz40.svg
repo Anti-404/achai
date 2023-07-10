@@ -4,7 +4,7 @@
    viewBox="0 -960 960 960"
    width="40"
    version="1.1"
-   id="svg192"
+   id="svg4306"
    sodipodi:docname="umbrella_FILL0_wght300_GRAD0_opsz40.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -12,9 +12,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs196" />
+     id="defs4310" />
   <sodipodi:namedview
-     id="namedview194"
+     id="namedview4308"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
@@ -23,17 +23,17 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="18.55"
-     inkscape:cx="19.514825"
+     inkscape:zoom="5.9"
+     inkscape:cx="3.559322"
      inkscape:cy="20"
      inkscape:window-width="1680"
      inkscape:window-height="987"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg192" />
+     inkscape:current-layer="svg4306" />
   <path
      d="M480-90q-7.82 0-14.282-4.154-6.461-4.154-9.64-12.539L264.155-668.486q-2.949-8.744 3.5-16.051 6.449-7.308 15.859-5.103l95.819 22.692 75.54-51.77v-110.154q0-33.461 24.833-57.294T540-909.999q34.487 0 56.346 19.025 21.859 19.026 25.551 50.411 2.205 13.538-5.154 22.179-7.359 8.64-20.025 8.64-9.436 0-15.564-5-6.128-4.999-7.307-14.486-1.487-16.155-10.128-24.835-8.642-8.679-23.719-8.679-14.129 0-24.501 10.269-10.372 10.27-10.372 23.603v110.154l75.54 51.77 95.819-22.692q9.41-2.205 15.667 5.103 6.256 7.307 3.308 16.051L503.922-107.693q-3.179 9.052-9.64 13.372-6.462 4.32-14.282 4.32Zm25.127-174.431 122.079-362.57-58.026 13.949-64.053-44.693v393.314Zm-50.254 0v-393.314l-64.053 45.693-59.411-16 123.464 363.621Z"
-     id="path190"
-     style="fill:#7c18c9;fill-opacity:1" />
+     id="path4304"
+     style="fill:#fffdf7;fill-opacity:1" />
 </svg>

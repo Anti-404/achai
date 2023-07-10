@@ -23,7 +23,7 @@ class ShowReservedThing extends Controller{
         if(!thing.erro && !category.erro){            
             document.querySelector("#data-id").value = this.identifier;
 
-            document.querySelector("#code").textContent = `N°:${this.identifier}`;   
+            document.querySelector("#code").textContent = `N°: ${this.identifier}`;   
             
             document.querySelector("form img").setAttribute('src', `${config.urlBase}/${thing.result[0].image_address}`);            
 
@@ -59,7 +59,7 @@ class ShowReservedThing extends Controller{
         const values = [];
         
         values.push( {name:'Tela inicial', href:config.urlBase}  );              
-        values.push( {name:'Objeto reservado', href:'#'}  );        
+        values.push( {name:'Objeto reservado',  href:this.retrieveURLCurrentPage()}  );        
 
         layoutBreadcrumbs.create(ul, values);
     } 

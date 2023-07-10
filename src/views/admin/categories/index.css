@@ -3,30 +3,50 @@
 .background-modal{
     display: none;
 }
-table{
+.categories-list{
     height: 100vh;
 }
-table.categories-list tbody tr{        
+.categories-list .tbody .tr{        
     display: flex;
     justify-content: space-between;
-    align-items: center;                
+    align-items: center;  
+    gap: 5px;           
 }
 
-table.categories-list tbody td:nth-child(1){
+.tbody{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.categories-list .tbody .td:nth-child(1){
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);  
     width: 100%;
     
 }
-table.categories-list tbody td{
+.categories-list .tbody .td{
     border: 0px solid #6d6868; 
     padding: 5px;
-    border-radius:5px;
+    border-radius:10px;
+    display: flex;
+    gap: 5px;
+    
 }
 
 input[value]{
     border: none;
     outline: none;
     
+}
+
+.category-name{
+    height: 30px;
+    width: 100%;
+    border: none;
+}
+.categories-list .tbody .td img:nth-child(1){
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 10px
 }
 
 #register-categories-button{

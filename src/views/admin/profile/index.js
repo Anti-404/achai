@@ -23,8 +23,8 @@ class Profile extends Controller{
         let email = document.querySelector("#email").value;
         let password = document.querySelector("#password").value;        
         
-        if(document.querySelector("#email").getAttribute('disabled') === null
-            || document.querySelector("#password").getAttribute('disabled') === null
+        if(document.querySelector("#email").getAttribute('clicked') === 'yes'
+            || document.querySelector("#password").getAttribute('clicked') === 'yes'
         ){
            
             if(email === '')  {   
@@ -47,14 +47,16 @@ class Profile extends Controller{
     }    
     
     enableFileds(){
-        document.querySelector(".span-email").addEventListener('click',function(e){  
+        document.querySelector("#email").addEventListener('click',function(e){  
                     
-            document.querySelector("#email").removeAttribute('disabled');
+            document.querySelector("#email").setAttribute('clicked', 'yes');
+            
         });
 
-        document.querySelector(".span-password").addEventListener('click', function(e){
+        document.querySelector("#password").addEventListener('click', function(e){
             
-            document.querySelector("#password").removeAttribute('disabled');
+            document.querySelector("#password").setAttribute('clicked', 'yes');
+            
         });
     }
 

@@ -30,7 +30,7 @@ class ThingsManager extends Controller{
 
         let allThings = {};
         
-        if (this.categoriesIdUrl !== undefined && this.categoriesIdUrl !== '0') {
+        if (this.categoriesIdUrl !== undefined && this.categoriesIdUrl !== '105') {
             allThings = await this.modelThings.getThingsByCategoryId(this.categoriesIdUrl);            
         }else{
             allThings = await this.modelThings.getAll();            
@@ -181,10 +181,11 @@ class ThingsManager extends Controller{
        let button = document.createElement('button'); 
        button.setAttribute('id','register-things-button');       
        
-       let span = document.createElement('span');  
-       span.textContent = '+';
+       let img = document.createElement('img');  
+       img.src = `${config.urlBase}/assets/imgs/icons/add_FILL0_wght300_GRAD0_opsz40.svg`
+       img.alt = 'Cadastrar objeto'
 
-       button.appendChild(span)
+       button.appendChild(img)
        headerFooter.appendChild(button);        
     } 
 }

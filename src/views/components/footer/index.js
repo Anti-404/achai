@@ -8,6 +8,7 @@ class LayoutFooter{
         ufcLink.href = 'https://www.ufc.br/';
         let ufcImg = document.createElement('img');
         ufcImg.src = `${config.urlBase}/assets/imgs/logo-ufc.png`;
+        ufcImg.alt = `Link para o site da UFC`;
 
         if(panel){
             let aboutUs = document.createElement('a');

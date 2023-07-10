@@ -1,25 +1,53 @@
 @import url("../../../../../assets/css/globalStyle.css");
 body{
   height: 100%;
+ 
 }
 
 .background-modal{
   display: none;
+ 
 }
+
+/* div.background-modal div.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;  
+  
+} */
+
 .cam-modal{
   display: flex;
   flex-direction: column; 
+  gap: 20px;
+  position: relative;
+  
+}
+.cam-modal div{
+  position: absolute;
+  z-index: 2;
+  bottom: 0px;
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  background-color:rgba(0,0,0,0.5);
+  
+
 }
 
-.cam-modal video{
-  width: 320px;
-  height: 320px;
+.cam-modal video{  
+  height: 120vh;    
+}
+
+div.background-modal{
+  /* padding: 0px; */
 }
 
 div.background-modal .container{
   flex-direction: row;
   justify-content: center;
-  align-items: center; 
+  
 }
 div.background-modal .sandwich-menu-body{
   display: none;
@@ -29,6 +57,72 @@ div.background-modal .sandwich-menu-body{
 div#img-register-modal{    
     background-color:var(--background-color);
     width: 100%;   
-    min-height: 100px; 
+    min-height: 100px;    
+    position: fixed;
+    bottom: 20px;    
 }
+
+
+#img-register-modal{
+  padding: 10px 10px 0px 10px;  
+  border-radius: 10px;  
+  flex-direction: column;  
+  
+} 
+#img-register-modal div:nth-child(1){
+  padding: 0px;
+}
+
+#img-register-modal div{
+  border-bottom: 1px solid var(--gray-color);  
+  padding: 10px 10px 10px 0px;
+
+}
+
+#open-picture-modal {  
+  cursor: pointer;  
+  display: flex;  
+  padding: 8px;
+  align-items: center;
+  gap: 5px;
+}
+
+
+#img-register-modal div:nth-child(3){
+  border: none;
+}
+
+#img-register-modal label { 
+  display: flex;  
+  padding: 10px 10px 10px 0px;
+  align-items: center;
+  margin-bottom: 0px;  
+  gap: 5px;
+  
+}
+
+#img-register-modal label span{
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("../../../../../assets/imgs/icons/filter_FILL0_wght300_GRAD0_opsz24.svg"); 
+  background-repeat: no-repeat; 
+  background-position: center center;  
+  background-size: 100%;
+ 
+}
+
+@media (min-width: 500px)
+{
+  .cam-modal video{  
+    height: 54vh;    
+  }
+
+  .cam-modal div {   
+    height: 46vh;
+  }
+  
+}
+
+
 

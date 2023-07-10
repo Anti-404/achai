@@ -58,12 +58,6 @@ main{
     
 }
 
-.profile-button{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    
-}
-
 section h1{
     margin-bottom: 5px;
 }
@@ -71,3 +65,14 @@ section h1{
 .categories{
     margin-bottom: 10px;
 }
+
+/*      responsiveness        */
+
+@media (min-width: 500px)
+{
+    .panel-buttons ul li .material-symbols-rounded{
+        width: 80px;
+        height: 80px;
+    }
+}
+

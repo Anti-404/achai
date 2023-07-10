@@ -8,15 +8,18 @@
     cursor: auto;
 }
 
-#files-zip-button{
-    align-self: self-start;
-    margin-bottom: 10px;
+.files-zip-button{
+    align-self: self-start;   
 }
 
-#files-zip-list div{
+.files-zip-list div{
     display: flex;
 }
 
 #delete-button{
     cursor: pointer;
+}
+
+.things-list{
+    margin-top: 10px;
 }

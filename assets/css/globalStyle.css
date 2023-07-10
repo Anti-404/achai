@@ -43,12 +43,6 @@ body{
 main{
   min-height: 100vh;
 }
-span.search-button, span.sandwich-menu-button, span.info-button{
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-}
-
 
 
 .container {
@@ -99,9 +93,13 @@ form img{
 
 form input, form textarea, form select{
   border-radius: 10px;
-  padding: 10px 5px;      
-  border: 1px var(--gray-color) solid;
+  padding: 10px 10px;
+  background-color: var(--background-color);
+  border:none;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
 }
+
 
 form span.buttons-container{
   margin-top: 8px;
@@ -120,6 +118,7 @@ form  #code{
   font-weight: 600;
   font-size: 12px;
   color:var(--gray-color);
+  font-family: 'Poppins-SemiBold';  
 }
 
 form#first-form div {
@@ -138,10 +137,12 @@ input[type='search']{
      margin-bottom: 0px;  
 }
 
-label{
-  margin-bottom: 5px;
-  font-family: var(--font-title);  
-  color: var(--font-color);  
+
+div label{
+  margin-bottom: 5px;  
+  /* color: var(--font-color);
+  font-weight: 600;  */
+  font-family: var(--font-title);
 }
 
 button{
@@ -159,7 +160,7 @@ button{
 }
 
 button[disabled]{
-  background-color:#698788 ;
+  background-color:#0f8b8d7c;
 }
 
 
@@ -175,7 +176,7 @@ div.background-modal{
   height: 100%;
   margin-left: -20px;
   margin-top: -20px;
-  padding: 15px;
+  padding: 20px;
 }
 
 div.background-modal div.container {
@@ -192,17 +193,17 @@ div.background-modal div.container {
   flex-direction: column;  
 }
 
-.things-list figure{
+.things-list .figure{
   height: var(--object-box-height);  
   display: flex;
   cursor: pointer;
 
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);   
   border-radius: 10px;  
-  margin-bottom: 10px;
+  margin-bottom: 10px;  
 }
 
-.things-list figure div{
+.things-list .figure div{
   width: var( --object-img-width);    
   margin: 8px 0px 8px 8px;
   overflow: hidden auto;  
@@ -210,47 +211,48 @@ div.background-modal div.container {
   overflow-y: hidden;
 }
 
-.things-list figure div img{
+.things-list .figure div img{
   width: 100%;
   border-radius: 5px;  
 }
 
-.things-list figure figcaption{
+.things-list .figure .figcaption{
   margin: 16px;
   display: flex;
   flex-direction: column;  
+  width: 61%;
   
 }
-.things-list figure figcaption .thing-header{
+.things-list .figure .figcaption .thing-header{
   margin-bottom: 16px;
 }
-.things-list figure figcaption .thing-header span:nth-child(1) {
+.things-list .figure .figcaption .thing-header span:nth-child(1) {
   font-family: 'Poppins-SemiBold';  
   font-size: var(--titles); 
   color: var(--font-color); 
 }
 
-.things-list figure figcaption .thing-header span:nth-child(2) {
+.things-list .figure .figcaption .thing-header span:nth-child(2) {
   font-family: 'Poppins-SemiBold';  
   font-size: var(--titles);  
   color: var(--font-color);
 }
 
-.things-list figure figcaption span:nth-child(2) { 
+.things-list .figure .figcaption span:nth-child(2) { 
   font-size: var( --p-titles);  
   color: rgb(55, 55, 55);  
   
 }
 
-.things-list figure figcaption span:nth-child(3) { 
+.things-list .figure .figcaption span:nth-child(3) { 
   font-size: var( --p-titles);          
   color: #A8A8A8;       
-  width: 180px;      
+      
   scrollbar-width: none;
  
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: hidden;  
 }
 
 
@@ -278,9 +280,11 @@ canvas{
   background-image: url("../imgs/icons/add_a_photo_FILL0_wght300_GRAD0_opsz48.svg");
   background-repeat: no-repeat;
   background-position-x: center; 
-  background-position-y: 41%; 
+  background-position-y: center; 
   text-align: center;
   line-height: 355px;
+  background-size: 115px;  
+  font-size: 0px;
   
 }
 
@@ -311,9 +315,9 @@ input#image-address{
   gap: 5px;
   
 }
-.search-bar-modal .search-button{
+/* .search-bar-modal .search-button{
   padding-right:30px;
-}
+} */
 
 .search-button:hover{
   cursor: pointer;
@@ -330,6 +334,9 @@ footer{
   margin-top: 20px;
   background: #ECECEC;
   padding: 15px;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: -20px;
 }
 
 footer .container{  
@@ -357,23 +364,22 @@ footer .container div, a{
 }
 
 .sandwich-menu-body{   
-  padding: 10px;  
+  padding: 10px 10px 0px 10px;  
   background-color: var(--background-color);  
   align-self: center;
   border-radius: 15px;
   width: 100%;  
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: column;  
 
 } 
 
-.sandwich-menu-body .close-modal span{
-  display: inline-block;
+.sandwich-menu-body img[alt='Fechar menu']{
+  
   width: 24px;
   height: 24px;
-  background-image: url("../../assets/imgs/icons/close_FILL0_wght300_GRAD0_opsz24.svg"); 
-  background-repeat: no-repeat; 
-  background-position: center center;
+}
+.modal-task ul li{
+  gap: 5px;
 }
 
 .modal-task .discard-things-button span:nth-child(1){
@@ -383,6 +389,7 @@ footer .container div, a{
   background-image: url("../../assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg"); 
   background-repeat: no-repeat; 
   background-position: center center;
+  
 }
 
 .modal-task .category-manager-button span:nth-child(1){
@@ -397,34 +404,68 @@ footer .container div, a{
 
 .sandwich-menu-body .body-modal{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
   border-radius: 10px;
-  padding: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 
 }
 
-.sandwich-menu-body .modal-task{
-  /* margin-top: 10px; */
+.sandwich-menu-body .modal-task{  
   margin-bottom: 7px;
 
 }
 .sandwich-menu-body .modal-task ul{
   display: flex;
-  flex-direction: column;
-  /* gap: 15px; */
+  flex-direction: column; 
 
 }
+
 .sandwich-menu-body .modal-task ul li{
   cursor: pointer;
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid #A8A8A8;
-  padding: 10px;
+  align-items: center;  
+}
 
+
+.sandwich-menu-body .modal-task ul li:not(.modal-task ul li:last-child){  
+  border-bottom: 1px solid #A8A8A8;
+  border-top: 1px solid #A8A8A8;
+  padding: 10px 0px 10px 0px;  
+  
+}
+
+.sandwich-menu-body .modal-task ul li:last-child{
+  padding: 10px 0px 2px 0px;
 }
 .sandwich-menu-body .body-modal img{
-  width: var(--md-icon-width);
+  width: 50px;
+  
+}
+
+.sandwich-menu-body .body-modal h3{
+  font-weight: 500;
+  
+}
+
+.sandwich-menu-body .body-modal h4{
+  color: var(--gray-color);
+  
+}
+
+.sandwich-menu-body .body-modal div:nth-child(1){
+  display: flex; 
+  gap: 10px;
+  
+}
+
+
+.sandwich-menu-body .body-modal div:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  width: 100%;  
+  justify-content: center;
   
 }
 
@@ -442,73 +483,15 @@ footer .container div, a{
   margin-bottom: 5px;
   width: 140px;
   height: 30px;
+  align-self: center;
+  margin-top: 5px;
+  font-size: 14px;
 }
 
-
-/* modal register*/
-
-#img-register-modal{
-  padding: 10px;  
-  border-radius: 10px;  
-  flex-direction: column;  
-  
-} 
-
-#img-register-modal div{
-  border-bottom: 1px solid #A8A8A8;
-}
-
-
-#img-register-modal div:nth-child(3){
-  border: none;
-}
-
-#exit-modal-button{
-  display: inline-block;
+#exit-modal-button{  
   width: 24px;
-  height: 24px;
-  background-image: url("../../assets/imgs/icons/close_FILL0_wght300_GRAD0_opsz24.svg"); 
-  background-repeat: no-repeat; 
-  background-position: center center;
+  height: 24px;  
   cursor: pointer; 
-    
-}
-
-#open-picture-modal {  
-  cursor: pointer;  
-  display: flex;  
-  padding: 8px;
-  align-items: center;
-  
-}
-
-#img-register-modal #open-picture-modal span{
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-image: url("../../assets/imgs/icons/photo_camera_FILL0_wght300_GRAD0_opsz24.svg"); 
-  background-repeat: no-repeat; 
-  background-position: center center;  
-  background-size: 100%;
-    
-}
-
-
-#img-register-modal label { 
-  display: flex;  
-  padding: 8px 8px 0px 8px;
-  align-items: center;
-  
-}
-
-#img-register-modal label span{
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-image: url("../../assets/imgs/icons/filter_FILL0_wght300_GRAD0_opsz24.svg"); 
-  background-repeat: no-repeat; 
-  background-position: center center;  
-  background-size: 100%;
     
 }
 
@@ -518,9 +501,11 @@ footer .container div, a{
 .header-top{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 5px;  
 }
-
+.header-top-header img[alt='Botão volta']{
+padding-right: 10px;
+}
 
 .header-top-body{
   display: flex;
@@ -573,6 +558,9 @@ select#categories-list{
   border-radius: 10px;  
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5); 
   border: none;
+  background-color: var(--background-color);
+  height: 45px;
+  
 }
 
 /*      responsiveness        */

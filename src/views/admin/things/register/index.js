@@ -28,12 +28,13 @@ class ThingRegistration extends Controller{
 
         if(!allCategories.error){                        
             for (let i = 0; i < allCategories.result.length; ++i) { 
-                if(allCategories.result[i].name !== 'Todas') {
+                if(allCategories.result[i].name !== 'Todas' && allCategories.result[i].name !== 'Ver todos') {
                     let option = document.createElement("option"); 
                     option.setAttribute("value",allCategories.result[i].id);              
                     option.appendChild(document.createTextNode(allCategories.result[i].name));
                     this.select.appendChild(option);                 
                 }
+                
             }           
             
         }    
@@ -66,12 +67,13 @@ class ThingRegistration extends Controller{
         let video = document.querySelector('.cam-modal video');
         
         navigator.mediaDevices.getUserMedia({video:{ 
-            /*
+            
             facingMode: {
-                exact: 'environment'
+                //exact: 'environment'
               }
-              */
+              
             }
+            
         })
         .then(stream => {
             video.srcObject = stream;
@@ -84,8 +86,8 @@ class ThingRegistration extends Controller{
             
         if(!(document.querySelector('#take-picture-button') == null)){
             document.querySelector('#take-picture-button').addEventListener('click', async () => {                
-                document.querySelector('div.background-modal').style.display = 'none';
-                document.querySelector('.background-modal .container').style.backgroundColor = 'rgba(0,0,0,0.2)';
+                document.querySelector('div.background-modal').style.display = 'none';   
+                document.querySelector('body').style.overflow = 'auto';             
 
                 let canvas = document.querySelector('canvas');            
                 
@@ -157,8 +159,8 @@ class ThingRegistration extends Controller{
             document.querySelector('div.background-modal').style.display = 'block';          
             document.querySelector('.cam-modal').style.display = 'flex';
             document.querySelector('#img-register-modal').style.display = 'none';
-            document.querySelector('.sandwich-menu-body').style.display = 'none;'
-            document.querySelector('.background-modal .container').style.backgroundColor = '#1c1b1f';
+            document.querySelector('.sandwich-menu-body').style.display = 'none;'            
+            document.querySelector('body').style.overflow = 'hidden';
             
         });   
 
@@ -218,6 +220,13 @@ class ThingRegistration extends Controller{
         layoutFooter.create(containerFooter, config, true);        
         
     } 
+
+    sizeImgRegisterModal(){        
+        let sizeImgRegisterModal = document.querySelector('#img-register-modal');
+        
+        sizeImgRegisterModal.style.width = `${(window.innerWidth -40)}px`;
+        
+    }
 }
 
 const thingRegistration = new ThingRegistration();
@@ -231,6 +240,7 @@ thingRegistration.closeImageRegistrationModal();
 thingRegistration.openImageRegistrationModal();
 thingRegistration.arrowBack();
 thingRegistration.appendFooter();
+thingRegistration.sizeImgRegisterModal();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

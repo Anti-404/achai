@@ -11,25 +11,26 @@
     <div class="background-modal">        
         <div class="container">
             <div id="img-register-modal">
-                <div>
-                    <p id="exit-modal-button"></p>
-                </div>
+                
+                <img id="exit-modal-button" src="../../../../../assets/imgs/icons/close_FILL0_wght300_GRAD0_opsz24.svg" alt="Fechar">
 
                 <div id="open-picture-modal">                    
-                    <span></span>
-                    <p>Camera</p>
+                    <img  src="../../../../../assets/imgs/icons/photo_camera_FILL0_wght300_GRAD0_opsz24.svg" alt="Tirar foto">                    
+                    <p>Tirar foto</p>
                 </div>
 
                 <label for="image-address">
-                    <span></span>                   
-                    <p id="choose-picture-button">Escolher existente</p>            
+                    <img  src="../../../../../assets/imgs/icons/filter_FILL0_wght300_GRAD0_opsz24.svg" alt="Escolher imagem existente">                                       
+                    <p id="choose-picture-button">Escolher existente</p>                           
                 </label>          
                 
             </div>
 
             <div class="cam-modal">                
                 <video autoplay></video>
-                <button id="take-picture-button"><span></span></span>Tirar Foto</button>
+                <div>
+                    <button id="take-picture-button"><span></span></span>Tirar Foto</button>
+                </div>
             </div>
 
         </div>        
@@ -50,14 +51,14 @@
                 <canvas></canvas>                       
                 <input type="file" name="image_address" id="image-address">                
 
-                <label for="">Categorias</label>
+                <label for="">Categorias*</label>
                 <select name="category_id" id="category-id"></select> 
                 
                 <label for="">Descrição</label>
                 <textarea name="description" cols="30" rows="10" id="description"></textarea>               
                 
-                <label for="">Informar local</label>
-                <input type="text" name="local" id="local">
+                <label for="">Informar local*</label>
+                <input type="text" name="local" id="local" required>
                 <button id="save-button">Cadastrar</button>
             </form>            
         </div>

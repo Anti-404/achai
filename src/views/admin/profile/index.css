@@ -30,12 +30,27 @@
 
 .profile-content-body{
     display: flex;
-    flex-direction: column;
-    gap: 13px;
+    flex-direction: column;    
 }
 
-.profile-content-body label{
+.span-email, .span-password{
+    font-family:var(--font-title);    
+}
+
+.span-email, .span-password {
 cursor: pointer;
+}
+
+div label {    
+    font-family:'Quicksand';
+}
+
+.span-password label{
+    font-family:var(--font-title);
+}
+
+.span-password input{
+    margin: 0px;
 }
 
 
@@ -49,10 +64,15 @@ cursor: pointer;
 #exit-button{  
    display: flex; 
    align-items: center;
+   gap: 5px;
    
 }
 
 form img {    
     border: none;
     margin-bottom: 0px;    
+  }
+
+  footer .container div, a {
+    font-weight: normal;
   }

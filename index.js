@@ -5,6 +5,7 @@ import LayoutThing from './src/views/components/thing/index.js';
 import LayoutHeaderContent from './src/views/components/headercontent/index.js';
 import LayoutCateogoriesList from './src/views/components/categories/index.js';
 import LayoutBreadcrumbs from './src/views/components/breadcrumbs/index.js';
+import LayoutFooter from "./src/views/components/footer/index.js";
 
 import HelperSearch from './src/views/helpers/search/index.js';
 import HelperCategories from './src/views/helpers/categories/index.js';
@@ -17,7 +18,7 @@ class Home {
         this.modelThings = new ModelThings();  
         this.layoutThing = new LayoutThing();                      
     }
-
+    
     async categoriesList(){         
         let ul = document.querySelector(".categories-list");
         const allCategories = await this.modelCategories.getAll();
@@ -26,15 +27,15 @@ class Home {
             for (let i = 0; i < allCategories.result.length; ++i) {  
                 let li = document.createElement("li"); 
                 let a = document.createElement("a");                
-                let spanIcon = document.createElement("span");                
+                let spanIcon = document.createElement("img");                
                 let span = document.createElement("span");                    
                 
-                if(allCategories.result[i].icon_name !== null){
+                if(allCategories.result[i].icon_name !== 'none' && allCategories.result[i].icon_name !== null){
                     spanIcon.setAttribute('class','material-symbols-rounded');                    
-                    spanIcon.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/${allCategories.result[i].icon_name})`;
-                    spanIcon.style.backgroundRepeat = `no-repeat`;
-                    spanIcon.style.backgroundPosition = `center`;                    
+                    spanIcon.src = `${config.urlBase}/assets/imgs/icons/${allCategories.result[i].icon_name}`;
+                                      
                     a.setAttribute("data-id",allCategories.result[i].id);                                                 
+                    a.setAttribute("data-name",allCategories.result[i].name);                                                 
                     span.textContent = allCategories.result[i].name;
 
                     if(/Todas/.test(span.textContent)){
@@ -115,6 +116,21 @@ class Home {
         
         thingsFilters.forEach((filter) => {
             filter.addEventListener('click', ()=>{
+
+                document.querySelectorAll('.categories-list a img').forEach((img)=>{
+                           
+                    if(img.src.includes('headphones')){
+                        img.src = `${config.urlBase}/assets/imgs/icons/headphones_FILL0_wght300_GRAD0_opsz40.svg`
+                    }
+                    if(img.src.includes('water_bottle')){
+                        img.src = `${config.urlBase}/assets/imgs/icons/water_bottle_FILL0_wght300_GRAD0_opsz40.svg`
+                    }
+                    
+                    if(img.src.includes('umbrella')){
+                        img.src = `${config.urlBase}/assets/imgs/icons/umbrella_FILL0_wght300_GRAD0_opsz40.svg`
+                    }     
+                })
+
                 let active =  document.querySelector('.active');                
                 if(active !== null) document.querySelector('.active').removeAttribute('class')               
                 
@@ -171,6 +187,13 @@ class Home {
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
+
 }
 
 const home = new Home();
@@ -184,6 +207,7 @@ await home.thingsList();
 home.filterThings();
 home.handleButtonAllCategories();
 home.handleButtonInfo();
+home.appendFooter();
 
 HelperSearch.createModalSearch();
 HelperSearch.searchItem();

@@ -55,6 +55,24 @@ class ShowThing extends Controller{
            
            document.querySelector('#send-email-modal').style.display = 'block';
            document.querySelector('#first-form').style.display = 'none';
+           document.querySelectorAll('.breadcrumb li').forEach((li)=>{
+           document.querySelector('.breadcrumb').removeChild(li); 
+           window.scrollTo(0,0);
+
+        });
+           
+           const layoutBreadcrumbs = new LayoutBreadcrumbs();
+            let ul = document.querySelector('.container .header-body ul.breadcrumb');
+            const values = [];
+
+            values.push( {name:'Tela inicial', href:config.urlBase}  );              
+            values.push( {name:'Objeto', href:this.retrieveURLCurrentPage()}  );                    
+            values.push( {name:'Reservar objeto', href:'none'}  );                    
+
+
+            layoutBreadcrumbs.create(ul, values);
+           
+
 
         });
     } 
@@ -74,12 +92,21 @@ class ShowThing extends Controller{
                      
            formData.set('reserved_status',1);            
            
-           let formEmail = document.querySelector("#send-email-modal form");                      
-           if(!formEmail.to.value){
-             alert('Insira o email');            
-             formEmail.to.focus();
-             return; 
-            }           
+           let form = document.querySelector("#send-email-modal form");                      
+           if(!form.name.value){
+            alert('Insira o nome');            
+            form.name.focus();
+            return; 
+            } 
+
+           if(!form.to.value){
+                alert('Insira o email');            
+                form.to.focus();
+                return; 
+            }  
+            
+            
+
             let formDataEmail = new FormData(); 
 
             formDataEmail.append('local', formData.get('local'));
@@ -170,9 +197,10 @@ class ShowThing extends Controller{
         const layoutBreadcrumbs = new LayoutBreadcrumbs();
         let ul = document.querySelector('.container .header-body ul.breadcrumb');
         const values = [];
-        
+
         values.push( {name:'Tela inicial', href:config.urlBase}  );              
-        values.push( {name:'Objeto', href:this.retrieveURLCurrentPage()}  );        
+        values.push( {name:'Objeto', href:this.retrieveURLCurrentPage()}  );                    
+
 
         layoutBreadcrumbs.create(ul, values);
     }   

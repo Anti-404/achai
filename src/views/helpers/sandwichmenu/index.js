@@ -16,6 +16,11 @@ class HelperSandwichMenu{
         document.querySelector(".sandwich-menu-button").addEventListener("click",(e)=>{
             let searchModal = document.querySelector("#search-modal");
             let imgRegisterModal = document.querySelector("#img-register-modal");
+           
+            // document.querySelector('header').style.display = 'none';
+            // document.querySelector('main').style.display = 'none';
+            // document.querySelector('footer').style.display = 'none';
+            // document.querySelector(".background-modal").style.height = 'auto'
 
             searchModal !== null && (document.querySelector("#search-modal").style.display = 'none');
             imgRegisterModal !== null && (document.querySelector("#img-register-modal").style.display = 'none');
@@ -32,8 +37,13 @@ class HelperSandwichMenu{
     }
 
     static closeSandwichMenu(){
-        document.querySelector(".close-modal").addEventListener("click",(e)=>{
+        document.querySelector(".sandwich-menu-body img[alt='Fechar menu']").addEventListener("click",(e)=>{
             let imgRegisterModal = document.querySelector("#img-register-modal");
+
+            // document.querySelector('header').style.display = 'block';
+            // document.querySelector('main').style.display = 'block';
+            // document.querySelector('footer').style.display = 'block';
+            // document.querySelector(".background-modal").style.height = '100%'
 
             document.querySelector(".sandwich-menu-body").setAttribute("style","display:none");
             imgRegisterModal !== null && (document.querySelector("#img-register-modal").style.display = 'block');

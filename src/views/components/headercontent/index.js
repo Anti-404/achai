@@ -30,33 +30,32 @@ class LayoutHeaderContent{
 
         let linkLogo  = document.createElement("a");
         linkLogo.setAttribute('class','logo');
-        linkLogo.setAttribute('href',hrefLink);
+        linkLogo.setAttribute('href', hrefLink);
 
         let imgLogo  = document.createElement("img");        
         imgLogo.setAttribute('src',`${config.urlBase}/assets/imgs/logo.png`);
         imgLogo.setAttribute('alt','Achaí');
 
-        let searchButton = document.createElement("span");
+        let searchButton = document.createElement("img");
         searchButton.setAttribute('class','material-symbols-rounded search-button');        
-        searchButton.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/search_FILL0_wght300_GRAD0_opsz24.svg)`;
-        searchButton.style.backgroundRepeat = `no-repeat`;
-        searchButton.style.backgroundPosition = `center`;
+        searchButton.src = `${config.urlBase}/assets/imgs/icons/search_FILL0_wght300_GRAD0_opsz24.svg`;        
+        searchButton.alt = `Botão de pesquisar`;        
 
-        let sandwichMenu = document.createElement("span");
+        let sandwichMenu = document.createElement("img");
         sandwichMenu.setAttribute('class','material-symbols-rounded sandwich-menu-button');
-        sandwichMenu.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/menu_FILL0_wght300_GRAD0_opsz24.svg)`;
-        sandwichMenu.style.backgroundRepeat = `no-repeat`;
-        sandwichMenu.style.backgroundPosition = `center`;
-        sandwichMenu.style.backgroundSize = "35px";
+        sandwichMenu.src= `${config.urlBase}/assets/imgs/icons/menu_FILL0_wght300_GRAD0_opsz24.svg`;        
+        sandwichMenu.style.width = "35px";
+        sandwichMenu.style.height = "35px";
+        sandwichMenu.alt = "Menu botão";
 
-        let infoButton = document.createElement("span");
+        let infoButton = document.createElement("img");
         infoButton.setAttribute('class','material-symbols-rounded info-button');        
-        infoButton.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/info_FILL0_wght300_GRAD0_opsz24.svg)`;
-        infoButton.style.backgroundRepeat = `no-repeat`;
-        infoButton.style.backgroundPosition = `center`;  
+        infoButton.src = `${config.urlBase}/assets/imgs/icons/info_FILL0_wght300_GRAD0_opsz24.svg`; 
+        infoButton.alt = `butão iinformação`; 
         
         let arrowButton = document.createElement("img");
         arrowButton.setAttribute('class','material-symbols-rounded arrow-button');        
+        arrowButton.setAttribute('alt','Botão volta');        
         arrowButton.src = `${config.urlBase}/assets/imgs/icons/arrow_back_FILL0_wght300_GRAD0_opsz24.svg`;       
        
         

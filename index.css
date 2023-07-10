@@ -53,30 +53,29 @@ main div.container-header div.filter-things{
     gap: 8px;
     background-color: #7E7E7E;
     padding: 3px;     
-    border-radius: 15px;  
+    border-radius: 15px;
+    
+    
 }
 .filter-things span{
     padding: 0px 8px; 
     cursor: pointer;
     font-weight: 600;   
-    font-size: 14px;
+    font-size: 14px;    
+    height: 25px;
+    line-height: 22px;
 }
 
 .filter-things span[status="1"]{
     background-color: var(--background-color); 
     border-radius: 15px;  
-    color:  var(--gray-color);
-    
+    color:  var(--gray-color);       
 }
 
 .filter-things span[status="0"]{
     background-color: var(--gray-color);
     border-radius: 15px;  
     color: var(--background-color);    
-}
-
-footer{
-    min-height: 10vh;        
 }
    
 .categories-panel{    
@@ -116,12 +115,30 @@ footer{
     font-size: 35px;
 }
 
-.categories-panel ul .active{
-    background-color: rgb(210, 182, 182);
-    padding: 3px;
-    color: rgb(211, 211, 211);
-    font-weight: bold;
+.categories-panel ul li.active a[data-name='Eletrônicos']{
+    background-color: #0F8B8D;            
 }
+
+.categories-panel ul li.active a[data-name='Garrafas']{
+    background-color: #CA5D22;            
+}
+
+.categories-panel ul li.active a[data-name='Guarda-chuvas']{
+    background-color: #7C18C9;            
+}
+
+.categories-panel ul .active a[data-name='Eletrônicos']~span{
+    color: #0F8B8D;            
+}
+
+.categories-panel ul .active a[data-name='Garrafas']~span{
+    color: #CA5D22;            
+}
+
+.categories-panel ul .active a[data-name='Guarda-chuvas']~span{
+    color: #7C18C9;            
+}
+
 
 .categories-list a{
     width: 60px;
@@ -133,7 +150,6 @@ footer{
 .categories-list a span.material-symbols-rounded{
     width: 100%;
     height: 100%;
-
     border-radius: 50%;
 }
 
@@ -156,3 +172,4 @@ ul.categories-list-panel li a {
 .categories-panel-modal{
     display: none;
 }
+

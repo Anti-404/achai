@@ -9,7 +9,7 @@ class LayoutModalSearch{
             let divSearchModal = document.createElement("div");
             let divSearchBarModal = document.createElement("div");            
             let inputSearchItem  = document.createElement("input");
-            let searchButton = document.createElement("span");           
+            let searchButton = document.createElement("img");           
             
            
             divSearchModal.setAttribute('id','search-modal');
@@ -21,9 +21,8 @@ class LayoutModalSearch{
             inputSearchItem.setAttribute('placeholder','Ex: garrafa amarela');
 
             searchButton.setAttribute('class','material-symbols-rounded search-button');                   
-            searchButton.style.backgroundImage = `url(${config.urlBase}/assets/imgs/icons/search_FILL0_wght300_GRAD0_opsz24.svg)`;
-            searchButton.style.backgroundRepeat = `no-repeat`;
-            searchButton.style.backgroundPosition = `center`;
+            searchButton.src = `${config.urlBase}/assets/imgs/icons/search_FILL0_wght300_GRAD0_opsz24.svg`;  
+            searchButton.alt = `Botão de pesquisar`;            
 
             divSearchBarModal.appendChild(inputSearchItem);
             divSearchBarModal.appendChild(searchButton);

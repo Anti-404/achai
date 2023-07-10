@@ -12,9 +12,32 @@ body{
   flex-direction: column; 
 }
 
-.cam-modal video{
-  width: 320px;
-  height: 320px;
+.cam-modal{
+  display: flex;
+  flex-direction: column; 
+  gap: 20px;
+  position: relative;
+  
+}
+
+.cam-modal div{
+  position: absolute;
+  z-index: 2;
+  bottom: 0px;
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  background-color:rgba(0,0,0,0.5); 
+
+}
+
+.cam-modal video{  
+  height: 120vh;    
+}
+
+div.background-modal{
+  /* padding: 0px; */
 }
 
 #image-address-update{
@@ -38,7 +61,6 @@ div.background-modal .sandwich-menu-body{
 div.background-modal .container{
   flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
 div#img-register-modal{  
@@ -61,6 +83,67 @@ form input, form textarea, form select {
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);   
 }
 
-#code{
-  align-self: self-end;
+form#form div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;    
+}
+
+div#img-register-modal{    
+  background-color:var(--background-color);
+  width: 100%;   
+  min-height: 100px;    
+  position: fixed;
+  bottom: 20px;    
+}
+
+
+#img-register-modal{
+padding: 10px 10px 0px 10px;  
+border-radius: 10px;  
+flex-direction: column;  
+
+} 
+#img-register-modal div:nth-child(1){
+  padding: 0px;
+}
+
+#img-register-modal div{
+border-bottom: 1px solid var(--gray-color);  
+padding: 10px 10px 10px 0px;
+
+}
+
+#open-picture-modal {  
+cursor: pointer;  
+display: flex;  
+padding: 8px;
+align-items: center;
+gap: 5px;
+}
+
+
+#img-register-modal div:nth-child(3){
+border: none;
+}
+
+#img-register-modal label { 
+display: flex;  
+padding: 10px 10px 10px 0px;
+align-items: center;
+margin-bottom: 0px;  
+gap: 5px;
+
+}
+
+@media (min-width: 500px)
+{
+  .cam-modal video{  
+    height: 54vh;    
+  }
+
+  .cam-modal div {   
+    height: 46vh;
+  }
+  
 }

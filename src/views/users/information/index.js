@@ -37,7 +37,11 @@ class Information extends Controller{
             
             this.classList.toggle("active");
            
-            let panel = this.nextElementSibling;
+            let panel = this.nextElementSibling;            
+            if(panel === null){
+                return;
+            }
+            
             if (panel.style.display === "block") {
                 panel.style.display = "none";            
                 let img = e.target.parentNode.querySelector('img');

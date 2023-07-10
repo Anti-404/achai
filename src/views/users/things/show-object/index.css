@@ -6,16 +6,22 @@ form#first-form div{
     align-items: center;    
 }
 
+
 form#first-form div #code{
-    font-weight: 600;
+    font-weight: 700;
     font-size: 12px;
     color:var(--gray-color);
+    font-family: "Quicksand";
 }
 
 form#email-form span{
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+form#email-form input[type='email']{
+    margin-bottom: 5px
 }
 
 #send-email-modal{
@@ -27,6 +33,7 @@ div.background-modal{
 .background-modal{
     display: none;
 }
+
  #qrcode-modal{  
     display: flex;     
     justify-content: center;
@@ -38,10 +45,23 @@ div.background-modal{
     padding: 15px;
     border-radius: 10px;
     gap: 10px;    
+    font-weight: 600;
+    font-size: 18px;
 }
-
 
 
 textarea#message-body{
     display:none;
+}
+
+form input, form textarea, form select{
+    border-radius: 10px;
+    padding: 10px 10px;      
+    border: 1px var(--gray-color) solid;
+    background-color: var(--background-color);
+    box-shadow:none;
+  }
+
+  #send-email-button{
+    margin-top: 15px;
 }

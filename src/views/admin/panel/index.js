@@ -56,21 +56,7 @@ class Panel extends Controller{
         });
         
     } 
-
-    goToReservedThing(){  
-        
-        let thingsList =  document.querySelectorAll(".things-list figure");              
-       
-        thingsList.forEach((thing)=>{
-            thing.addEventListener("click", (e)=>{   
-                let id = thing.getAttribute("data-id")            
-                window.location.href = `${config.urlBase}/src/views/admin/things/thingreserved/?id=${id}`;                  
-            });    
-        })
-       
-          
-       
-    }  
+ 
     
     goToReturnedThing(){
         document.querySelector(".returned-thing-button").addEventListener("click",()=>{  
@@ -110,7 +96,7 @@ await panel.ListThingsReserved();
 panel.goToThingRegister();
 panel.goToReturnedThing();
 panel.goToManageThings();
-panel.goToReservedThing();
+
 panel.handleChangeThingsByBategories();
 panel.appendFooter();
 

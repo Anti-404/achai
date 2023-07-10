@@ -14,9 +14,9 @@ class LayoutThing{
                     
         for (let i = 0; i < allThings.result.length; ++i) {
             let a  = document.createElement("a");
-            let figure = document.createElement("figure");
+            let figure = document.createElement("div");
             let img = document.createElement("img");
-            let figCaption = document.createElement("figcaption");             
+            let figCaption = document.createElement("div");             
             let thingId = document.createElement("span");             
             let header = document.createElement("span");             
             let category = document.createElement("span");             
@@ -29,6 +29,7 @@ class LayoutThing{
             }
 
             figure.setAttribute("data-id",allThings.result[i].id);                        
+            figure.setAttribute("class",'figure');                        
             img.setAttribute("src",`${config.urlBase}/`+allThings.result[i].image_address);                        
             img.setAttribute("alt",allThings.result[i].description);  
             thingId.appendChild(document.createTextNode(`${allThings.result[i].id} - `));  
@@ -41,7 +42,9 @@ class LayoutThing{
             header.setAttribute('class','thing-header');  
             header.appendChild(thingId);  
             header.appendChild(category);  
-                        
+            
+            figCaption.setAttribute("class",'figcaption');
+
             figCaption.appendChild(header);            
             figCaption.appendChild(local);
             figCaption.appendChild(description);

@@ -3,3 +3,16 @@ form{
     margin-bottom: var(--footer-margin-bottom);    
 }
 
+form input, form textarea, form select{
+    border-radius: 10px;
+    padding: 10px 10px;      
+    border: 1px var(--gray-color) solid;
+    background-color: var(--background-color);
+    box-shadow:none;
+  }
+
+  form #code{
+    font-family: "Quicksand";
+    font-weight: 700;
+}
+ 

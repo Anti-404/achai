@@ -21,7 +21,7 @@ class HelperSearch{
                     x[i].style.display="none";
                 }
                 else {
-                    x[i].style.display="flex";                 
+                    x[i].style.display="block";                 
                 }
             }
             

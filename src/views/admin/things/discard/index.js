@@ -29,8 +29,8 @@ class Discard extends Controller{
     }
  
     handlerFilesZip(){                
-        document.querySelector("#files-zip-button").addEventListener('click', ()=>{
-            let imagesElements = document.querySelectorAll('figure img');
+        document.querySelector(".files-zip-button").addEventListener('click', ()=>{
+            let imagesElements = document.querySelectorAll('.figure img');
             let imgsSrc = [];
             let formData = new FormData();
 
@@ -57,7 +57,7 @@ class Discard extends Controller{
 
    async handlerShowAllFilesZip(){
     const allFilesZip = await this.modelZip.getAll();
-    let  filesZipList = document.querySelector("#files-zip-list");
+    let  filesZipList = document.querySelector(".files-zip-list");
     
     if(!allFilesZip.error){ 
         for (let i = 0; i < allFilesZip.result.length; ++i) {

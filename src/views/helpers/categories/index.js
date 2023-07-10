@@ -86,23 +86,61 @@ class HelperCategories{
             allLinks[i].addEventListener('click',async(e)=>{
 
                 let categoriesId = e.target.parentNode.getAttribute("data-id");    
-
-                if(e.target.parentNode.parentNode.getAttribute('class') === 'active'){
+                let imgs = document.querySelectorAll('.categories-list a img');
+                if(e.target.parentNode.parentNode.getAttribute('class') === 'active'){                    
 
                     for (let j = 0; j < allLinks.length; j++) {                                  
-                        allLinks[j].parentNode.removeAttribute('class');                 
-                    }    
-                    
+                        allLinks[j].parentNode.removeAttribute('class');                                              
+
+                        imgs.forEach((img)=>{
+                           
+                            if(img.src.includes('headphones')){
+                                img.src = `${config.urlBase}/assets/imgs/icons/headphones_FILL0_wght300_GRAD0_opsz40.svg`                                
+                                
+                            }
+                            if(img.src.includes('water_bottle')){
+                                img.src = `${config.urlBase}/assets/imgs/icons/water_bottle_FILL0_wght300_GRAD0_opsz40.svg`
+                            }
+                            
+                            if(img.src.includes('umbrella')){
+                                img.src = `${config.urlBase}/assets/imgs/icons/umbrella_FILL0_wght300_GRAD0_opsz40.svg`
+                            }     
+                        })
+                        
+                    } 
+
                     window.location.href = config.urlBase;
                     
                 } else{
 
                     for (let j = 0; j < allLinks.length; j++) {                                  
                         allLinks[j].parentNode.removeAttribute('class');                 
-                    }
+                    } 
+
+                    document.querySelectorAll('.categories-list a img').forEach((img)=>{
+                           
+                        if(img.src.includes('headphones')){
+                            img.src = `${config.urlBase}/assets/imgs/icons/headphones_FILL0_wght300_GRAD0_opsz40.svg`
+                        }
+                        if(img.src.includes('water_bottle')){
+                            img.src = `${config.urlBase}/assets/imgs/icons/water_bottle_FILL0_wght300_GRAD0_opsz40.svg`
+                        }
+                        
+                        if(img.src.includes('umbrella')){
+                            img.src = `${config.urlBase}/assets/imgs/icons/umbrella_FILL0_wght300_GRAD0_opsz40.svg`
+                        }     
+                    })
 
                     if(e.target.parentNode.parentNode.getAttribute('class') === null){                    
-                        e.target.parentNode.parentNode.setAttribute('class','active');
+                        e.target.parentNode.parentNode.setAttribute('class', 'active');
+                        
+                        if(e.target.src.includes('headphones')){
+                            e.target.src = `${config.urlBase}/assets/imgs/icons/headphones_FILL0_wght300_white_GRAD0_opsz40.svg`
+                        }else if(e.target.src.includes('water_bottle')){
+                            e.target.src = `${config.urlBase}/assets/imgs/icons/water_bottle_FILL0_wght300_white_GRAD0_opsz40.svg`
+                        }else{
+                            e.target.src = `${config.urlBase}/assets/imgs/icons/umbrella_FILL0_wght300_white_GRAD0_opsz40.svg`
+                        }                       
                         
                     }
 
@@ -164,10 +202,10 @@ class HelperCategories{
                 let lostThingsFilters = filters.item(0).getAttribute('status');                                
                 let allThings = {};
 
-                if(categoriesId == "0" &&  Number.parseInt(lostThingsFilters)){
+                if(categoriesId == "105" &&  Number.parseInt(lostThingsFilters)){
                     allThings = await this.modelThings.getAll();
 
-                }else if(categoriesId == "0" &&  !Number.parseInt(lostThingsFilters)){
+                }else if(categoriesId == "105" &&  !Number.parseInt(lostThingsFilters)){
                     allThings = await this.modelThings.getThingsReserved(); 
                 
                 }else if(Number.parseInt(lostThingsFilters)){
@@ -182,6 +220,21 @@ class HelperCategories{
                 thingsList.innerHTML = "";
                 
                 this.layoutThing.create(thingsList, allThings, true, 'users/things/show-object');
+
+                document.querySelectorAll('.categories-list a img').forEach((img)=>{
+                           
+                    if(img.src.includes('headphones')){
+                        img.src = `${config.urlBase}/assets/imgs/icons/headphones_FILL0_wght300_GRAD0_opsz40.svg`
+                    }
+                    if(img.src.includes('water_bottle')){
+                        img.src = `${config.urlBase}/assets/imgs/icons/water_bottle_FILL0_wght300_GRAD0_opsz40.svg`
+                    }
+                    
+                    if(img.src.includes('umbrella')){
+                        img.src = `${config.urlBase}/assets/imgs/icons/umbrella_FILL0_wght300_GRAD0_opsz40.svg`
+                    }     
+                })
+
                 
                 if(document.querySelector('.categories-panel-modal').style.display !== null){
                     document.querySelector('.categories-panel-modal').style.display = 'none';

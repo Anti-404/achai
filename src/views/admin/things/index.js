@@ -52,16 +52,6 @@ class Things extends Controller{
         }); 
     }
 
-    goToRegisterthing(){
-        document.querySelector("#register-things-button").addEventListener("click",(e)=>{            
-            e.preventDefault();
-            let prevPage = `${config.urlBase}/src/views/admin/things/manager/`;
-            window.location.href = `${config.urlBase}/src/views/admin/things/register/?prevPage=${prevPage}`;           
-            
-        });
-        
-    }
-
     createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
         contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true, false);
@@ -105,7 +95,7 @@ things.appendFooter();
 
 things.categoriesList();
 things.handleClickCategory();
-things.goToRegisterthing();
+// things.goToRegisterthing();
 
 
 HelperSandwichMenu.createSandwichMenu();

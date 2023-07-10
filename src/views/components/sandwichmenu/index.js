@@ -18,11 +18,14 @@ class LayoutSandwichMenu{
         let divSandwichMenuBody = document.createElement("div");   
         divSandwichMenuBody.setAttribute('class','sandwich-menu-body');
 
-        let divCloseModal = document.createElement("div");  
-        divCloseModal.setAttribute('class','close-modal');                                   
+        // let divCloseModal = document.createElement("div");  
+        // divCloseModal.setAttribute('class','close-modal');                                   
 
-        let spanCloseModal = document.createElement("span"); 
-        spanCloseModal.setAttribute('class','material-symbols-rounded');                   
+        let imgCloseModal = document.createElement("img"); 
+        imgCloseModal.setAttribute('class','material-symbols-rounded');                   
+        imgCloseModal.src = `${config.urlBase}/assets/imgs/icons/close_FILL0_wght300_GRAD0_opsz24.svg`;
+        imgCloseModal.alt = 'Fechar menu';          
+              
 
         let divBodyModal = document.createElement("div"); 
         divBodyModal.setAttribute('class','body-modal');           
@@ -34,6 +37,7 @@ class LayoutSandwichMenu{
         profileImg.alt = 'Administrador';          
 
         let divSeparator= document.createElement("div");            
+        let divSeparatorProfileImgParent= document.createElement("div");            
 
         let h3Admin = document.createElement("h3"); 
         h3Admin.textContent = 'Administrador';                       
@@ -56,7 +60,7 @@ class LayoutSandwichMenu{
         let spanDiscardIcon = document.createElement('span');
         spanDiscardIcon.setAttribute('class','material-symbols-rounded');            
         let spanDiscardText = document.createElement('span');
-        spanDiscardText.textContent = 'Discarte';
+        spanDiscardText.textContent = 'Descartes';
         
         let spanEditCategoryIcon= document.createElement('span');
         spanEditCategoryIcon.setAttribute('class','material-symbols-rounded');            
@@ -89,22 +93,23 @@ class LayoutSandwichMenu{
         
         ul.appendChild(li1);
         ul.appendChild(li2);
-        // ul.appendChild(li3);
 
         divProfileImg.appendChild(profileImg);
 
         divSeparator.appendChild(h3Admin);
         divSeparator.appendChild(h4Email);
-        divSeparator.appendChild(btnProfileManager);
+        
+        divSeparatorProfileImgParent.appendChild(divProfileImg);
+        divSeparatorProfileImgParent.appendChild(divSeparator);
+        
+        divBodyModal.appendChild(divSeparatorProfileImgParent);
 
-        divBodyModal.appendChild(divProfileImg);
-        divBodyModal.appendChild(divSeparator);
-        divCloseModal.appendChild(spanCloseModal);
-        divSandwichMenuBody.appendChild(divCloseModal);            
+        divBodyModal.appendChild(btnProfileManager);
+        // divCloseModal.appendChild(imgCloseModal);
+        divSandwichMenuBody.appendChild(imgCloseModal);            
         divSandwichMenuBody.appendChild(divBodyModal);  
         divModalTask.appendChild(ul);            
-        divSandwichMenuBody.appendChild(divModalTask);  
-        // divSandwichMenuBody.appendChild(spanExit);            
+        divSandwichMenuBody.appendChild(divModalTask);                  
         
         container.appendChild(divSandwichMenuBody);   
     
