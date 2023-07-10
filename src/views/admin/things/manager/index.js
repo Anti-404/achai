@@ -123,7 +123,10 @@ class ThingsManager extends Controller{
     }
 
     closeSandwichMenu(){
-        document.querySelector(".close-modal").addEventListener("click",(e)=>{
+        let closeModalButton = document.querySelector(".close-modal");
+        if(closeModalButton === null) return;
+
+        closeModalButton.addEventListener("click",(e)=>{
 
             document.querySelector(".sandwich-menu-body").setAttribute("style","display:none");
             document.querySelector(".background-modal").style.display = 'none'; 

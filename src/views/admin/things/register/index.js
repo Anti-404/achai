@@ -44,6 +44,7 @@ class ThingRegistration extends Controller{
     save(){        
         document.querySelector("#save-button").addEventListener("click", (e)=>{             
             e.preventDefault();                      
+            document.querySelector("#save-button").setAttribute('disabled','');
 
             let formData = new FormData(document.querySelector('form'));            
 
@@ -57,7 +58,7 @@ class ThingRegistration extends Controller{
                                     
             this.modelThings.insert(this.prevPage, formData);     
             
-
+            //document.querySelector("#save-button").removeAttribute('disabled'); 
         });
     }
    

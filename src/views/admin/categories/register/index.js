@@ -26,7 +26,8 @@ class CategoriesRegistration extends Controller{
                 
             }             
                          
-            this.modelCategories.insert(this.prevPage, formData);           
+            this.modelCategories.insert(this.prevPage, formData);          
+            
         
        });
     }

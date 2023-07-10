@@ -44,7 +44,7 @@ class Categories extends Controller{
                     
                     editButton.src = `${config.urlBase}/assets/imgs/icons/button_check_off.svg`;
                     editButton.setAttribute('class','material-symbols-rounded update-button');                    
-                    editButton.alt = "Botão editar desativado";                    
+                    editButton.alt = "salvar edição desativado";                    
                     td2.appendChild(editButton);  
                     td2.setAttribute('class','td'); ;                             
                     
@@ -158,9 +158,9 @@ class Categories extends Controller{
             field.addEventListener('keyup', (event)=>{                                                               
                 const updateButton = event.target.parentNode.parentNode.querySelector('.update-button');                
                 updateButton.src = `${config.urlBase}/assets/imgs/icons/button_check_on.svg`;
-                updateButton.alt = 'Botão editar ativado'
-                
-                updateButton.addEventListener('click', ()=>{
+                updateButton.alt = 'salvar edição ativado';
+
+                event.target.parentNode.parentNode.querySelector('.update-button').addEventListener('click', ()=>{
                     this.updateButtonEventFunction(event);
                 });
     

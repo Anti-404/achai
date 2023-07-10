@@ -42,8 +42,8 @@ export default class Model{
             method: "POST",
             body: formData,
           });          
-          alert("Cadastrado com Sucesso");
-         window.location.href = addressRedirecting;          
+          alert("Cadastrado com Sucesso");         
+          window.location.href = addressRedirecting;          
         } catch (error) {
           alert(error);
         }   
