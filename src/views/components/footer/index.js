@@ -2,7 +2,8 @@ class LayoutFooter{
 
     constructor(){}
 
-    async create(container, config, panel=false){  
+    async create(container, config, panel=false){          
+        container.parentNode.parentNode.querySelector('footer').setAttribute('role', 'rodapé');
 
         let ufcLink = document.createElement('a');
         ufcLink.href = 'https://www.ufc.br/';

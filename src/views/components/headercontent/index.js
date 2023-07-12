@@ -21,6 +21,7 @@ class LayoutHeaderContent{
         
         let ulBreadcrump = document.createElement('ul');
         ulBreadcrump.setAttribute('class', 'breadcrumb')      
+        ulBreadcrump.setAttribute('role', 'breadcrumb')      
 
         let divHeaderFooter = document.createElement("div");
         divHeaderFooter.setAttribute('class','header-footer');
@@ -34,12 +35,12 @@ class LayoutHeaderContent{
 
         let imgLogo  = document.createElement("img");        
         imgLogo.setAttribute('src',`${config.urlBase}/assets/imgs/logo.png`);
-        imgLogo.setAttribute('alt','Achaí');
+        imgLogo.setAttribute('alt','logo Achaí - link painel de controle');
 
         let searchButton = document.createElement("img");
         searchButton.setAttribute('class','material-symbols-rounded search-button');        
         searchButton.src = `${config.urlBase}/assets/imgs/icons/search_FILL0_wght300_GRAD0_opsz24.svg`;        
-        searchButton.alt = `Botão de pesquisar`;        
+        searchButton.alt = `Botão pesquisar`;        
 
         let sandwichMenu = document.createElement("img");
         sandwichMenu.setAttribute('class','material-symbols-rounded sandwich-menu-button');
@@ -51,11 +52,11 @@ class LayoutHeaderContent{
         let infoButton = document.createElement("img");
         infoButton.setAttribute('class','material-symbols-rounded info-button');        
         infoButton.src = `${config.urlBase}/assets/imgs/icons/info_FILL0_wght300_GRAD0_opsz24.svg`; 
-        infoButton.alt = `butão iinformação`; 
+        infoButton.alt = `botão informação`; 
         
         let arrowButton = document.createElement("img");
         arrowButton.setAttribute('class','material-symbols-rounded arrow-button');        
-        arrowButton.setAttribute('alt','Botão volta');        
+        arrowButton.setAttribute('alt','Botão voltar');        
         arrowButton.src = `${config.urlBase}/assets/imgs/icons/arrow_back_FILL0_wght300_GRAD0_opsz24.svg`;       
        
         

@@ -3,10 +3,13 @@ import Controller from '../../../core/controller/index.js';
 import config from '../../../../config.js';
 
 import HelperSandwichMenu from '../../helpers/sandwichmenu/index.js';
+import HelperTabOrder from '../../helpers/taborder/index.js';
 
 import LayoutHeaderContent from '../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../components/breadcrumbs/index.js';
 import LayoutFooter from '../../components/footer/index.js';
+
+import tabOrderThings from "../things/taborder/index.js";
 
 class Things extends Controller{
 
@@ -85,6 +88,11 @@ class Things extends Controller{
         
     }
 
+    setTabOrder(){
+        const elementsList = tabOrderThings;                
+        HelperTabOrder.setTabOrder(elementsList);
+    }
+
 }
 
 const things = new Things();
@@ -93,9 +101,9 @@ things.createBreadcrumbs();
 things.arrowBack();
 things.appendFooter();
 
-things.categoriesList();
+await things.categoriesList();
 things.handleClickCategory();
-// things.goToRegisterthing();
+things.setTabOrder();
 
 
 HelperSandwichMenu.createSandwichMenu();
@@ -103,5 +111,4 @@ HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
-// HelperSandwichMenu.goToReturnedThings();
+HelperSandwichMenu.closeSandwichMenu('things');

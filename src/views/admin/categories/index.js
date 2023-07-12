@@ -36,7 +36,7 @@ class Categories extends Controller{
                     
                     tr.setAttribute('class','tr'); ;  
 
-                    input.setAttribute('placeholder',allCategories.result[i].name);               
+                    input.setAttribute('value',allCategories.result[i].name);               
                     input.setAttribute('class','category-name');               
                     input.setAttribute('name','name');               
                     td1.appendChild(input);                    

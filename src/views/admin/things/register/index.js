@@ -8,6 +8,9 @@ import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
 import LayoutFooter from '../../../components/footer/index.js';
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
+import HelperTabOrder from '../../../helpers/taborder/index.js';
+
+import tabOrderRegister from "../../../admin/things/register/taborder/index.js";
 
 class ThingRegistration extends Controller{
 
@@ -45,6 +48,7 @@ class ThingRegistration extends Controller{
         document.querySelector("#save-button").addEventListener("click", (e)=>{             
             e.preventDefault();                      
             document.querySelector("#save-button").setAttribute('disabled','');
+            document.querySelector("#save-button").textContent = 'Cadastrando...';
 
             let formData = new FormData(document.querySelector('form'));            
 
@@ -56,12 +60,12 @@ class ThingRegistration extends Controller{
                 
             }                              
                                     
-            this.modelThings.insert(this.prevPage, formData);     
+            this.modelThings.insert(this.prevPage, formData);                
             
-            //document.querySelector("#save-button").removeAttribute('disabled'); 
+            document.querySelector("#save-button").textContent = 'Cadastrar';
+            document.querySelector("#save-button").removeAttribute('disabled');
         });
-    }
-   
+    }   
 
     takePicture(){
 
@@ -70,7 +74,7 @@ class ThingRegistration extends Controller{
         navigator.mediaDevices.getUserMedia({video:{ 
             
             facingMode: {
-                //exact: 'environment'
+                exact: 'environment'
               }
               
             }
@@ -99,7 +103,8 @@ class ThingRegistration extends Controller{
                 context.drawImage(video, 0, 0);                        
                 
                 let img = document.querySelector('#img-picture');
-                img.src = canvas.toDataURL('image/png');                
+                img.src = canvas.toDataURL('image/png');               
+                img.alt = 'alterar imagem';               
 
                 try {            
                     const response = await fetch(img.src);                           
@@ -132,6 +137,7 @@ class ThingRegistration extends Controller{
         
             const img = document.querySelector("#img-picture"); 
             img.src = readerTarget.result;  
+            img.alt = 'alterar imagem'; 
                             
             globalThis.takePictureBlob = "empty";
         
@@ -228,6 +234,11 @@ class ThingRegistration extends Controller{
         sizeImgRegisterModal.style.width = `${(window.innerWidth -40)}px`;
         
     }
+
+    setTabOrder(){
+        const elementsList = tabOrderRegister;                
+        HelperTabOrder.setTabOrder(elementsList);
+    }
 }
 
 const thingRegistration = new ThingRegistration();
@@ -242,13 +253,14 @@ thingRegistration.openImageRegistrationModal();
 thingRegistration.arrowBack();
 thingRegistration.appendFooter();
 thingRegistration.sizeImgRegisterModal();
+thingRegistration.setTabOrder();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu('register');
 // HelperSandwichMenu.goToReturnedThings();
 
 

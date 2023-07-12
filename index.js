@@ -56,7 +56,8 @@ class Home {
     }
     
     handleThingsByCategories(){
-        let categoriesLinks = document.querySelectorAll('.categories-list li a');
+        // let categoriesLinks = document.querySelectorAll('.categories-list li a');
+        let categoriesLinks = document.querySelectorAll('.categories-list li');
         HelperCategories.handleThingsByCategories(categoriesLinks);
     }
 

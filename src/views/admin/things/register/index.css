@@ -112,6 +112,10 @@ div#img-register-modal{
  
 }
 
+.categories select{
+  width: 100%;
+}
+
 @media (min-width: 500px)
 {
   .cam-modal video{  

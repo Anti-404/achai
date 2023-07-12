@@ -51,13 +51,15 @@
                 <canvas></canvas>                       
                 <input type="file" name="image_address" id="image-address">                
 
-                <label for="">Categorias*</label>
-                <select name="category_id" id="category-id"></select> 
+                <label>Categorias*</label>
+                <div class="categories">
+                    <select name="category_id" id="category-id"></select> 
+                </div>
                 
-                <label for="">Descrição</label>
-                <textarea name="description" cols="30" rows="10" id="description"></textarea>               
+                <label for="description">Descrição</label>
+                <textarea name="description" id="description" cols="30" rows="10" id="description"></textarea>               
                 
-                <label for="">Informar local*</label>
+                <label for="local">Informar local*</label>
                 <input type="text" name="local" id="local" required>
                 <button id="save-button">Cadastrar</button>
             </form>            

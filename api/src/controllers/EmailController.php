@@ -20,11 +20,8 @@ class EmailController extends Controller{
         $to = 'allangeorge@virtual.ufc.br';
         $id = filter_input(INPUT_POST, 'id');
         $local = filter_input(INPUT_POST, 'local');
-        $description = filter_input(INPUT_POST, 'description');        
-        //$qrcodeBlob = $_FILES['qrcodeBlob'];     
+        $description = filter_input(INPUT_POST, 'description');                
         $qrcodeBlobScreeshot = $_FILES['qrcodeBlobScreeshot'];     
-        //$qrcode = filter_input(INPUT_POST, 'qrcode');     
-
         
         if($to && $id && $local && $description && isset($qrcodeBlobScreeshot) && !empty($qrcodeBlobScreeshot)){        
                           
@@ -72,9 +69,6 @@ class EmailController extends Controller{
             $this->array['error'] = 'Dados não enviados';
         }
         
-
-
-
 
         echo json_encode($this->array);       
         exit;

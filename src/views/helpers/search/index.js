@@ -1,5 +1,7 @@
 import LayoutModalSearch from '../../components/modalsearch/index.js';
 
+
+
 class HelperSearch{
     constructor(){}
 
@@ -33,7 +35,8 @@ class HelperSearch{
         layoutModalSearch.create(document.querySelector('.background-modal .container'));
     }
 
-    static openSearchModal(){        
+    static openSearchModal(){          
+        
 
         document.querySelector('header .container div .search-button').addEventListener('click',()=>{
             document.querySelector('body .background-modal').style.display = 'block';

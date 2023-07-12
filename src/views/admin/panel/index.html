@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="index.css" />    
-    
+    <link rel="stylesheet" type="text/css" href="index.css" />  
     
     <title>Painel de Controle</title>
 </head>
@@ -25,21 +24,27 @@
             <section class="panel-buttons">    
                     <ul>                        
                         <li>
-                            <div class="register-thing-button">                                 
-                                <span class="material-symbols-rounded"></span>
+                            <div class="register-thing-button">   
+                                <span class="material-symbols-rounded">
+                                    <img  alt="botão cadastrar objetos">
+                                </span>                                                              
                                 <span>Cadastrar<br> objetos</span>                                
                             </div>
                         </li>
                         <li>
-                            <div class="returned-thing-button">
-                                <span class="material-symbols-rounded"></span>
+                            <div class="returned-thing-button" >
+                                <span class="material-symbols-rounded">
+                                    <img  alt="botão confirmar retirada usando QR code">
+                                </span>
                                 <span>Confirmar <br> retirada</span>
                                
                             </div>
                         </li>
                         <li>
                             <div class="manage-things-button">
-                                <span class="material-symbols-rounded"></span>
+                                <span class="material-symbols-rounded">
+                                    <img alt="botão gerenciar objetos">                                    
+                                </span>
                                 <span>Gerenciar <br> objetos</span>
                                
                             </div>
@@ -51,7 +56,7 @@
             <section>   
                 <h1>Objetos reservados</h1> 
                 <div class="categories"> </div>    
-                <div class="things-list"></div>            
+                <div class="things-list" role="lista de objetos reservados"></div>            
             </section>            
                 
         </div>    

@@ -1,9 +1,14 @@
 import Controller from '../../../../core/controller/index.js';
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../../components/footer/index.js';
+
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
+import HelperTabOrder from '../../../helpers/taborder/index.js';
 import config from '../../../../../config.js';
+
+import tabOrderQrcodeReader from './taborder/index.js'
 
 class QRCodeReader extends Controller{
 
@@ -70,6 +75,19 @@ class QRCodeReader extends Controller{
         });
     }
 
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    } 
+
+    setTabOrder(){
+        const elementsList = tabOrderQrcodeReader;                
+        HelperTabOrder.setTabOrder(elementsList);
+    }
+
+
 }   
 
 const qrCodeReader = new QRCodeReader();
@@ -77,11 +95,13 @@ qrCodeReader.scanner();
 qrCodeReader.createHeaderContent();
 qrCodeReader.createBreadcrumbs();
 qrCodeReader.arrowBack();
+qrCodeReader.appendFooter();
+qrCodeReader.setTabOrder();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu('qrcodereader');
 // HelperSandwichMenu.goToReturnedThings();

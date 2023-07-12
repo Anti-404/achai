@@ -8,26 +8,6 @@ main{
     z-index: 0;
 }
 
-.register-thing-button span:nth-child(1){   
-    background-image: url("../../../../assets/imgs/icons/box_add_FILL0_wght300_GRAD0_opsz48.svg"); 
-    background-repeat: no-repeat; 
-    background-position: center center;
-}
-
-
-
-.returned-thing-button span:nth-child(1){    
-    background-image: url("../../../../assets/imgs/icons/qr_code_scanner_FILL0_wght300_GRAD0_opsz48.svg"); 
-    background-repeat: no-repeat; 
-    background-position: center center;
-}
-
-.manage-things-button span:nth-child(1){
-   
-    background-image: url("../../../../assets/imgs/icons/box_edit_FILL0_wght300_GRAD0_opsz48.svg"); 
-    background-repeat: no-repeat; 
-    background-position: center center;
-}
 
 .panel-buttons ul li .material-symbols-rounded{
     width: var(--md-icon-width);
