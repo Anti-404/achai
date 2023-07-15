@@ -7,9 +7,9 @@ class Config {
 
      const DB_DRIVER = 'mysql';
      const DB_HOST = 'localhost';
-     const DB_DATABASE = 'id21023902_achai';
-     const DB_USER = 'id21023902_achai';
-     const DB_PASS = 'Achai!23@';
+     const DB_DATABASE = 'achai';
+     const DB_USER = 'achai';
+     const DB_PASS = 'MqC88uiZzrWD-~f';
 
     const ERROR_CONTROLLER = 'ErrorController';
     const DEFAULT_ACTION = 'index';
