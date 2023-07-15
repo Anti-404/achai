@@ -90,7 +90,7 @@ class AdminController extends Controller {
             }
 
         } else {
-            $this->array['error'] = 'Usuario ou Senha nao enviado';
+            $this->array['error'] = 'Usuario ou Senha não enviado';
         } 
         
         

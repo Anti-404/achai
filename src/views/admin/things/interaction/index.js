@@ -10,8 +10,7 @@ import LayoutFooter from '../../../components/footer/index.js';
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 import HelperTabOrder from '../../../helpers/taborder/index.js';
 
-// import tabOrderInteraction from "../../../admin/things/register/taborder/index.js";
-import tabOrderSandwichMenu from "../../../components/sandwichmenu/taborder/index.js";
+import tabOrderInteraction, {tabOrderRegisterModalTakePicture, tabOrderRegisterModalCamera} from "../../../admin/things/register/taborder/index.js";
 
 class ThingsInteraction extends Controller{    
 
@@ -94,6 +93,10 @@ class ThingsInteraction extends Controller{
         document.querySelector("#update-button").addEventListener("click", async (e)=>{  
             e.preventDefault();
 
+            document.querySelector("#update-button").setAttribute('disabled','');
+            document.querySelector("#update-button").textContent = 'Atualizando...';
+
+
             let formData = new FormData(document.querySelector('form'));  
             
             if ( !(typeof this.takePictureBlob === 'string')) {   
@@ -104,11 +107,15 @@ class ThingsInteraction extends Controller{
                 formData.append('hash',localStorage.getItem("hash"));
                 
             }
-            let prevPage = `${config.urlBase}/src/views/admin/things/manager/`            
-            this.modelThings.update( prevPage, formData, 'Atualizado'); 
+            let prevPage = `${config.urlBase}/src/views/admin/things/manager/`;
+                      
+            await this.modelThings.update( prevPage, formData, 'Atualizado'); 
+            document.querySelector("#update-button").textContent = 'Atualizar';
+            
         });
 
     }
+
     async return(){
 
         document.querySelector("#return-button").addEventListener("click", async (e)=>{  
@@ -121,7 +128,9 @@ class ThingsInteraction extends Controller{
                 formData.append('hash',localStorage.getItem("hash"));
                 
             }
-            let prevPage = `${config.urlBase}/src/views/admin/things/manager/`            
+            let prevPage = `${config.urlBase}/src/views/admin/things/manager/`;
+            document.querySelector("#return-button").setAttribute('disabled','');
+            document.querySelector("#return-button").textContent = "Retirando";
             await this.modelThings.update( prevPage, formData, 'Retirado'); 
         });
 
@@ -132,11 +141,15 @@ class ThingsInteraction extends Controller{
 
         for (let i = 0; i < fields.length; i++) {
            
-            document.querySelector(`#${fields[i]}`).addEventListener("click",()=>{
+            document.querySelector(`#${fields[i]}`).addEventListener("keyup",()=>{
                 document.querySelector("#update-button").removeAttribute("disabled");  
             });  
 
-        }       
+        }  
+        
+        document.querySelector('#list-categories').addEventListener('change',()=>{
+            document.querySelector("#update-button").removeAttribute("disabled"); 
+        });
 
     }    
     
@@ -162,7 +175,11 @@ class ThingsInteraction extends Controller{
 
             
         if(!(document.querySelector('#take-picture-button') == null)){
-            document.querySelector('#take-picture-button').addEventListener('click', async () => {                
+            document.querySelector('#take-picture-button').addEventListener('click', async () => { 
+                HelperTabOrder.resetTabOrder(tabOrderRegisterModalCamera);
+                HelperTabOrder.resetTabOrder(tabOrderRegisterModalTakePicture);
+                HelperTabOrder.setTabOrder(tabOrderInteraction);
+
                 document.querySelector('div.background-modal').style.display = 'none';                
                 document.querySelector('body').style.overflow = 'auto';  
 
@@ -182,6 +199,8 @@ class ThingsInteraction extends Controller{
                     let blob = await response.blob();               
                     
                     this.takePictureBlob = blob;
+                    document.querySelector('#update-button').removeAttribute('disabled')
+                    alert('Foto tirada com sucesso');
                                 
                 } catch(e) {
                     console.log(e);
@@ -210,6 +229,8 @@ class ThingsInteraction extends Controller{
                 img.src = readerTarget.result;  
                                 
                 globalThis.takePictureBlob = "empty";
+                document.querySelector('#update-button').removeAttribute('disabled')
+                alert('Imagem carregada com sucesso.');
             
                 });
             
@@ -227,6 +248,9 @@ class ThingsInteraction extends Controller{
     closeImageRegistrationModal(){
         document.querySelector('#exit-modal-button').addEventListener('click',()=>{
             document.querySelector('div.background-modal').style.display = 'none';
+
+            HelperTabOrder.resetTabOrder(tabOrderRegisterModalTakePicture);
+            HelperTabOrder.setTabOrder(tabOrderInteraction); 
         });
     
     }
@@ -238,6 +262,9 @@ class ThingsInteraction extends Controller{
             document.querySelector('.cam-modal').style.display = 'flex';
             document.querySelector('#img-register-modal').style.display = 'none';
             document.querySelector('body').style.overflow = 'hidden';
+
+            HelperTabOrder.resetTabOrder(tabOrderRegisterModalTakePicture);            
+            HelperTabOrder.setTabOrder(tabOrderRegisterModalCamera);
             
         });   
 
@@ -245,8 +272,11 @@ class ThingsInteraction extends Controller{
             document.querySelector('div.background-modal').style.display = 'block';
             document.querySelector('#img-register-modal').style.display = 'block';
             document.querySelector('.cam-modal').style.display = 'none';
+
+            HelperTabOrder.resetTabOrder(tabOrderInteraction);
+            HelperTabOrder.setTabOrder(tabOrderRegisterModalTakePicture);
             
-        });       
+        });      
 
         
 
@@ -293,20 +323,16 @@ class ThingsInteraction extends Controller{
         
         sizeImgRegisterModal.style.width = `${(window.innerWidth -40)}px`;
         
+    }    
+
+    setTabOrder(){                       
+        HelperTabOrder.setTabOrder(tabOrderInteraction);
     }
 
-    canonicalKludge(){
-        let searchModal = document.querySelector("#search-modal");
-        let imgRegisterModal = document.querySelector("#img-register-modal");                   
-
-        searchModal !== null && (document.querySelector("#search-modal").style.display = 'none');
-        imgRegisterModal !== null && (document.querySelector("#img-register-modal").style.display = 'none');
-        document.querySelector(".background-modal").style.display = 'block';           
-        document.querySelector(".sandwich-menu-body").setAttribute("style","display:flex");
-        
-        let camModal = document.querySelector(".cam-modal");
-        (camModal !== null) && (camModal.setAttribute("style","display:none"));
-        document.querySelector("img[alt='Fechar menu']").dispatchEvent(new Event('click'))
+    setImgsRegisterModal(){
+        document.querySelector('#exit-modal-button').setAttribute('src',`${config.urlBase}/assets/imgs/icons/close_FILL0_wght300_GRAD0_opsz24.svg`);
+        document.querySelector('#open-picture-modal img').setAttribute('src',`${config.urlBase}/assets/imgs/icons/photo_camera_FILL0_wght300_GRAD0_opsz24.svg`);
+        document.querySelector("label[for='image-address-update'] img").setAttribute('src',`${config.urlBase}/assets/imgs/icons/filter_FILL0_wght300_GRAD0_opsz24.svg`);
     }
     
 
@@ -319,7 +345,7 @@ await thingsInteraction.getThing();
 
 await thingsInteraction.update();
 await thingsInteraction.return();
-thingsInteraction.enableButton("img-picture","image-address","image-address-update", "local", "list-categories", "description");
+thingsInteraction.enableButton("local", "description");
 thingsInteraction.inputFileImageUploadPreview();
 thingsInteraction.takePicture();
 thingsInteraction.inputFileImageUploadPreview();
@@ -328,7 +354,8 @@ thingsInteraction.openImageRegistrationModal();
 thingsInteraction.arrowBack();
 thingsInteraction.appendFooter();
 thingsInteraction.sizeImgRegisterModal();
-// thingsInteraction.setTabOrder();
+thingsInteraction.setTabOrder();
+thingsInteraction.setImgsRegisterModal();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
@@ -337,5 +364,4 @@ HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
 HelperSandwichMenu.closeSandwichMenu('interaction');
 
-thingsInteraction.canonicalKludge();
 

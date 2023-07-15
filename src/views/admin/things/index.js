@@ -25,7 +25,7 @@ class Things extends Controller{
                     
         for (let i = 0; i < allCategories.result.length; ++i) { 
             if(allCategories.result[i].name !== 'Todas') { 
-                let li = document.createElement("li"); 
+                let li = document.createElement("li");                
                 let a = document.createElement("a");                
                 a.setAttribute("data-id",allCategories.result[i].id);                                
                 a.appendChild(document.createTextNode((allCategories.result[i].name)));

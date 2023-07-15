@@ -9,6 +9,10 @@ import LayoutFooter from '../../../components/footer/index.js';
 
 import config from '../../../../../config.js';
 
+import HelperTabOrder from '../../../helpers/taborder/index.js';
+
+import tabOrderCategoriesRegister from "./taborder/index.js";
+
 class CategoriesRegistration extends Controller{
 
     constructor(){        
@@ -16,17 +20,21 @@ class CategoriesRegistration extends Controller{
         this.modelCategories = new  ModelCategories();
         this.prevPage = this.getPrevPageURL();        
     }
-    save(){        
-        document.querySelector("#save-button").addEventListener("click", (e)=>{ 
+    async save(){        
+        document.querySelector("#save-button").addEventListener("click", async (e)=>{ 
             e.preventDefault();
             let formData = new FormData(document.querySelector('form'));
             
             if(localStorage.getItem("hash")){
                 formData.append('hash',localStorage.getItem("hash"));
                 
-            }             
-                         
-            this.modelCategories.insert(this.prevPage, formData);          
+            }            
+            
+            document.querySelector("#save-button").setAttribute('disabled','')
+            document.querySelector("#save-button").textContent = "Salvando...";
+            await this.modelCategories.insert(this.prevPage, formData);  
+            document.querySelector("#save-button").removeAttribute('disabled')
+            document.querySelector("#save-button").textContent = "Salvar";       
             
         
        });
@@ -90,6 +98,10 @@ class CategoriesRegistration extends Controller{
         layoutFooter.create(containerFooter, config, true);        
         
     } 
+
+    setTabOrder(){                       
+        HelperTabOrder.setTabOrder(tabOrderCategoriesRegister);
+    }
     
 
 }
@@ -97,14 +109,15 @@ class CategoriesRegistration extends Controller{
 const categoriesRegistration = new CategoriesRegistration();
 categoriesRegistration.createHeaderContent();
 categoriesRegistration.createBreadcrumbs();
-categoriesRegistration.save();
+await categoriesRegistration.save();
 categoriesRegistration.focusNameField();
 categoriesRegistration.arrowBack();
 categoriesRegistration.appendFooter();
+categoriesRegistration.setTabOrder();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu('categoriesregister');

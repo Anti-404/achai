@@ -6,6 +6,7 @@ import LayoutHeaderContent from './src/views/components/headercontent/index.js';
 import LayoutCateogoriesList from './src/views/components/categories/index.js';
 import LayoutBreadcrumbs from './src/views/components/breadcrumbs/index.js';
 import LayoutFooter from "./src/views/components/footer/index.js";
+import LayoutHelpInformation from "./src/views/components/helpinformation/index.js";
 
 import HelperSearch from './src/views/helpers/search/index.js';
 import HelperCategories from './src/views/helpers/categories/index.js';
@@ -55,8 +56,7 @@ class Home {
             
     }
     
-    handleThingsByCategories(){
-        // let categoriesLinks = document.querySelectorAll('.categories-list li a');
+    handleThingsByCategories(){        
         let categoriesLinks = document.querySelectorAll('.categories-list li');
         HelperCategories.handleThingsByCategories(categoriesLinks);
     }
@@ -164,10 +164,10 @@ class Home {
             document.querySelector('.header-top-body .search-button').style.display = 'none';
             document.querySelector('.container-header').style.display = 'none';
             document.querySelector('main .container .things-list').style.display = 'none';
+            document.querySelector('.banner').style.display = 'none';
             document.querySelector('ul.breadcrumb').style.display = 'block';
         });
-    }
-    
+    }    
 
     createBreadcrumbs(){
         const layoutBreadcrumbs = new LayoutBreadcrumbs();
@@ -179,8 +179,7 @@ class Home {
         
         layoutBreadcrumbs.create(ul, values);        
 
-    }
-    
+    }    
 
     handleButtonInfo(){
         document.querySelector('.info-button').addEventListener('click',()=>{
@@ -194,6 +193,19 @@ class Home {
         layoutFooter.create(containerFooter, config, true);        
         
     } 
+
+    setImgBanner(){
+        document.querySelector('.banner img').setAttribute('src',`${config.urlBase}/assets/imgs/imagem degradê.svg`);
+    }
+
+    createInformationBanner(){
+        const layoutHelpInformation = new LayoutHelpInformation();
+        let container = document.querySelector('.help-information');        
+        layoutHelpInformation.create(container);        
+
+        container.style.marginTop =  `${(document.querySelector('main .container .things-list').clientHeight)}px`;
+
+    }
 
 }
 
@@ -209,6 +221,8 @@ home.filterThings();
 home.handleButtonAllCategories();
 home.handleButtonInfo();
 home.appendFooter();
+home.setImgBanner();
+home.createInformationBanner();
 
 HelperSearch.createModalSearch();
 HelperSearch.searchItem();

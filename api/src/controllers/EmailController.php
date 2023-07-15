@@ -17,16 +17,18 @@ class EmailController extends Controller{
         
       public function sendemail(){
         
-        $to = 'allangeorge@virtual.ufc.br';
         $id = filter_input(INPUT_POST, 'id');
+        // $adminEmail = 'allangeorge@virtual.ufc.br';
+        $adminEmail = 'equipeanti404@gmail.com';
         $local = filter_input(INPUT_POST, 'local');
-        $description = filter_input(INPUT_POST, 'description');                
-        $qrcodeBlobScreeshot = $_FILES['qrcodeBlobScreeshot'];     
-        
-        if($to && $id && $local && $description && isset($qrcodeBlobScreeshot) && !empty($qrcodeBlobScreeshot)){        
-                          
-
-            try {
+        $description = filter_input(INPUT_POST, 'description');
+        $userName = filter_input(INPUT_POST, 'username');
+        $userEmail = filter_input(INPUT_POST, 'useremail', FILTER_VALIDATE_EMAIL);
+        $subject = filter_input(INPUT_POST, 'subject');                       
+        $qrcodeBlobScreeshot = $_FILES['qrcodeBlobScreeshot'];
+       
+        if($adminEmail && $userEmail && $userName && $id && $local  && isset($qrcodeBlobScreeshot) && !empty($qrcodeBlobScreeshot)){
+             try {
                 
                 $mail = new PHPMailer(true);
                 $mail->SMTPSecure = 'plain';
@@ -38,10 +40,11 @@ class EmailController extends Controller{
                 $mail->Password = 'ddfaajjaafnkfkwg'; 
                 $mail->SMTPSecure = 'ssl';
             
-                $mail->setFrom('tworeba@gmail.com'); 
-            
-                $mail->addAddress('equipeanti404@gmail.com');                                      
-                $mail->addAttachment($qrcodeBlobScreeshot['tmp_name'],'qrcodeBlobScreeshot.jpeg');                      
+                $mail->setFrom('tworeba@gmail.com');             
+                                                     
+                $mail->addAddress("{$adminEmail}");                                      
+                $mail->addAddress("{$userEmail}");                                      
+                $mail->addAttachment($qrcodeBlobScreeshot['tmp_name'],'QRCodeObjetoPerdido.jpeg');                      
 
                 $mail->isHTML(true);
                 $mail->CharSet = 'utf-8';
@@ -52,7 +55,7 @@ class EmailController extends Controller{
                                     Descrição:".$description."<br>
                             </p>
                             ";
-                $mail->Subject = 'Objeto reservado';
+                $mail->Subject = $subject;
                 $mail->AltBody = 'O objeto de código '.$id.' foi encontrado no(a) '.$local.'. Descrição: '.$description;
     
                 
@@ -66,7 +69,7 @@ class EmailController extends Controller{
             
 
         }else{
-            $this->array['error'] = 'Dados não enviados';
+            $this->array['error'] = 'Dados obrigatórios não enviados';
         }
         
 

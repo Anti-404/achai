@@ -34,7 +34,7 @@ div.background-modal{
     display: none;
 }
 
- #qrcode-modal{  
+ #qrcode-modal, #loading-modal{  
     display: flex;     
     justify-content: center;
     background-color: var(--background-color);
@@ -64,4 +64,8 @@ form input, form textarea, form select{
 
   #send-email-button{
     margin-top: 15px;
+}
+
+#loading-modal-background{
+    display: none;
 }

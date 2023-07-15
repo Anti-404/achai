@@ -4,7 +4,7 @@ class LayoutHeaderContent{
 
     constructor(){}
 
-    async create(container, hrefLink=config.urlBase, 
+    create(container, hrefLink=config.urlBase, 
         flagSearchButton = true, flagSandwichMenu = false, flagBreadcrumb=false, flagInfo=true, flagArrow=true){  
             
         let divHeaderTop = document.createElement("div");

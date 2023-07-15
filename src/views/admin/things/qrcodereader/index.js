@@ -82,9 +82,8 @@ class QRCodeReader extends Controller{
         
     } 
 
-    setTabOrder(){
-        const elementsList = tabOrderQrcodeReader;                
-        HelperTabOrder.setTabOrder(elementsList);
+    setTabOrder(){                 
+        HelperTabOrder.setTabOrder(tabOrderQrcodeReader);
     }
 
 

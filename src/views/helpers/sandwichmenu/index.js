@@ -1,6 +1,7 @@
 import config from '../../../../config.js';
 import LayoutSandwichMenu from '../../components/sandwichmenu/index.js';
 import HelperTabOrder from '../taborder/index.js';
+import HelperFocusFrontModal from '../focusfrontmodal/index.js';
 
 import tabOrderPanel from "../../admin/panel/taborder/index.js";
 import tabOrderThingsRegister from "../../admin/things/register/taborder/index.js";
@@ -11,7 +12,7 @@ import tabOrderCategoriesRegister from "../../admin/categories/register/taborder
 import tabOrderProfile from "../../admin/profile/taborder/index.js";
 import tabOrderThings from "../../admin/things/taborder/index.js";
 import tabOrderDiscard from "../../admin/things/discard/taborder/index.js";
-import tabOrderThingsinteraction from "../../admin/things/interaction/taborder/index.js";
+import tabOrderThingsInteraction from "../../admin/things/interaction/taborder/index.js";
 import tabOrderManager from "../../admin/things/manager/taborder/index.js";
 import tabOrderQrCodereader from "../../admin/things/qrcodereader/taborder/index.js";
 import tabOrderReturned from "../../admin/things/returned/taborder/index.js";
@@ -27,13 +28,9 @@ class HelperSandwichMenu{
         layoutSandwichMenu.create(document.querySelector('.background-modal .container')); 
     }
 
-    static openSandwichMenu(){  
-
-        let childrenBody = document.querySelector('body').children;
-        childrenBody =  Array.from(childrenBody);
-        childrenBody.forEach(element => {
-            HelperSandwichMenu.contentTagBodySave.push(element);
-        });
+    static openSandwichMenu(){ 
+      
+        HelperFocusFrontModal.saveChildrenBody();
         
         document.querySelector(".sandwich-menu-button").addEventListener("click",(e)=>{
             let searchModal = document.querySelector("#search-modal");
@@ -46,52 +43,30 @@ class HelperSandwichMenu{
             
             let camModal = document.querySelector(".cam-modal");
             (camModal !== null) && (camModal.setAttribute("style","display:none"));
-
-            let elementsList = tabOrderSandwichMenu;            
-            HelperTabOrder.setTabOrder(elementsList);            
-           
-            let header = document.querySelector('header');
-            let main = document.querySelector('main');
-            let footer = document.querySelector('footer');
-            let body = document.querySelector('body');
-            let scripts = document.querySelectorAll('script');
-
-            body.style.height = '100vh';            
-            body.removeChild(header);
-            body.removeChild(main);
-            body.removeChild(scripts[0]);            
-            body.removeChild(scripts[1]);            
-            body.removeChild(footer);            
+            
+            HelperFocusFrontModal.clearBody(tabOrderSandwichMenu);
             
         });
                
     }
 
     static closeSandwichMenu(flagTabOrder='none'){
-        document.querySelector(".sandwich-menu-body img[alt='Fechar menu']").addEventListener("click",(e)=>{
-            let body = document.querySelector('body');             
-
-            let backgroundModal = document.querySelector('.background-modal');
-            body.removeChild(backgroundModal);
-            let contentTagBodySave =  HelperSandwichMenu.contentTagBodySave;            
+        document.querySelector(".sandwich-menu-body img[alt='Fechar menu']").addEventListener("click",(e)=>{           
             
-            contentTagBodySave.forEach((element)=>{
-                body.appendChild(element);
-            });   
-            
-            let elementsListMenu  = tabOrderSandwichMenu;                      
-            HelperTabOrder.resetTabOrder(elementsListMenu);           
+            HelperFocusFrontModal.rebuilBody(tabOrderSandwichMenu);
 
             (flagTabOrder === 'panel') && HelperTabOrder.setTabOrder(tabOrderPanel);    
             (flagTabOrder === 'profile') && HelperTabOrder.setTabOrder(tabOrderProfile);    
             (flagTabOrder === 'things') && HelperTabOrder.setTabOrder(tabOrderThings);             
             (flagTabOrder === 'discard') && HelperTabOrder.setTabOrder(tabOrderDiscard);             
-            (flagTabOrder === 'interaction') && HelperTabOrder.setTabOrder(tabOrderThingsinteraction);             
+            (flagTabOrder === 'interaction') && HelperTabOrder.setTabOrder(tabOrderThingsInteraction);             
             (flagTabOrder === 'manager') && HelperTabOrder.setTabOrder(tabOrderManager);             
             (flagTabOrder === 'qrcodereader') && HelperTabOrder.setTabOrder(tabOrderQrCodereader);             
             (flagTabOrder === 'register') && HelperTabOrder.setTabOrder(tabOrderThingsRegister);             
             (flagTabOrder === 'returned') && HelperTabOrder.setTabOrder(tabOrderReturned);             
             (flagTabOrder === 'thingreserved') && HelperTabOrder.setTabOrder(tabOrderThingTeserved); 
+            (flagTabOrder === 'categories') && HelperTabOrder.setTabOrder(tabOrderCategories); 
+            (flagTabOrder === 'categoriesregister') && HelperTabOrder.setTabOrder(tabOrderCategoriesRegister); 
 
             let imgRegisterModal = document.querySelector("#img-register-modal");
             document.querySelector(".sandwich-menu-body").setAttribute("style","display:none");

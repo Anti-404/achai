@@ -2,13 +2,13 @@ class LayoutFooter{
 
     constructor(){}
 
-    async create(container, config, panel=false){          
+    create(container, config, panel=false){          
         container.parentNode.parentNode.querySelector('footer').setAttribute('role', 'rodapé');
 
         let ufcLink = document.createElement('a');
         ufcLink.href = 'https://www.ufc.br/';
         let ufcImg = document.createElement('img');
-        ufcImg.src = `${config.urlBase}/assets/imgs/logo-ufc.png`;
+        ufcImg.src = `${config.urlBase}/assets/imgs/logo-ufc.svg`;
         ufcImg.alt = `Link para o site da UFC`;
 
         if(panel){

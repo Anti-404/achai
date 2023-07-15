@@ -1,6 +1,6 @@
 <?php
 namespace src;
-/* 
+
 //2° banco
 class Config {
      const BASE_DIR = '/achai/api/public';  
@@ -15,8 +15,8 @@ class Config {
     const DEFAULT_ACTION = 'index';
 }
 
-*/
 
+/* 
 class Config {
     const BASE_DIR = '/achai/api/public';   
 
@@ -29,7 +29,7 @@ class Config {
     const ERROR_CONTROLLER = 'ErrorController';
     const DEFAULT_ACTION = 'index';
 }
-
+*/
 /* 
 //1° banco
 class Config {

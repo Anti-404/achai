@@ -8,6 +8,11 @@ import LayoutHeaderContent from '../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../components/breadcrumbs/index.js';
 import LayoutFooter from '../../components/footer/index.js';
 
+import HelperTabOrder from '../../helpers/taborder/index.js';
+
+import tabOrderProfile from "./taborder/index.js";
+
+
 class Profile extends Controller{    
 
     constructor(){     
@@ -121,6 +126,15 @@ class Profile extends Controller{
         
     } 
 
+    setTabOrder(){                       
+        HelperTabOrder.setTabOrder(tabOrderProfile);
+    }
+
+    setImgProfile(){
+        document.querySelector('.profile-content-top img').setAttribute('src',`${config.urlBase}/assets/imgs/icons/account_circle_FILL1_wght300_GRAD0_opsz40.svg`);
+        document.querySelector("#exit-button img[alt='botão sair']").setAttribute('src',`${config.urlBase}/assets/imgs/icons/logout_FILL0_wght300_GRAD0_opsz24.svg`);
+    }
+
 }
 
 const profile = new Profile();
@@ -131,12 +145,14 @@ profile.setEmail();
 profile.exit();
 profile.arrowBack();
 profile.appendFooter();
+profile.setTabOrder();
+profile.setImgProfile();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu('profile');
 // HelperSandwichMenu.goToReturnedThings();
 // HelperSandwichMenu.exit();

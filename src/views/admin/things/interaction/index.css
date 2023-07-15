@@ -110,6 +110,7 @@ flex-direction: column;
 
 #img-register-modal div{
 border-bottom: 1px solid var(--gray-color);  
+border-top: 1px solid var(--gray-color);  
 padding: 10px 10px 10px 0px;
 
 }

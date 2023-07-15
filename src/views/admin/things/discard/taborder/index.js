@@ -1,10 +1,13 @@
 import tabOrderHeader from "../../../../components/headercontent/taborder/index.js";
 import tabOrderFooter from "../../../../components/footer/taborder/index.js";
 
-const elementsListCurrent =  [                         
-               
-]
+const elementsListDiscard =  [                         
+    {selector: ".files-zip-button"},         
+    {selector: ".things-list a"},         
+    {selector: ".files-zip-list a"},         
+    {selector: ".files-zip-list img"},         
+];
 
-const elementsList = [...tabOrderHeader, ...elementsListCurrent, ...tabOrderFooter] ;
+const elementsList = [...tabOrderHeader, ...elementsListDiscard, ...tabOrderFooter] ;
 
 export default elementsList;

@@ -10,7 +10,8 @@ import LayoutFooter from '../../../components/footer/index.js';
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
 import HelperTabOrder from '../../../helpers/taborder/index.js';
 
-import tabOrderRegister from "../../../admin/things/register/taborder/index.js";
+import tabOrderRegister,{tabOrderRegisterModalTakePicture, tabOrderRegisterModalCamera} from "../../../admin/things/register/taborder/index.js";
+
 
 class ThingRegistration extends Controller{
 
@@ -21,7 +22,7 @@ class ThingRegistration extends Controller{
     this.modelThings = new  ModelThings();
     this.prevPage = this.getPrevPageURL();       
     this.currentPage = this.retrieveURLCurrentPage();
-    this.takePictureBlob = "empty";
+    this.takePictureBlob = "empty";    
 
     }
 
@@ -44,8 +45,8 @@ class ThingRegistration extends Controller{
 
     }    
 
-    save(){        
-        document.querySelector("#save-button").addEventListener("click", (e)=>{             
+    async save(){        
+        document.querySelector("#save-button").addEventListener("click", async (e)=>{             
             e.preventDefault();                      
             document.querySelector("#save-button").setAttribute('disabled','');
             document.querySelector("#save-button").textContent = 'Cadastrando...';
@@ -58,12 +59,13 @@ class ThingRegistration extends Controller{
             if(localStorage.getItem("hash")){
                 formData.append('hash',localStorage.getItem("hash"));
                 
-            }                              
-                                    
-            this.modelThings.insert(this.prevPage, formData);                
+            }                        
             
-            document.querySelector("#save-button").textContent = 'Cadastrar';
+            
+            await this.modelThings.insert(this.prevPage, formData); 
             document.querySelector("#save-button").removeAttribute('disabled');
+            document.querySelector("#save-button").textContent = 'Cadastrar';                           
+            
         });
     }   
 
@@ -90,7 +92,11 @@ class ThingRegistration extends Controller{
 
             
         if(!(document.querySelector('#take-picture-button') == null)){
-            document.querySelector('#take-picture-button').addEventListener('click', async () => {                
+            document.querySelector('#take-picture-button').addEventListener('click', async () => { 
+                HelperTabOrder.resetTabOrder(tabOrderRegisterModalCamera);
+                HelperTabOrder.resetTabOrder(tabOrderRegisterModalTakePicture);
+                HelperTabOrder.setTabOrder(tabOrderRegister);  
+
                 document.querySelector('div.background-modal').style.display = 'none';   
                 document.querySelector('body').style.overflow = 'auto';             
 
@@ -111,10 +117,12 @@ class ThingRegistration extends Controller{
                     let blob = await response.blob();               
                     
                     this.takePictureBlob = blob;
+                    alert('Foto tirada com sucesso');
                                 
                 } catch(e) {
                     console.log(e);
-                }              
+                }                 
+                
                 
             });
         }       
@@ -152,32 +160,40 @@ class ThingRegistration extends Controller{
 
     }
 
-
     closeImageRegistrationModal(){
         document.querySelector('#exit-modal-button').addEventListener('click',()=>{
-            document.querySelector('div.background-modal').style.display = 'none';
+            document.querySelector('div.background-modal').style.display = 'none'; 
+            HelperTabOrder.resetTabOrder(tabOrderRegisterModalTakePicture);
+            HelperTabOrder.setTabOrder(tabOrderRegister);          
+             
         });
 
     }
 
-    openImageRegistrationModal(){
+    openImageRegistrationModal(){        
         
         document.querySelector('#open-picture-modal').addEventListener('click',()=>{  
             document.querySelector('div.background-modal').style.display = 'block';          
             document.querySelector('.cam-modal').style.display = 'flex';
             document.querySelector('#img-register-modal').style.display = 'none';
             document.querySelector('.sandwich-menu-body').style.display = 'none;'            
-            document.querySelector('body').style.overflow = 'hidden';
+            document.querySelector('body').style.overflow = 'hidden';   
+                        
+            HelperTabOrder.resetTabOrder(tabOrderRegisterModalTakePicture);            
+            HelperTabOrder.setTabOrder(tabOrderRegisterModalCamera);
             
-        });   
+        });           
+        
 
         document.querySelector('#img-picture').addEventListener('click',()=>{
             document.querySelector('div.background-modal').style.display = 'block';
             document.querySelector('#img-register-modal').style.display = 'flex';
-            document.querySelector('.cam-modal').style.display = 'none';            
-        });        
+            document.querySelector('.cam-modal').style.display = 'none';                      
+            
+            HelperTabOrder.resetTabOrder(tabOrderRegister);
+            HelperTabOrder.setTabOrder(tabOrderRegisterModalTakePicture);
 
-        
+        }); 
 
 
     }
@@ -235,9 +251,14 @@ class ThingRegistration extends Controller{
         
     }
 
-    setTabOrder(){
-        const elementsList = tabOrderRegister;                
-        HelperTabOrder.setTabOrder(elementsList);
+    setTabOrder(){                       
+        HelperTabOrder.setTabOrder(tabOrderRegister);
+    }
+
+    setImgsRegisterModal(){
+        document.querySelector('#exit-modal-button').setAttribute('src',`${config.urlBase}/assets/imgs/icons/close_FILL0_wght300_GRAD0_opsz24.svg`);
+        document.querySelector('#open-picture-modal img').setAttribute('src',`${config.urlBase}/assets/imgs/icons/photo_camera_FILL0_wght300_GRAD0_opsz24.svg`);
+        document.querySelector("label[for='image-address'] img").setAttribute('src',`${config.urlBase}/assets/imgs/icons/filter_FILL0_wght300_GRAD0_opsz24.svg`);
     }
 }
 
@@ -245,7 +266,7 @@ const thingRegistration = new ThingRegistration();
 thingRegistration.createHeaderContent();
 thingRegistration.createBreadcrumbs();
 thingRegistration.selectCategories();
-thingRegistration.save();
+await thingRegistration.save();
 thingRegistration.takePicture();
 thingRegistration.inputFileImageUploadPreview();
 thingRegistration.closeImageRegistrationModal();
@@ -254,6 +275,7 @@ thingRegistration.arrowBack();
 thingRegistration.appendFooter();
 thingRegistration.sizeImgRegisterModal();
 thingRegistration.setTabOrder();
+thingRegistration.setImgsRegisterModal();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();

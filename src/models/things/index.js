@@ -137,11 +137,7 @@ export default class ModelThings extends Model{
         response = await response.json();
         
         if(response.error == ''){
-          alert(message+' com Sucesso'); 
-          
-          if(!(addressRedirecting == '')){                
-            window.location.href = addressRedirecting;      
-          }
+          return message+' com Sucesso';  
 
         }else{
           alert(response.error);                 

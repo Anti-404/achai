@@ -9,13 +9,6 @@ body{
  
 }
 
-/* div.background-modal div.container {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;  
-  
-} */
-
 .cam-modal{
   display: flex;
   flex-direction: column; 
@@ -74,6 +67,7 @@ div#img-register-modal{
 }
 
 #img-register-modal div{
+  border-top: 1px solid var(--gray-color);  
   border-bottom: 1px solid var(--gray-color);  
   padding: 10px 10px 10px 0px;
 

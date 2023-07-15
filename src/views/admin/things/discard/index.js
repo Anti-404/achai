@@ -5,10 +5,14 @@ import config from '../../../../../config.js';
 import LayoutThing from '../../../components/thing/index.js';
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
+import HelperTabOrder from '../../../helpers/taborder/index.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
 import LayoutFooter from '../../../components/footer/index.js';
+
+import tabOrderDiscard from './taborder/index.js';
+
 
 class Discard extends Controller{
     constructor(){              
@@ -24,7 +28,7 @@ class Discard extends Controller{
 
         const allThingsDiscard = await this.modelThing.getThingsDiscard();            
         let  thingsDiscardContainer = document.querySelector(".things-list");
-        this.layoutThing.create(thingsDiscardContainer, allThingsDiscard, false);
+        await this.layoutThing.create(thingsDiscardContainer, allThingsDiscard, false);
 
     }
  
@@ -70,6 +74,7 @@ class Discard extends Controller{
             a.setAttribute("href", `${config.urlBase}/${allFilesZip.result[i].file_address}` ); 
             buttonImg.setAttribute("id", 'delete-button'); 
             buttonImg.src=`${config.urlBase}/assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg`; 
+            buttonImg.alt=`botão deletar arquivo zip de imagens compactadas`; 
 
             let fileName = (allFilesZip.result[i].file_address).split('/');            
             fileName = fileName[fileName.length-1];
@@ -136,22 +141,27 @@ class Discard extends Controller{
         
     } 
 
+    setTabOrder(){                      
+        HelperTabOrder.setTabOrder(tabOrderDiscard);
+    }
+
 }   
 
 const discard = new Discard();
 discard.createHeaderContent();
 discard.createBreadcrumbs();
-discard.allThingsDiscard();
+await discard.allThingsDiscard();
 discard.handlerFilesZip();
 await discard.handlerShowAllFilesZip();
 discard.delete();
 discard.arrowBack();
 discard.appendFooter();
+discard.setTabOrder();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu('discard');
 // HelperSandwichMenu.goToReturnedThings();

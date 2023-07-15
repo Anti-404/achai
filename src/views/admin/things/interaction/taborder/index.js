@@ -1,9 +1,9 @@
 import tabOrderHeader from "../../../../components/headercontent/taborder/index.js";
 import tabOrderFooter from "../../../../components/footer/taborder/index.js";
 
-const elementsListCurrent =  [                         
+const elementsListInteraction =  [                         
     {selector: "#img-picture"},   
-    {selector: "label[for='list-categories']"},   
+    {selector: "#labelCategories"},   
     {selector: "#code"},   
     {selector: "#list-categories"},   
     {selector: "label[for='local']"},   
@@ -14,6 +14,18 @@ const elementsListCurrent =  [
     {selector: "#update-button"},         
 ]
 
-const elementsList = [...tabOrderHeader, ...elementsListCurrent, ...tabOrderFooter] ;
+const tabOrderInteraction = [...tabOrderHeader, ...elementsListInteraction, ...tabOrderFooter];
 
-export default elementsList;
+const tabOrderRegisterModalTakePicture =  [      
+    {selector: "#exit-modal-button"},
+    {selector: "#open-picture-modal"},
+    {selector: "label[for='image-address']"}
+];
+
+const tabOrderRegisterModalCamera =  [      
+    {selector: "#take-picture-button"},         
+         
+];
+
+export default tabOrderInteraction;
+export {tabOrderRegisterModalTakePicture, tabOrderRegisterModalCamera};
