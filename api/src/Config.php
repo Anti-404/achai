@@ -6,7 +6,7 @@ class Config {
      const BASE_DIR = '/achai/api/public';  
 
      const DB_DRIVER = 'mysql';
-     const DB_HOST = 'localhost';
+     const DB_HOST = 'achai.mysql.database.azure.com';
      const DB_DATABASE = 'achai';
      const DB_USER = 'achai';
      const DB_PASS = 'MqC88uiZzrWD-~f';
