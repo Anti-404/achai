@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'achaiachadoseperdidos'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D789F7645B4A42B585E2FBBE37B5C9B4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_99828EC905044E768503AAC814866C3E }}
           package: .
