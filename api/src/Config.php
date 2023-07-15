@@ -3,7 +3,7 @@ namespace src;
 
 //2° banco
 class Config {
-     const BASE_DIR = '/achai/api/public';  
+     const BASE_DIR = '/api/public';  
 
      const DB_DRIVER = 'mysql';
      const DB_HOST = 'achai.mysql.database.azure.com';
