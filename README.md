@@ -62,7 +62,7 @@ A pasta `/src` é onde se encontra o front-end
 | Retirar objeto do sistema  |  admin/things/thingreserved/index.js  |   Feito    |
 | Cadastrar categoria  |  admin/categories/register/index.js  |   Feito    |
 | Retirar categoria do sistema  |  admin/categories/index.js  |   Feito    |
-| Alterar nome de usuário da conta do administrador  |  index.js  |   Feito    |
+| Alterar nome de usuário da conta do administrador  |  admin/profile/index.js  |   Feito    |
 | Alterar e-mail da conta do administrador  |  admin/profile/index.js  |   Feito    |
 | Alterar senha da conta do administrador  |  admin/profile/index.js  |   Feito    |
 | Listar objetos que ultrapassaram o prazo máximo de 6 meses  |  admin/things/discard/index.js  |   Feito    |
