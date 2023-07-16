@@ -46,6 +46,7 @@ A pasta `/db` é onde se encontra o arquivo sql com a estrutura do banco
 A pasta `/src` é onde se encontra o front-end
 
 ## Equisitos Funcionais
+
 ### Utilizador Administrador
 
 | Funcionalidade  | Local | Situação |
@@ -70,6 +71,7 @@ A pasta `/src` é onde se encontra o front-end
 | Pesquisar por meio de caixa de pesquisa | admin/things/manager/index.js |   Feito    |
 
 ### Utilizador Comum
+
 | Visualizar a tela inicial  |  /index.js  |   Feito    |
 | Filtrar objetos já reservados  |  /index.js  |   Feito    |
 | Visualizar informações do objeto  |  users/things/show-object/index.js  |   Feito    |
