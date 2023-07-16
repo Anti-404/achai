@@ -45,6 +45,40 @@ A pasta `/db` é onde se encontra o arquivo sql com a estrutura do banco
 
 A pasta `/src` é onde se encontra o front-end
 
+## Equisitos Funcionais
+### Utilizador Administrador
+
+| Funcionalidade  | Local | Situação |
+| :---         |     :---:      |          ---: |
+| Logar  | admin/login/index.js   |   Feito    |
+| Visualizar objetos já reservados  |  admin/panel/index.js   |   Feito    |
+| Cadastrar objeto  |  admin/things/register/index.js   |   Feito    |
+| Ler QR code  |  admin/things/qrcodereader/index.js   |   Feito    |
+| Visualizar tela de gerenciar objetos   |  admin/things/index.js  |   Feito    |
+| Visualizar tela de informações do objeto  | admin/things/interaction/index.js   |   Feito    |
+| Editar informações do objeto  |  admin/things/interaction/index.js  |   Feito    |
+| Retirar objeto do sistema  |  admin/things/interaction/index.js  |   Feito    |
+| Retirar objeto do sistema  |  admin/things/thingreserved/index.js  |   Feito    |
+| Cadastrar categoria  |  admin/categories/register/index.js  |   Feito    |
+| Retirar categoria do sistema  |  admin/categories/index.js  |   Feito    |
+| Alterar nome de usuário da conta do administrador  |  index.js  |   Feito    |
+| Alterar e-mail da conta do administrador  |  admin/profile/index.js  |   Feito    |
+| Alterar senha da conta do administrador  |  admin/profile/index.js  |   Feito    |
+| Listar objetos que ultrapassaram o prazo máximo de 6 meses  |  admin/things/discard/index.js  |   Feito    |
+| Filtrar os objetos por categorias   |  admin/things/index.js| Feito    |
+| Pesquisar por meio de caixa de pesquisa | admin/panel/index.js |   Feito    |
+| Pesquisar por meio de caixa de pesquisa | admin/things/manager/index.js |   Feito    |
+
+### Utilizador Comum
+| Visualizar a tela inicial  |  /index.js  |   Feito    |
+| Filtrar objetos já reservados  |  /index.js  |   Feito    |
+| Visualizar informações do objeto  |  users/things/show-object/index.js  |   Feito    |
+| Reservar o objeto  |   users/things/show-object/index.js  |   Feito    |
+| Enviar e-mail de reserva |   users/things/show-object/index.js |   Feito    |
+| Filtrar os objetos por categorias   |  /index.js| Feito    |
+| Pesquisar por meio de caixa de pesquisa | /index.js |   Feito    |
+
+
 ## Desenvolvedores
 
 Esse projeto está sendo desenvolvido por alunos da UFC do curso SMD, a nossa equipe é a ANT-404. Participantes:
