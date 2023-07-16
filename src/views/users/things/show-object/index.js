@@ -14,12 +14,14 @@ class ShowThing extends Controller{
         this.modelCategories = new  ModelCategories();
         this.modelThings = new  ModelThings();
         this.modelEmail = new  ModelEmail();
-        this.identifier = this.retrieveURLId();                     
+        this.identifier = this.retrieveURLId(); 
+        this.currentPage = this.retrieveURLCurrentPage();                    
 
     }   
 
     async getThing(){            
         const thing = await this.modelThings.get(this.identifier);  
+        
         if(thing.result.length <= 0){
             window.location.reload(`${config.urlBase}`);
         }
@@ -130,31 +132,19 @@ class ShowThing extends Controller{
             formDataEmail.append('username', document.querySelector('#email-form #name').value);
             formDataEmail.append('useremail', document.querySelector('#email-form #to').value);
             formDataEmail.append('subject', document.querySelector('#email-form #subject').value);            
+            formDataEmail.append('path', `${config.urlBase}/src/views/admin/things/thingreserved/?id=${formData.get('id')}`);            
             
             document.querySelector('#send-email-modal').style.display = 'none'; 
+                       
             
             
-            try {            
-                const screenshotTarget = document.querySelector('#canvas');     
-                let canvas2 = await html2canvas(screenshotTarget);
-                let base64image = canvas2.toDataURL("image/jpeg", 1.0); 
-
-                const response = await fetch(base64image);                           
-                let blob = await response.blob();                              
-                
-                formDataEmail.append('qrcodeBlobScreeshot',blob); 
-                            
-            } catch(e) {
-                console.log(e);
-            } 
             document.querySelector('#loading-modal-background').style.display = 'block';  
             let response = await this.modelEmail.sendEmail(formDataEmail);                    
 
            if(response.error === ''){            
                 await this.modelThings.reserve('', formData, 'Reservado'); 
                 document.querySelector('#loading-modal-background').style.display = 'none';
-                document.querySelector('.background-modal').style.display = 'block';
-                               
+                document.querySelector('.background-modal').style.display = 'block';                               
                 
            }else{
                 document.querySelector('#loading-modal-background').style.display = 'none';
@@ -166,37 +156,9 @@ class ShowThing extends Controller{
 
         });
 
-    }
+    }    
+
     
-    generateQrCode(){        
-        
-        const qrcode = new QRCode("qrcode");
-        
-        let url = `${config.urlBase}/src/views/admin/things/thingreserved/?id=${this.identifier}`        
-        if (!this.identifier) {
-          alert("Id não enviado");          
-          return;
-        }
-        
-        qrcode.makeCode(url);
-    }
-
-    async canvas(){        
-
-        let canvas = document.querySelector('#canvas');                    
-        let context = canvas.getContext('2d');
-                
-        canvas.height = 320;            
-        canvas.width = 320;
-        
-        let img = document.querySelector("#qrcode img");
-
-        img.addEventListener('load', function(){
-               context.drawImage(this,35,35);
-               img.style.display = 'none';
-        });
-                
-    }
 
     confirmScreenQrcodeButton(){
          document.querySelector('#confirm-screen-qrcode-button').addEventListener('click', ()=>{
@@ -234,9 +196,7 @@ class ShowThing extends Controller{
 const showThing = new ShowThing();
 await showThing.getThing();
 showThing.itsMy(); 
-await showThing.sendEmail(); 
-showThing.generateQrCode(); 
-await showThing.canvas(); 
+await showThing.sendEmail();
 showThing.confirmScreenQrcodeButton(); 
 showThing.createHeaderContent();
 showThing.createBreadcrumbs();

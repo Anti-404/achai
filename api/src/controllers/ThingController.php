@@ -443,9 +443,9 @@ class ThingController extends Controller {
         $returnedStatus = filter_input(INPUT_POST, 'returned_status');        
         $reservedStatus = filter_input(INPUT_POST, 'reserved_status');        
         $categoryId = filter_input(INPUT_POST, 'category_id');    
-        $file = $_FILES['image_address_update'];    
         
-       if($file['size'] > 0 && !empty($file)){        
+        if(isset($_FILES['image_address_update']) && !empty($_FILES['image_address_update']) && $_FILES['image_address_update']['size'] > 0 ){        
+           $file = $_FILES['image_address_update'];    
                    
             $extensionUploadedImage = explode('/',$_FILES['image_address_update']['type'])[1];            
                 

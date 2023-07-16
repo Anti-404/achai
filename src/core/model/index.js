@@ -8,7 +8,7 @@ export default class Model{
 
 
      async get(id){      
-      const endpoint = `${this.path}${this.nameController}/get/${id}`;            
+      const endpoint = `${this.path}${this.nameController}/get/${id}`;                
         try {            
             const response = await fetch(endpoint);           
             

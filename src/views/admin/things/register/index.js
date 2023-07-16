@@ -76,7 +76,7 @@ class ThingRegistration extends Controller{
         navigator.mediaDevices.getUserMedia({video:{ 
             
             facingMode: {
-                exact: 'environment'
+                //exact: 'environment'
               }
               
             }

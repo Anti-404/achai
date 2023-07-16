@@ -1,14 +1,11 @@
 let host = 'localhost'
 let ssl = false;
 
-//host = 'achai2.000webhostapp.com';
-//ssl = true;
-
-host = 'achaiachadoseperdidos.azurewebsites.net';
-ssl = true;
+// host = 'achai2.000webhostapp.com';
+// ssl = true;
 
 const config =  {
-    urlBase:(ssl)?`https://${host}`:`http://${host}`,        
+    urlBase:(ssl)?`https://${host}/achai`:`http://${host}/achai`,        
     
 }
 

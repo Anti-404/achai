@@ -93,7 +93,7 @@ class Categories extends Controller{
         for (let index = 0; index < deleteBtns.length; index++) {
             deleteBtns[index].addEventListener("click", async (e)=>{
 
-                const id = e.target.parentNode.parentNode.getAttribute('data-id');
+                const id = e.target.parentNode.parentNode.parentNode.getAttribute('data-id');
                 const categoryName = document.querySelector('.category-name').value;
 
                 let formData = new FormData();

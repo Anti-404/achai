@@ -5,8 +5,10 @@ use \core\Controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use chillerlan\QRCode\{QRCode, QROptions};
 
 require '../vendor/autoload.php';
+
 
 class EmailController extends Controller{ 
 
@@ -17,17 +19,24 @@ class EmailController extends Controller{
         
       public function sendemail(){
         
-        $id = filter_input(INPUT_POST, 'id');
-        // $adminEmail = 'allangeorge@virtual.ufc.br';
+        $id = filter_input(INPUT_POST, 'id');        
         $adminEmail = 'equipeanti404@gmail.com';
         $local = filter_input(INPUT_POST, 'local');
         $description = filter_input(INPUT_POST, 'description');
         $userName = filter_input(INPUT_POST, 'username');
         $userEmail = filter_input(INPUT_POST, 'useremail', FILTER_VALIDATE_EMAIL);
-        $subject = filter_input(INPUT_POST, 'subject');                       
-        $qrcodeBlobScreeshot = $_FILES['qrcodeBlobScreeshot'];
-       
-        if($adminEmail && $userEmail && $userName && $id && $local  && isset($qrcodeBlobScreeshot) && !empty($qrcodeBlobScreeshot)){
+        $subject = filter_input(INPUT_POST, 'subject');        
+        $path = filter_input(INPUT_POST, 'path');;        
+               
+        $options = new QROptions([
+            'version'      => 10,
+            'outputType'   => QRCode::OUTPUT_IMAGE_JPG,
+            'eccLevel'     => QRCode::ECC_H,
+            'scale'        => 5,
+            'imageBase64'  => false
+        ]);
+        
+        if($adminEmail && $userEmail && $userName && $id && $local && $path){
              try {
                 
                 $mail = new PHPMailer(true);
@@ -44,24 +53,27 @@ class EmailController extends Controller{
                                                      
                 $mail->addAddress("{$adminEmail}");                                      
                 $mail->addAddress("{$userEmail}");                                      
-                $mail->addAttachment($qrcodeBlobScreeshot['tmp_name'],'QRCodeObjetoPerdido.jpeg');                      
-
                 $mail->isHTML(true);
                 $mail->CharSet = 'utf-8';
-                $mail->FromName = 'Achaí';
+                $mail->FromName = 'Achaí';                                  
+                $nameImg = md5(time().rand(0,99));
+                
+                $qrcode = (new QRcode($options))->render($path,'../assets/imgs/'.$nameImg.'.jpg');   
+                $mail->addAttachment('../assets/imgs/'.$nameImg.'.jpg','QRCodeObjetoPerdido.jpeg');                                                                                              
+
                 $mail->Body = "<p>
                                     Código:". $id." <br>
                                     Local:".$local." <br>
-                                    Descrição:".$description."<br>
-                            </p>
-                            ";
+                                    Descrição:".$description."<br>                                                                                                                                        
+                            </p>";
+                            
                 $mail->Subject = $subject;
                 $mail->AltBody = 'O objeto de código '.$id.' foi encontrado no(a) '.$local.'. Descrição: '.$description;
-    
                 
-                $mail->send();
                 
+                $mail->send();                 
                 $this->array['result'] = 'E-mail enviado com sucesso';
+                unlink('../assets/imgs/'.$nameImg.'.jpg'); 
 
             } catch (Exception $e) {
                 $this->array['error'] = "Erro ao enviar o e-mail: {$mail->ErrorInfo}";
