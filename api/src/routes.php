@@ -33,6 +33,6 @@ $router->post('/admin/login', 'AdminController@login');
 $router->post('/admin/update', 'AdminController@update'); 
 
 $router->get('/zip', 'ZipController@index'); 
-$router->delete('/zip/delete/{id}', 'ZipController@delete');
+$router->post('/zip/delete/{id}', 'ZipController@delete');
 
 $router->post('/email/sendemail', 'EmailController@sendemail');

@@ -75,7 +75,9 @@ class QRCode extends Controller{
                 formData.append('hash',localStorage.getItem("hash"));                
             }
 
-            formData.append('returned_status','1');                  
+            formData.append('returned_status','1');  
+            document.querySelector("#return-button").setAttribute('disabled','');
+            document.querySelector("#return-button").textContent = "Retirando";               
             await this.modelThings.update(`${config.urlBase}/src/views/admin/panel/`,formData,'Retirado'); 
         });
 

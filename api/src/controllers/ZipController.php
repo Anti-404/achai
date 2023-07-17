@@ -34,8 +34,11 @@ class ZipController extends Controller {
     
     public function delete($id){        
 
-        $input = json_decode(file_get_contents('php://input'));
-        $hash = $input->hash ?? null;        
+        // $input = json_decode(file_get_contents('php://input'));
+        // $hash = $input->hash ?? null;  
+        
+        $hash = filter_input(INPUT_POST, 'hash'); 
+        
 
         if(!(AuthService::checkHash($hash))){
             $this->array['error'] = "Acesso negado. Contate o Administrador";            
@@ -82,8 +85,7 @@ class ZipController extends Controller {
     }
     
     
-    public function insert(){   
-        
+    public function insert(){        
         $hash = filter_input(INPUT_POST, 'hash');        
         if(!(AuthService::checkHash($hash))){
             $this->array['error'] = 'Acesso negado. Contate o Administrador';

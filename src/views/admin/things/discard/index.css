@@ -14,6 +14,7 @@
 
 .files-zip-list div{
     display: flex;
+    justify-content: space-between;
 }
 
 #delete-button{

@@ -93,7 +93,7 @@ class Discard extends Controller{
     let deleteButton = document.querySelector("#delete-button");
     if(deleteButton == null) return    
 
-    document.querySelector("#delete-button").addEventListener("click",(e)=>{  
+    document.querySelector("#delete-button").addEventListener("click",async (e)=>{  
         e.preventDefault();  
         let formData = new FormData();
         formData.append('id',e.target.getAttribute('data-id'));
@@ -104,7 +104,9 @@ class Discard extends Controller{
 
         let id = e.target.getAttribute('data-id');
         
-        this.modelZip.delete(this.currentPage,id, formData); 
+        let msg = await this.modelZip.delete(this.currentPage,id, formData); 
+        alert(msg);
+        window.location.reload();
     });
 }
 
