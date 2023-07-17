@@ -5,3 +5,7 @@ body{
 .background-modal{
     display: none;
 }
+
+.category input, .local input, .date input, .description textarea{
+    width: 100%;
+}

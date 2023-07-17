@@ -8,6 +8,11 @@ import LayoutHeaderContent from '../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../components/breadcrumbs/index.js';
 import LayoutFooter from '../../components/footer/index.js';
 
+import HelperTabOrder from '../../helpers/taborder/index.js';
+
+import tabOrderCategories from "./taborder/index.js";
+
+
 class Categories extends Controller{
     constructor(){        
         super();
@@ -34,23 +39,29 @@ class Categories extends Controller{
                     let editButton = document.createElement('img');
                     let input = document.createElement('input');   
                     
+                    let spanAccessibilityEdit = document.createElement('span');   
+                    let spanAccessibilityDelete = document.createElement('span');   
+                    
                     tr.setAttribute('class','tr'); ;  
 
                     input.setAttribute('value',allCategories.result[i].name);               
                     input.setAttribute('class','category-name');               
                     input.setAttribute('name','name');               
                     td1.appendChild(input);                    
-                    td1.setAttribute('class','td'); ;                    
+                    td1.setAttribute('class','td'); ;                                        
                     
                     editButton.src = `${config.urlBase}/assets/imgs/icons/button_check_off.svg`;
                     editButton.setAttribute('class','material-symbols-rounded update-button');                    
                     editButton.alt = "salvar edição desativado";                    
-                    td2.appendChild(editButton);  
+                    spanAccessibilityEdit.appendChild(editButton);
+                    td2.appendChild(spanAccessibilityEdit);  
                     td2.setAttribute('class','td'); ;                             
                     
                     deleteButton.src = `${config.urlBase}/assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg`;
                     deleteButton.setAttribute('class','material-symbols-rounded delete-button');
-                    td2.appendChild(deleteButton); 
+                    deleteButton.setAttribute('alt','botão excluir');
+                    spanAccessibilityDelete.appendChild(deleteButton);
+                    td2.appendChild(spanAccessibilityDelete); 
 
                     tr.setAttribute("data-id",allCategories.result[i].id);                
                     tr.appendChild(td1);                
@@ -66,7 +77,6 @@ class Categories extends Controller{
         }       
 
     }
-
    
     goToCategoryRegister(){
         document.querySelector("#register-categories-button").addEventListener("click",()=>{              
@@ -83,7 +93,7 @@ class Categories extends Controller{
         for (let index = 0; index < deleteBtns.length; index++) {
             deleteBtns[index].addEventListener("click", async (e)=>{
 
-                const id = e.target.parentNode.parentNode.getAttribute('data-id');
+                const id = e.target.parentNode.parentNode.parentNode.getAttribute('data-id');
                 const categoryName = document.querySelector('.category-name').value;
 
                 let formData = new FormData();
@@ -95,24 +105,12 @@ class Categories extends Controller{
                     
                 }                         
                 
-                await this.modelCategories.delete(this.currentPage, id, formData);                 
-                await this.showAll();
-                this.delete();
-                let divMessage = document.querySelector('.success-message')
-                divMessage.style.display = 'block';
-                divMessage.textContent = "Excluido com sucesso";
-                
-                setTimeout(() => {
-                    
-                    if(divMessage !== null){            
-                        divMessage.textContent = '';
-                        divMessage.style.display = 'none';                        
-                    }
-                    
-                }, 3000);
-                
+                let msg = await this.modelCategories.delete(this.currentPage, id, formData);                 
+                alert(msg);
+                window.location.reload();               
 
-                });   
+                }); 
+                
             
         }
                   
@@ -131,23 +129,8 @@ class Categories extends Controller{
         }
         
         let msg = await this.modelCategories.update(this.currentPage,formData); 
-
-        let div = document.createElement('div');        
-        div.textContent = msg;       
-
-        div.setAttribute('class','success-message');   
-        div.style.display = 'block';             
-        document.querySelector('main .container').appendChild(div);
-
-        setInterval(() =>{            
-            if(div.parentNode !== null){            
-                div.parentNode.removeChild(div);
-            }
-            
-            clearInterval(this);
-        },3000);
-               
-        
+        alert(msg);
+        window.location.reload();        
         
     }  
 
@@ -155,13 +138,13 @@ class Categories extends Controller{
         let fieldsCategoryName = document.querySelectorAll('.category-name');
        
         fieldsCategoryName.forEach((field)=>{
-            field.addEventListener('keyup', (event)=>{                                                               
+            field.addEventListener('keyup', async (event)=>{                                                               
                 const updateButton = event.target.parentNode.parentNode.querySelector('.update-button');                
                 updateButton.src = `${config.urlBase}/assets/imgs/icons/button_check_on.svg`;
                 updateButton.alt = 'salvar edição ativado';
 
-                event.target.parentNode.parentNode.querySelector('.update-button').addEventListener('click', ()=>{
-                    this.updateButtonEventFunction(event);
+                await event.target.parentNode.parentNode.querySelector('.update-button').addEventListener('click', async ()=>{
+                    await this.updateButtonEventFunction(event);
                 });
     
             });
@@ -169,14 +152,14 @@ class Categories extends Controller{
         
     }
 
-    updateButtonEventFunction = (event)=>{
+    updateButtonEventFunction = async (event)=>{
         const updateButton = event.target.parentNode.parentNode.querySelector('.update-button');                 
         const categoryId = event.target.parentNode.parentNode.getAttribute('data-id');
 
         const category = event.target.parentNode.parentNode.querySelector('.category-name');
         updateButton.src = `${config.urlBase}/assets/imgs/icons/button_check_off.svg`;
         updateButton.onclick = null;                
-        this.updateAssistant(categoryId, category.value);
+        await this.updateAssistant(categoryId, category.value);
     }
     
     
@@ -213,6 +196,11 @@ class Categories extends Controller{
         layoutFooter.create(containerFooter, config, true);        
         
     } 
+
+    setTabOrder(){                       
+        HelperTabOrder.setTabOrder(tabOrderCategories);
+    }
+
    
     
 }
@@ -226,11 +214,12 @@ categories.delete();
 categories.handleInputField();
 categories.arrowBack();
 categories.appendFooter();
+categories.setTabOrder();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu('categories');
 // HelperSandwichMenu.goToReturnedThings();

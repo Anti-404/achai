@@ -1,5 +1,20 @@
 <?php
 namespace src;
+//azure
+/*
+class Config {
+    const BASE_DIR = 'achai/api/public';  
+
+    const DB_DRIVER = 'mysql';
+    const DB_HOST = 'achai.mysql.database.azure.com';
+    const DB_DATABASE = 'achai';
+    const DB_USER = 'achai';
+    const DB_PASS = 'MqC88uiZzrWD-~f';
+
+   const ERROR_CONTROLLER = 'ErrorController';
+   const DEFAULT_ACTION = 'index';
+}
+*/
 /* 
 //2° banco
 class Config {
@@ -17,18 +32,6 @@ class Config {
 
 */
 
-class Config {
-    const BASE_DIR = '/achai/api/public';   
-
-    const DB_DRIVER = 'mysql';
-    const DB_HOST = 'localhost';
-    const DB_DATABASE = 'achai';
-    CONST DB_USER = 'root';
-    const DB_PASS = '';
-
-    const ERROR_CONTROLLER = 'ErrorController';
-    const DEFAULT_ACTION = 'index';
-}
 
 /* 
 //1° banco
@@ -46,3 +49,18 @@ class Config {
 }
 
 */
+
+
+//0° banco
+class Config {
+    const BASE_DIR = '/achai/api/public';   
+
+    const DB_DRIVER = 'mysql';
+    const DB_HOST = 'localhost';
+    const DB_DATABASE = 'achai';
+    CONST DB_USER = 'root';
+    const DB_PASS = '';
+
+    const ERROR_CONTROLLER = 'ErrorController';
+    const DEFAULT_ACTION = 'index';
+}

@@ -2,9 +2,15 @@
 
 @font-face {
     font-family: 'Poppins-SemiBold';
-    src: url("../fonts/Poppins-SemiBold.ttf");
+    src: url("./assets/fonts/Poppins-SemiBold.ttf");
   
+
 }
+
+/* header{
+    margin-bottom: 48px;
+    position: fixed;
+} */
 
 .background-modal{
     display: none;  
@@ -35,7 +41,11 @@ main .container-header #categories-title{
   font-size: var(--titles); 
 }
 
-.things-list figure figcaption .thing-header span:nth-child(1){
+.banner img{
+    width: 111%;
+    margin-left: -20px; 
+}
+.things-list .figure .figcaption .thing-header span:nth-child(1){
     display: none;
 }
 main .container-header .filter-struct{
@@ -172,4 +182,6 @@ ul.categories-list-panel li a {
 .categories-panel-modal{
     display: none;
 }
+
+/*      responsiveness        */
 

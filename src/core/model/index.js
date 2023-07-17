@@ -8,7 +8,7 @@ export default class Model{
 
 
      async get(id){      
-      const endpoint = `${this.path}${this.nameController}/get/${id}`;            
+      const endpoint = `${this.path}${this.nameController}/get/${id}`;                
         try {            
             const response = await fetch(endpoint);           
             
@@ -38,12 +38,22 @@ export default class Model{
       const endpoint = `${this.path}${this.nameController}/insert`;            
         
         try {
-          const response = await fetch(endpoint, {
+          let response = await fetch(endpoint, {
             method: "POST",
             body: formData,
           });          
-          alert("Cadastrado com Sucesso");         
-          window.location.href = addressRedirecting;          
+          
+          response = await response.json();
+          
+          if(response.error == ''){          
+                            
+            alert('Cadastrado com Sucesso');                 
+            window.location.href = addressRedirecting;          
+
+          }else{
+            alert(response.error);                 
+          }
+
         } catch (error) {
           alert(error);
         }   

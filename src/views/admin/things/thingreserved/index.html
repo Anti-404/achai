@@ -23,36 +23,45 @@
             <form id='first-form' action="" method="post">                        
                 <input type="hidden" name="id" id="data-id">                         
                 <input type = "hidden" name="image_address" id="image-address">                        
-                <img > 
+                <img id="img"> 
                 <div>
-                    <label>Categoria </label>
-                    <label id="code"></label>                
+                    <label id="labelCategory">Categoria </label>
+                    <label id="code"></label>               
                     
                 </div>
-                <input type='text' id="category" disabled />
+                <div class ="category" >
+                    <input type='text' id="category" disabled />
+                </div>
                 <input type = "hidden" name="category_id" id="category-id">
                                         
-                <label for="description">Descrição</label>
-                <textarea name="description" cols="30" rows="10" id="description" disabled></textarea>
-                
+                <label id="labelDescription">Descrição</label>
+                <div class="description">
+                    <textarea name="description" cols="30" rows="10" id="description" disabled></textarea>
+                </div>                
 
-                <label for="local">Local perdido</label>
-                <input type="text" name="local" id="local" disabled>
-                                   
+                <label id="labelLocal">Local perdido</label>
+                <div class="local">                    
+                    <input type="text" name="local" id="local" disabled>
+                </div>                                   
                 
-                <label for="local">Horario cadastrado</label>
-                <input type="text" name="date" id="date" disabled>
+                <label id="labelDate">Horario cadastrado</label>
+                <div class="date">
+                    <input type="text" name="date" id="date" disabled>
+                </div>
                                   
                 
                 <input type = "hidden" name="returned_status" id="returned-status">   
                 <input type = "hidden" name="reserved_status" id="reserved-status">    
                 
-                <button id="return-button" >Retirar</button>
+                <button id="return-button" >Confir. retirada</button>
                                    
             </form> 
             
         </div>
     </main>
+    <footer>
+        <div class="container"></div>
+    </footer>
         
     <script type = "module" src="index.js" ></script>
     <script type = "module" src="../../../../../assets/js/utilities.js"></script>

@@ -44,7 +44,6 @@ main{
   min-height: 100vh;
 }
 
-
 .container {
     display: flex;    
     flex-direction: column;
@@ -337,25 +336,28 @@ footer{
   margin-left: -20px;
   margin-right: -20px;
   margin-bottom: -20px;
+  
 }
 
 footer .container{  
   flex-direction: column-reverse;  
   gap: 10px;
-  text-align: center;
+  text-align: center;  
 }
 
 footer .container img{  
-  width: 80px;
+  width: 82px;
   margin-bottom: 5px;
 }
 
 footer .container a:nth-child(2){
   text-decoration: underline;
+  text-decoration-color: var(--gray-color);
 }
 
-footer .container div, a{
+footer .container a, footer .container div{
   font-weight: 600;
+  font-size: 12px;
 }
 /* sandwich-menu */
 
@@ -381,26 +383,6 @@ footer .container div, a{
 .modal-task ul li{
   gap: 5px;
 }
-
-.modal-task .discard-things-button span:nth-child(1){
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-image: url("../../assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg"); 
-  background-repeat: no-repeat; 
-  background-position: center center;
-  
-}
-
-.modal-task .category-manager-button span:nth-child(1){
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-image: url("../../assets/imgs/icons/edit_FILL0_wght300_GRAD0_opsz24.svg"); 
-  background-repeat: no-repeat; 
-  background-position: center center;
-}
-
 
 .sandwich-menu-body .body-modal{
   display: flex;
@@ -501,7 +483,7 @@ footer .container div, a{
 .header-top{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;  
+  margin-bottom: 5px;    
 }
 .header-top-header img[alt='Botão volta']{
 padding-right: 10px;
@@ -563,6 +545,41 @@ select#categories-list{
   
 }
 
+/* banner information*/
+
+div.help-information{
+  padding: 15px;
+  background: #0F8B8DB2;
+  border-radius: 10px;  
+  display: flex;  
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  
+}
+.help-information .img-help-icon{
+  width: 24px;
+}
+
+.help-information .title{
+  /* font-size: 14px;   */
+  font-weight: 700;   
+  color: var(--background-color);  
+}
+
+.help-information .content{
+  /* font-size: 14px;   */
+  font-weight: 400;  
+  color: var(--background-color);   
+}
+
+.help-information a{
+  /* font-size: 14px;   */
+  font-weight: 400;   
+  color: var(--background-color); 
+  text-decoration: underline; 
+}
+
 /*      responsiveness        */
 
 @media (min-width: 500px)
@@ -571,4 +588,6 @@ select#categories-list{
     width: 400px;
     margin: auto;
   }
+
 }
+

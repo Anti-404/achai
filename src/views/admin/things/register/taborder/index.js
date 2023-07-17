@@ -3,7 +3,8 @@ import tabOrderFooter from "../../../../components/footer/taborder/index.js";
 
  let elementsListRegister =  [      
     {selector: "#img-picture"},   
-    {selector: "label[for='category-id']"},   
+    {selector: "#labelCategories"},   
+    
     {selector: "#category-id"},   
     {selector: "label[for='description']"},   
     {selector: "#description"},   
@@ -12,5 +13,18 @@ import tabOrderFooter from "../../../../components/footer/taborder/index.js";
     {selector: "#save-button"},   
 ];
 
-const elementsList = [...tabOrderHeader, ...elementsListRegister, ...tabOrderFooter];
-export default elementsList;
+const tabOrderRegister = [...tabOrderHeader, ...elementsListRegister, ...tabOrderFooter];
+
+const tabOrderRegisterModalTakePicture =  [      
+    {selector: "#exit-modal-button"},
+    {selector: "#open-picture-modal"},
+    {selector: "label[for='image-address']"}
+];
+
+const tabOrderRegisterModalCamera =  [      
+    {selector: "#take-picture-button"},         
+         
+];
+
+export default tabOrderRegister;
+export {tabOrderRegisterModalTakePicture, tabOrderRegisterModalCamera};

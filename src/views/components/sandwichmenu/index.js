@@ -16,10 +16,7 @@ class LayoutSandwichMenu{
 
     async create(container){ 
         let divSandwichMenuBody = document.createElement("div");   
-        divSandwichMenuBody.setAttribute('class','sandwich-menu-body');
-
-        // let divCloseModal = document.createElement("div");  
-        // divCloseModal.setAttribute('class','close-modal');                                   
+        divSandwichMenuBody.setAttribute('class','sandwich-menu-body');                                  
 
         let imgCloseModal = document.createElement("img"); 
         imgCloseModal.setAttribute('class','material-symbols-rounded');                   
@@ -57,13 +54,17 @@ class LayoutSandwichMenu{
         divModalTask.setAttribute('class','modal-task'); 
         
 
-        let spanDiscardIcon = document.createElement('span');
+        let spanDiscardIcon = document.createElement('img');
         spanDiscardIcon.setAttribute('class','material-symbols-rounded');            
+        spanDiscardIcon.setAttribute('alt','Botão discartes');            
+        spanDiscardIcon.setAttribute('src',`${config.urlBase}/assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg`);            
         let spanDiscardText = document.createElement('span');
         spanDiscardText.textContent = 'Descartes';
         
-        let spanEditCategoryIcon= document.createElement('span');
+        let spanEditCategoryIcon= document.createElement('img');
         spanEditCategoryIcon.setAttribute('class','material-symbols-rounded');            
+        spanEditCategoryIcon.setAttribute('alt','Botão gerenciar categorias');            
+        spanEditCategoryIcon.setAttribute('src',`${config.urlBase}/assets/imgs/icons/edit_FILL0_wght300_GRAD0_opsz24.svg`);            
         let spanEditTextCategory = document.createElement('span');
         spanEditTextCategory.textContent = 'Gerenciar categorias';
 

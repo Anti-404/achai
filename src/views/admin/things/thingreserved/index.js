@@ -4,9 +4,13 @@ import Controller from '../../../../core/controller/index.js';
 import config from '../../../../../config.js';
 
 import HelperSandwichMenu from '../../../helpers/sandwichmenu/index.js';
+import HelperTabOrder from '../../../helpers/taborder/index.js';
 
 import LayoutHeaderContent from '../../../components/headercontent/index.js';
 import LayoutBreadcrumbs from '../../../components/breadcrumbs/index.js';
+import LayoutFooter from '../../../components/footer/index.js';
+
+import tabOrderThingReserved from "../../../admin/things/thingreserved/taborder/index.js";
 
 class QRCode extends Controller{
 
@@ -29,6 +33,7 @@ class QRCode extends Controller{
             document.querySelector("#code").textContent = `N°:${this.identifier}`;   
             
             document.querySelector("form img").setAttribute('src', `${config.urlBase}/${thing.result[0].image_address}`);            
+            document.querySelector("form img").setAttribute('alt', `${thing.result[0].description}`);            
 
             document.querySelector("#image-address").value = thing.result[0].image_address;                        
 
@@ -58,9 +63,9 @@ class QRCode extends Controller{
         });
     }
 
-    return(){
+    async return(){
 
-        document.querySelector("#return-button").addEventListener("click",(e)=>{  
+        document.querySelector("#return-button").addEventListener("click", async (e)=>{  
             e.preventDefault();
             this.unDisabled();
 
@@ -71,14 +76,14 @@ class QRCode extends Controller{
             }
 
             formData.append('returned_status','1');                  
-            this.modelThings.update(`${config.urlBase}/src/views/admin/panel/`,formData,'Retirado'); 
+            await this.modelThings.update(`${config.urlBase}/src/views/admin/panel/`,formData,'Retirado'); 
         });
 
     }
 
-    createHeaderContent(){
+    async createHeaderContent(){
         const contentHeader = new LayoutHeaderContent();
-        contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true, false);
+        await contentHeader.create(document.querySelector('header .container'), `${config.urlBase}/src/views/admin/panel/`, false, true, true, false);
     }
     
     createBreadcrumbs(){
@@ -101,21 +106,35 @@ class QRCode extends Controller{
             
         });
     }
+
+    setTabOrder(){                  
+        // HelperTabOrder.resetTabOrder(tabOrderThingReserved);        
+        HelperTabOrder.setTabOrder(tabOrderThingReserved);
+    }
+
+    appendFooter(){
+        let containerFooter = document.querySelector("footer .container");
+        const layoutFooter  = new LayoutFooter();
+        layoutFooter.create(containerFooter, config, true);        
+        
+    }
     
 
 }   
 
 const qrcode = new QRCode();
-qrcode.createHeaderContent();
+await qrcode.createHeaderContent();
 qrcode.createBreadcrumbs();
 await qrcode.getThing();
-qrcode.return();
+await qrcode.return();
 qrcode.arrowBack();
+qrcode.appendFooter();
+qrcode.setTabOrder();
 
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
 HelperSandwichMenu.goToCategoryManager();
 HelperSandwichMenu.openSandwichMenu();
-HelperSandwichMenu.closeSandwichMenu();
+HelperSandwichMenu.closeSandwichMenu('thingreserved');
 // HelperSandwichMenu.goToReturnedThings();

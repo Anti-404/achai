@@ -8,11 +8,10 @@ export default class HelperTabOrder{
     static setTabOrder(elementsList=[{selector:''}]){  
         
         elementsList.forEach((item)=>{
-            let element = document.querySelectorAll(`${item.selector}`);            
-            console.log(element);
+            let element = document.querySelectorAll(`${item.selector}`);                        
             if(element.length > 1){                                
                 element.forEach((item2)=>{
-                    item2.setAttribute('tabindex',HelperTabOrder.order);
+                    item2.setAttribute('tabindex', HelperTabOrder.order);
                     ++HelperTabOrder.order;                    
                 })
                 

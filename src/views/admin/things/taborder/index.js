@@ -1,10 +1,10 @@
 import tabOrderHeader from "../../../components/headercontent/taborder/index.js";
 import tabOrderFooter from "../../../components/footer/taborder/index.js";
 
-const elementsListCurrent =  [                                   
+const elementsListThings =  [                                   
      {selector: ".categories-panel ul li a"},       
 ]
 
-const elementsList = [...tabOrderHeader, ...elementsListCurrent, ...tabOrderFooter] ;
+const elementsList = [...tabOrderHeader, ...elementsListThings, ...tabOrderFooter] ;
 
 export default elementsList;

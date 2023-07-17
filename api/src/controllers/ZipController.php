@@ -102,7 +102,7 @@ class ZipController extends Controller {
             )->execute();            
 
         } else {
-            $this->array['error'] = 'Dados não enviados';
+            $this->array['error'] = 'Dados obrigatórios não enviados';
         } 
         
         

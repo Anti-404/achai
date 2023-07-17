@@ -29,7 +29,8 @@ class QRCodeReader extends Controller{
         });
 
         Instascan.Camera.getCameras().then(cameras => 
-        {
+        {   
+            /*
             if(cameras.length > 1){
                 scanner.start(cameras[1]);
                 
@@ -38,7 +39,16 @@ class QRCodeReader extends Controller{
                 
             }else {
                 console.error("Não existe câmera no dispositivo!");
+            }*/
+
+            if(cameras.length > 0){                
+                scanner.start(cameras[cameras.length-1]);
+                
+            }else {
+                console.error("Não existe câmera no dispositivo!");
             }
+
+
         });
 
     }
@@ -82,9 +92,8 @@ class QRCodeReader extends Controller{
         
     } 
 
-    setTabOrder(){
-        const elementsList = tabOrderQrcodeReader;                
-        HelperTabOrder.setTabOrder(elementsList);
+    setTabOrder(){                 
+        HelperTabOrder.setTabOrder(tabOrderQrcodeReader);
     }
 
 

@@ -6,9 +6,11 @@ import LayoutHeaderContent from './src/views/components/headercontent/index.js';
 import LayoutCateogoriesList from './src/views/components/categories/index.js';
 import LayoutBreadcrumbs from './src/views/components/breadcrumbs/index.js';
 import LayoutFooter from "./src/views/components/footer/index.js";
+import LayoutHelpInformation from "./src/views/components/helpinformation/index.js";
 
 import HelperSearch from './src/views/helpers/search/index.js';
 import HelperCategories from './src/views/helpers/categories/index.js';
+import HelperStatusAllThingsRender from './src/views/helpers/statusallthingsrender/index.js';
 
 import config from './config.js';
 
@@ -16,7 +18,8 @@ class Home {
     constructor(){
         this.modelCategories = new ModelCategories();               
         this.modelThings = new ModelThings();  
-        this.layoutThing = new LayoutThing();                      
+        this.layoutThing = new LayoutThing();    
+        
     }
     
     async categoriesList(){         
@@ -55,10 +58,9 @@ class Home {
             
     }
     
-    handleThingsByCategories(){
-        // let categoriesLinks = document.querySelectorAll('.categories-list li a');
+    async handleThingsByCategories(){                
         let categoriesLinks = document.querySelectorAll('.categories-list li');
-        HelperCategories.handleThingsByCategories(categoriesLinks);
+        await HelperCategories.handleThingsByCategories(categoriesLinks);
     }
 
     handleThingsByCategoriesPanel(){
@@ -76,7 +78,7 @@ class Home {
 
     }
         
-    thingsByFilters(){
+    async thingsByFilters(){
             let  allThings = {erro:'', result:''};           
             let  thingsFilters = document.querySelectorAll(".filter-things span");                        
             let  thingsList = document.querySelector(".things-list");
@@ -87,14 +89,14 @@ class Home {
                 if (status == "1") {              
                 
                     switch (index) {                        
-                        case 0:                                                       
+                        case 0:
                             allThings = await this.modelThings.getAll(); 
-                            path =  'users/things/show-object';                                                     
+                            path =  'users/things/show-object';
                             break;
 
                         case 1:                            
                             allThings = await this.modelThings.getThingsReserved();  
-                            path =  'users/things/show-reserved-object';                                                      
+                            path =  'users/things/show-reserved-object';
                             break;                       
                     
                         default:
@@ -102,9 +104,15 @@ class Home {
                     }
                 }
 
-                thingsList.innerHTML = '';
-
-                this.layoutThing.create(thingsList, allThings, true, path);
+                try{
+                    HelperStatusAllThingsRender.statusAllThingsRender = false; 
+                    thingsList.innerHTML = '';
+                    let msg = await this.layoutThing.create(thingsList, allThings, true, path);
+                    HelperStatusAllThingsRender.statusAllThingsRender = true;
+                    console.log(`${msg} os objetos por filtros`);                    
+                }catch(erro){
+                    console.log('falha no engano da promisse: '+erro);
+                }
                 
         });
             
@@ -112,11 +120,12 @@ class Home {
 
     }
 
-    filterThings(){
+    async filterThings(){
         let  thingsFilters = document.querySelectorAll(".filter-things span");                        
         
         thingsFilters.forEach((filter) => {
-            filter.addEventListener('click', ()=>{
+            filter.addEventListener('click', async ()=>{                    
+                if(!HelperStatusAllThingsRender.statusAllThingsRender) return;
 
                 document.querySelectorAll('.categories-list a img').forEach((img)=>{
                            
@@ -139,7 +148,9 @@ class Home {
                     thingsFilters[i].setAttribute('status','0');
                 }
                 filter.setAttribute('status','1');
-                this.thingsByFilters();
+                
+                await this.thingsByFilters();                
+                 
             });
         });
 
@@ -164,10 +175,10 @@ class Home {
             document.querySelector('.header-top-body .search-button').style.display = 'none';
             document.querySelector('.container-header').style.display = 'none';
             document.querySelector('main .container .things-list').style.display = 'none';
+            document.querySelector('.banner').style.display = 'none';
             document.querySelector('ul.breadcrumb').style.display = 'block';
         });
-    }
-    
+    }    
 
     createBreadcrumbs(){
         const layoutBreadcrumbs = new LayoutBreadcrumbs();
@@ -179,8 +190,7 @@ class Home {
         
         layoutBreadcrumbs.create(ul, values);        
 
-    }
-    
+    }    
 
     handleButtonInfo(){
         document.querySelector('.info-button').addEventListener('click',()=>{
@@ -195,6 +205,19 @@ class Home {
         
     } 
 
+    setImgBanner(){
+        document.querySelector('.banner img').setAttribute('src',`${config.urlBase}/assets/imgs/imagem degradê.svg`);
+    }
+
+    createInformationBanner(){
+        const layoutHelpInformation = new LayoutHelpInformation();
+        let container = document.querySelector('.help-information');        
+        layoutHelpInformation.create(container);        
+
+        container.style.marginTop =  `${(document.querySelector('main .container .things-list').clientHeight)}px`;
+
+    }
+
 }
 
 const home = new Home();
@@ -202,13 +225,15 @@ await home.createModalCategories();
 await home.categoriesList();
 home.createHeaderContent();
 home.createBreadcrumbs();
-home.handleThingsByCategories();
 home.handleThingsByCategoriesPanel();
 await home.thingsList();
-home.filterThings();
+await home.filterThings();
 home.handleButtonAllCategories();
 home.handleButtonInfo();
 home.appendFooter();
+home.setImgBanner();
+home.createInformationBanner();
+await home.handleThingsByCategories();
 
 HelperSearch.createModalSearch();
 HelperSearch.searchItem();

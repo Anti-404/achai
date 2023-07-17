@@ -32,7 +32,7 @@ class ThingsManager extends Controller{
 
         let allThings = {};
         
-        if (this.categoriesIdUrl !== undefined && this.categoriesIdUrl !== '105') {
+        if (this.categoriesIdUrl !== undefined && this.categoriesIdUrl !== '87') {
             allThings = await this.modelThings.getThingsByCategoryId(this.categoriesIdUrl);            
         }else{
             allThings = await this.modelThings.getAll();            
