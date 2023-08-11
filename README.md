@@ -83,7 +83,7 @@ A pasta `/src` é onde se encontra o front-end
 | Pesquisar por meio de caixa de pesquisa | /index.js |   Feito    |
 
 
-## Desenvolvedores
+## Integrantes
 
 Esse projeto está sendo desenvolvido por alunos da UFC do curso SMD, a nossa equipe é a ANT-404. Participantes:
 
