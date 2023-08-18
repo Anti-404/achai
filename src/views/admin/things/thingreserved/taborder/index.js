@@ -13,6 +13,7 @@ const elementsListThingReserved =  [
     {selector: "#labelDate"},       
     {selector: ".date"},   
     {selector: "#return-button"},                      
+	{selector: "#undo-reserve-button"},
 ];
 
 const elementsList = [...tabOrderHeader, ...elementsListThingReserved, ...tabOrderFooter] ;

@@ -9,3 +9,7 @@ body{
 .category input, .local input, .date input, .description textarea{
     width: 100%;
 }
+
+#undo-reserve-button{
+    margin-top: 15px;
+}

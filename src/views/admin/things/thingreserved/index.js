@@ -56,6 +56,7 @@ class QRCode extends Controller{
             alert(thing.erro);
         }         
     }
+
     unDisabled(){
         const disabledFields =  document.querySelectorAll('[disabled]');
         disabledFields.forEach((item)=>{
@@ -77,8 +78,29 @@ class QRCode extends Controller{
 
             formData.append('returned_status','1');  
             document.querySelector("#return-button").setAttribute('disabled','');
-            document.querySelector("#return-button").textContent = "Retirando";               
+            document.querySelector("#return-button").textContent = "Retirando...";               
             await this.modelThings.update(`${config.urlBase}/src/views/admin/panel/`,formData,'Retirado'); 
+        });
+
+    }
+
+    async undoReserve(){
+
+        document.querySelector("#undo-reserve-button").addEventListener("click", async (e)=>{  
+            e.preventDefault();  
+            this.unDisabled();          
+
+            let formData = new FormData(document.querySelector("#first-form"));
+
+            if(localStorage.getItem("hash")){
+                formData.append('hash',localStorage.getItem("hash"));                
+            }
+
+              
+            formData.set('reserved_status','0'); 
+            document.querySelector("#undo-reserve-button").textContent = "Retirando reserva...";
+            
+            await this.modelThings.update(`${config.urlBase}/src/views/admin/panel/`,formData,'Reserva retirada'); 
         });
 
     }
@@ -129,6 +151,7 @@ await qrcode.createHeaderContent();
 qrcode.createBreadcrumbs();
 await qrcode.getThing();
 await qrcode.return();
+await qrcode.undoReserve();
 qrcode.arrowBack();
 qrcode.appendFooter();
 qrcode.setTabOrder();
