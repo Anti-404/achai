@@ -120,23 +120,21 @@ class CategoryController extends Controller {
         }
         
         $id = filter_input(INPUT_POST, 'id'); 
-        $name = filter_input(INPUT_POST, 'name');                               
+        $name = filter_input(INPUT_POST, 'name');                              
         
-        $dados = [
-            'id' => $id,
-            'name' => $name
-        ];
+        
 
-        if($dados['id'] && $dados['name']) {   
-            $category = Categories::select()->where('id', $dados['id'])->execute();            
+        if($id && $name) {   
+            $category = Categories::select()->where('id', $id)->execute();    
+            $this->array['error'] = '';           
 
             if(count($category) > 0){
 
-                Categories::update()->set('name',$dados['name'])->where('id', $dados['id'])->execute();
+                Categories::update()->set('name',$name)->where('id', $id)->execute();
                 
                 $this->array['result'] = [
-                    'id' => $dados['id'],
-                    'name' => $dados['name']
+                    'id' => $id,
+                    'name' => $name
                 ];
 
             }else{

@@ -160,7 +160,7 @@ class ThingsInteraction extends Controller{
         navigator.mediaDevices.getUserMedia({video:{            
             
             facingMode: {
-                //exact: 'environment'
+                exact: 'environment'
               }
             }
             
@@ -306,7 +306,7 @@ class ThingsInteraction extends Controller{
         let arrowButton = document.querySelector('.arrow-button');
         arrowButton.addEventListener('click',()=>{
             
-            window.location.href = `${config.urlBase}/src/views/admin/things/manager/?id=0`;                
+            window.location.href = `${config.urlBase}/src/views/admin/things/manager/?id=87`;                
             
         });
     }

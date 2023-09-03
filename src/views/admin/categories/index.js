@@ -33,13 +33,11 @@ class Categories extends Controller{
                 
                 if(allCategories.result[i].icon_name === null){
                     let tr = document.createElement("div");                
-                    let td1 = document.createElement("div"); 
+                    let td1 = document.createElement("a"); 
                     let td2 = document.createElement("div");                 
-                    let deleteButton = document.createElement('img');
-                    let editButton = document.createElement('img');
-                    let input = document.createElement('input');   
+                    let deleteButton = document.createElement('img');                    
+                    let input = document.createElement('input');                      
                     
-                    let spanAccessibilityEdit = document.createElement('span');   
                     let spanAccessibilityDelete = document.createElement('span');   
                     
                     tr.setAttribute('class','tr'); ;  
@@ -47,20 +45,17 @@ class Categories extends Controller{
                     input.setAttribute('value',allCategories.result[i].name);               
                     input.setAttribute('class','category-name');               
                     input.setAttribute('name','name');               
+                    //input.setAttribute('disabled','');  
+
                     td1.appendChild(input);                    
-                    td1.setAttribute('class','td'); ;                                        
-                    
-                    editButton.src = `${config.urlBase}/assets/imgs/icons/button_check_off.svg`;
-                    editButton.setAttribute('class','material-symbols-rounded update-button');                    
-                    editButton.alt = "salvar edição desativado";                    
-                    spanAccessibilityEdit.appendChild(editButton);
-                    td2.appendChild(spanAccessibilityEdit);  
-                    td2.setAttribute('class','td'); ;                             
+                    td1.setAttribute('class','td');
+                    td1.setAttribute('href',`${config.urlBase}/src/views/admin/categories/interaction/?id=${allCategories.result[i].id}`);
                     
                     deleteButton.src = `${config.urlBase}/assets/imgs/icons/delete_FILL0_wght300_GRAD0_opsz24.svg`;
                     deleteButton.setAttribute('class','material-symbols-rounded delete-button');
                     deleteButton.setAttribute('alt','botão excluir');
                     spanAccessibilityDelete.appendChild(deleteButton);
+                    td2.setAttribute('class','td');
                     td2.appendChild(spanAccessibilityDelete); 
 
                     tr.setAttribute("data-id",allCategories.result[i].id);                
@@ -116,51 +111,6 @@ class Categories extends Controller{
                   
             
     }
-
-    async updateAssistant(id, categoryName){
-          
-        let formData = new FormData();
-        formData.append('id',id);
-        formData.append('name',categoryName);
-        
-        if(localStorage.getItem("hash")){
-            formData.append('hash',localStorage.getItem("hash"));
-            
-        }
-        
-        let msg = await this.modelCategories.update(this.currentPage,formData); 
-        alert(msg);
-        window.location.reload();        
-        
-    }  
-
-    handleInputField(){
-        let fieldsCategoryName = document.querySelectorAll('.category-name');
-       
-        fieldsCategoryName.forEach((field)=>{
-            field.addEventListener('keyup', async (event)=>{                                                               
-                const updateButton = event.target.parentNode.parentNode.querySelector('.update-button');                
-                updateButton.src = `${config.urlBase}/assets/imgs/icons/button_check_on.svg`;
-                updateButton.alt = 'salvar edição ativado';
-
-                await event.target.parentNode.parentNode.querySelector('.update-button').addEventListener('click', async ()=>{
-                    await this.updateButtonEventFunction(event);
-                });
-    
-            });
-        });        
-        
-    }
-
-    updateButtonEventFunction = async (event)=>{
-        const updateButton = event.target.parentNode.parentNode.querySelector('.update-button');                 
-        const categoryId = event.target.parentNode.parentNode.getAttribute('data-id');
-
-        const category = event.target.parentNode.parentNode.querySelector('.category-name');
-        updateButton.src = `${config.urlBase}/assets/imgs/icons/button_check_off.svg`;
-        updateButton.onclick = null;                
-        await this.updateAssistant(categoryId, category.value);
-    }
     
     
     createHeaderContent(){
@@ -174,7 +124,7 @@ class Categories extends Controller{
         const values = [];
         
         values.push( {name:'Tela inicial', href:`${config.urlBase}/src/views/admin/panel/`}  );
-        values.push( {name:'Editar categorias', href:this.retrieveURLCurrentPage()}  );
+        values.push( {name:'Gerenciar categorias', href:this.retrieveURLCurrentPage()}  );
         
         
         layoutBreadcrumbs.create(ul, values);        
@@ -211,7 +161,6 @@ categories.createBreadcrumbs();
 categories.goToCategoryRegister();
 await categories.showAll();
 categories.delete();
-categories.handleInputField();
 categories.arrowBack();
 categories.appendFooter();
 categories.setTabOrder();

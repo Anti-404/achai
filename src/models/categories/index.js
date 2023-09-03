@@ -19,7 +19,7 @@ export default class ModelCategories extends Model{
     }
    
     async update(addressRedirecting, formData){       
-      const endpoint = `${this.path}${this.nameController}/update`;      
+      const endpoint = `${this.path}${this.nameController}/update`;     
     
 
         try {
@@ -28,16 +28,19 @@ export default class ModelCategories extends Model{
             body:  formData,
           });  
           
-          response = await response.json();
-          
-          if(response.error == ''){
-            
-            return "Editado com Sucesso";
-                 
+            response = await response.json();             
 
+            if(response.error == ''){
+            alert('Auzalidado com Sucesso'); 
+
+            if(!(addressRedirecting == '')){                
+              window.location.href = addressRedirecting;      
+            }
+  
           }else{
             alert(response.error);                 
           }
+           
           
         } catch (error) {
           console.log(error);

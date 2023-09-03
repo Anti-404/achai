@@ -105,7 +105,6 @@ await things.categoriesList();
 things.handleClickCategory();
 things.setTabOrder();
 
-
 HelperSandwichMenu.createSandwichMenu();
 HelperSandwichMenu.goToProfile();
 HelperSandwichMenu.goToDiscardeThings();
